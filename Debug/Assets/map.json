@@ -1,0 +1,12 @@
+{ "columns":28,
+ "image":"..\/Games\/Pacman\/Debug\/Assets\/Map.jpg",
+ "imageheight":248,
+ "imagewidth":228,
+ "margin":0,
+ "name":"Map",
+ "spacing":0,
+ "tilecount":868,
+ "tileheight":8,
+ "tilewidth":8,
+ "type":"tileset"
+}
