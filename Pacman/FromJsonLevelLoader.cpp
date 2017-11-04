@@ -50,13 +50,12 @@ std::unique_ptr<Level> FromJsonLevelLoader::LoadLevel(const std::string& fileNam
 
 	auto tilesets = ParseTilesets(levelJson);
 	
-	//TODO here is something wrong with that tilesets
 	for (auto&layer : layers)
 		layer.Properties().SetTilesets(tilesets);
 
 	std::for_each(layers.begin(), layers.end(), [](auto&layer) {layer.GenerateTiles(); });
 
-	return make_unique<Level>(_renderer, layers, tilesets,_textureManager);
+	return make_unique<Level>(_renderer, layers, tilesets,_textureManager,_collisionManager);
 }
 
 FromJsonLevelLoader::FromJsonLevelLoader(IRenderer&renderer,ITextureManager&textureManager,ICollisionManager&collisionManager)

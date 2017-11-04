@@ -8,6 +8,7 @@
 #include "BoostDI.h"
 #include "ITextureManager.h"
 #include "ILevelLoader.h"
+#include "Ball.h"
 namespace di=boost::di;
 class Game
 {
@@ -24,6 +25,7 @@ class Game
 
 	shared_ptr<ICollisionManager> _collisionManager;
 
+	std::vector<std::unique_ptr<GameObject>>_balls;
 
 	unique_ptr<Level> _level;
 

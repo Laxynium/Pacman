@@ -29,15 +29,19 @@ bool SDLCollisionManager::IsCollisionBetween(ICollidable* A, ICollidable* B)
 	return true;
 }
 
-bool SDLCollisionManager::DetectCollision(ICollidable & object)
+bool SDLCollisionManager::DetectCollision(ICollidable & object, Tag withWhat)
 {
-	for(auto*staticobject:_objectsToDectection)
+	for(auto*otherObject:_objectsToDectection)
 	{
-		if (staticobject == &object)
+		if (otherObject == &object||otherObject->GetTag()!=withWhat)
 			continue;
 
-		if (IsCollisionBetween(staticobject, &object))
+		if (IsCollisionBetween(otherObject, &object))
+		{
+			otherObject->OnCollsion(object);
 			return true;
+		}
+			
 	}
 
 	return false;

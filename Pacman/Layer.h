@@ -22,6 +22,8 @@ namespace Test
 
 		std::vector<shared_ptr<Tile>>_tiles;
 
+		Tileset*  FindTileset(int id);
+
 	public:
 		void GenerateTiles();
 

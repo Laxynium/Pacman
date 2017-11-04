@@ -147,6 +147,12 @@
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Maps</Filter>
     </ClInclude>
+    <ClInclude Include="Tag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ball.h">
+      <Filter>Header Files\Models\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -193,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp">
+      <Filter>Header Files\Models\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

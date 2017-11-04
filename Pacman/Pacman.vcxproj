@@ -122,6 +122,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ActionType.h" />
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="BoostDI.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="FromJsonLevelLoader.h" />
@@ -150,11 +151,13 @@
     <ClInclude Include="SDLTextureManager.h" />
     <ClInclude Include="SpecialSDLActionType.h" />
     <ClInclude Include="Square.h" />
+    <ClInclude Include="Tag.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Tileset.h" />
     <ClInclude Include="Wrapper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
     <ClCompile Include="FromJsonLevelLoader.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />

@@ -7,10 +7,11 @@ protected:
 	std::vector<ICollidable*>_objectsToDectection;
 
 	static bool IsCollisionBetween(ICollidable* staticobject, ICollidable*  object);
-public:
-	virtual bool DetectCollision(ICollidable & object) override;
 
-	virtual void Register(ICollidable & object) override;
+public:
+	 bool DetectCollision(ICollidable & object,Tag withWhat) override;
+
+	 void Register(ICollidable & object) override;
 
 };
 

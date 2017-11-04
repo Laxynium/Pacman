@@ -10,7 +10,6 @@ class IInputHandler
 {
 protected:
 	std::vector<std::pair<ActionType*, std::function<void()>>> _actions;
-
 public:
 	IInputHandler(){}
 	virtual ~IInputHandler()

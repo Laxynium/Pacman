@@ -3,24 +3,18 @@
 #include "Rect.h"
 #include <algorithm>
 
-Level::Level(IRenderer&renderer, std::vector<Test::Layer>& layers, std::vector<Test::Tileset> tilesets,ITextureManager &textureManager)
-	:_layers(layers),_tileset(tilesets),_renderer(renderer), _textureManager(textureManager)
+Level::Level(IRenderer&renderer, std::vector<Test::Layer>& layers, std::vector<Test::Tileset> tilesets,
+	ITextureManager &textureManager, ICollisionManager&collisionManager)
+	:_layers(layers),_tileset(tilesets),_renderer(renderer), _textureManager(textureManager), _collisionManager(collisionManager)
 {
-}
-
-vector<Tile*> Level::GetTiles()
-{
-	vector<Tile*>_tiles;
 	for(auto&layer:_layers)
 	{
-		if(!layer.Properties().IsCollidable)
+		if (!layer.Properties().IsCollidable)
 			continue;
 
-		auto tiles = layer.GetTiles();
-
-		_tiles.insert(_tiles.end(), tiles.begin(), tiles.end());
+		for(auto*tile: layer.GetTiles())
+			_collisionManager.Register(*tile);
 	}
-	return _tiles;
 }
 
 void Level::Draw()

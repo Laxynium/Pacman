@@ -6,6 +6,7 @@
 #include "Tileset.h"
 #include "ITextureManager.h"
 #include "Tile.h"
+#include "ICollisionManager.h"
 
 class Level:IDrawable
 {
@@ -17,11 +18,12 @@ private:
 	IRenderer &_renderer;
 
 	ITextureManager &_textureManager;
+	ICollisionManager& _collisionManager;
+
 
 public:
-	Level(IRenderer&renderer,std::vector<Test::Layer>&layers,std::vector<Test::Tileset>tilesets, ITextureManager &textureManager);
-
-	vector<Tile*>GetTiles();
+	Level(IRenderer&renderer,std::vector<Test::Layer>&layers,std::vector<Test::Tileset>tilesets, 
+		ITextureManager &textureManager,ICollisionManager&collisionManager);
 
 	void Draw() override;
 

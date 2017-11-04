@@ -7,9 +7,10 @@
 #include "SpecialSDLActionType.h"
 
 
-Game::Game(std::shared_ptr<IRenderer>renderer,std::unique_ptr<IInputHandler> inputHandler,
-		   std::shared_ptr<ILevelLoader>levelLoader,shared_ptr<ICollisionManager>collisionManager):_input_handler(std::move(inputHandler)),_renderer(renderer),
-				_levelLoader(levelLoader),_collisionManager(collisionManager)
+Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> inputHandler,
+	std::shared_ptr<ILevelLoader>levelLoader, shared_ptr<ICollisionManager>collisionManager) :
+	_input_handler(std::move(inputHandler)), _renderer(renderer),
+	_levelLoader(levelLoader), _collisionManager(collisionManager)
 {
 	auto *square_1 = new Square(*_renderer, *_collisionManager);
 	_collisionManager->Register(*square_1);
@@ -19,17 +20,20 @@ Game::Game(std::shared_ptr<IRenderer>renderer,std::unique_ptr<IInputHandler> inp
 	auto*square_2 = new Square(*_renderer, *_collisionManager);
 	_collisionManager->Register(*square_2);
 	drawable2.reset(square_2);
-	
 	drawable2->SetPostion({ 96, 96 });
+
+	_balls.push_back(std::make_unique<Ball>(*_renderer,make_pair<int,int>(64,32)));
+	_balls.push_back(std::make_unique<Ball>(*_renderer,make_pair<int,int>(96,32)));
+	_balls.push_back(std::make_unique<Ball>(*_renderer,make_pair<int,int>(128,32)));
+	_balls.push_back(std::make_unique<Ball>(*_renderer,make_pair<int,int>(160,32)));	
+	_balls.push_back(std::make_unique<Ball>(*_renderer, make_pair<int, int>(192, 32)));
+
+	for (auto&ball : _balls)
+		_collisionManager->Register(dynamic_cast<Ball&>(*ball));
 
 	BindInput();
 
 	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiled.json"));
-
-	for(auto&tile:_level->GetTiles())
-	{
-		_collisionManager->Register(*tile);
-	}
 }
 
 void Game::BindInput()
@@ -66,6 +70,8 @@ void Game::Update() const
 {
 	drawable->Update();
 	drawable2->Update();
+	for (auto&ball : _balls)
+		ball->Update();
 }
 
 void Game::HandleInput()
@@ -83,6 +89,9 @@ void Game::Render() const
 
 	 drawable->Draw();
 	 drawable2->Draw();
+
+	 for (auto&ball : _balls)
+		 ball->Draw();
 
 	_renderer->Present();
 }
