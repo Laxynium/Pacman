@@ -1,17 +1,17 @@
 #pragma once
 #include <vector>
-#include "Layer.h"
 #include "IDrawable.h"
 #include "IRenderer.h"
 #include "Tileset.h"
 #include "ITextureManager.h"
 #include "Tile.h"
 #include "ICollisionManager.h"
+#include "LayerBase.h"
 
 class Level:IDrawable
 {
 private:
-	std::vector<Test::Layer>_layers;
+	std::vector<std::unique_ptr<LayerBase>>_layers;
 
 	std::vector<Test::Tileset>_tileset;
 
@@ -22,7 +22,7 @@ private:
 
 
 public:
-	Level(IRenderer&renderer,std::vector<Test::Layer>&layers,std::vector<Test::Tileset>tilesets, 
+	Level(IRenderer&renderer,std::vector<std::unique_ptr<LayerBase>>&&layers,
 		ITextureManager &textureManager,ICollisionManager&collisionManager);
 
 	void Draw() override;

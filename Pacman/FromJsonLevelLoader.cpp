@@ -1,10 +1,10 @@
 #include "FromJsonLevelLoader.h"
 #include "JsonParser.h"
 #include "Tileset.h"
-#include "Layer.h"
 #include <fstream>
 #include "LayerProperties.h"
-
+#include "ILayerParsersCreator.h"
+using namespace std;
 using nlohmann::json;
 
 namespace Test {
@@ -21,23 +21,12 @@ namespace Test {
 		p.Margin = j.at("margin").get<int>();
 		p.Spacing = j.at("spacing").get<int>();
 		p.Name = j.at("name").get<std::string>();
-		
-	}
-	void from_json(const json& layerJson, LayerProperties& p) {
-		auto data= layerJson.at("data").get<std::vector<int>>();
-		p.Height = layerJson.at("height").get<int>();
-		p.Width = layerJson.at("width").get<int>();
-		p.X = layerJson.at("x").get<int>();
-		p.Y = layerJson.at("y").get<int>();
-		p.Name = layerJson.at("name").get<std::string>();
-		p.SetData(data);
-		p.IsCollidable = layerJson.at("collidable").get<bool>();	
 	}
 }
 
 std::unique_ptr<Level> FromJsonLevelLoader::LoadLevel(const std::string& fileName)
 {
-	ifstream jsonFileStream(fileName);
+	std::ifstream jsonFileStream(fileName);
 
 	if(!jsonFileStream.good())
 	{	
@@ -46,41 +35,33 @@ std::unique_ptr<Level> FromJsonLevelLoader::LoadLevel(const std::string& fileNam
 
 	const auto levelJson=json::parse(jsonFileStream);
 
-	auto layers = ParseLayers(levelJson);
-
 	auto tilesets = ParseTilesets(levelJson);
-	
-	for (auto&layer : layers)
-		layer.Properties().SetTilesets(tilesets);
 
-	std::for_each(layers.begin(), layers.end(), [](auto&layer) {layer.GenerateTiles(); });
+	auto layers = std::move(ParseLayers(levelJson,std::move(tilesets)));
 
-	return make_unique<Level>(_renderer, layers, tilesets,_textureManager,_collisionManager);
+	return std::make_unique<Level>(_renderer, std::move(layers),_textureManager,_collisionManager);
 }
 
-FromJsonLevelLoader::FromJsonLevelLoader(IRenderer&renderer,ITextureManager&textureManager,ICollisionManager&collisionManager)
-	:_renderer(renderer),_textureManager(textureManager), _collisionManager(collisionManager)
+FromJsonLevelLoader::FromJsonLevelLoader(IRenderer&renderer,ITextureManager&textureManager,ICollisionManager&collisionManager,LayerParsersCreator&layerParsersCreator)
+	:_renderer(renderer),_textureManager(textureManager), _collisionManager(collisionManager), _layerParsersCreator(layerParsersCreator)
 {
 }
 
-
-FromJsonLevelLoader::~FromJsonLevelLoader()
+std::vector<std::unique_ptr<LayerBase>> FromJsonLevelLoader::ParseLayers(nlohmann::basic_json<> level_json,std::vector<Test::Tileset>&&tilesets)
 {
-}
+	_layerParsersCreator.AddTilesets(std::move(tilesets));
 
+	vector<std::unique_ptr<LayerBase>>layers;
 
-std::vector<Test::Layer> FromJsonLevelLoader::ParseLayers(nlohmann::basic_json<> level_json)
-{
-	vector<Test::Layer>layers;
 	for(const auto&json:level_json["layers"])
 	{
-		Test::Layer layer(_textureManager,_renderer);
+		const auto &type = json["type"].get<std::string>();
 
-		const Test::LayerProperties layerProp = json;
-		
-		layer.SetProperties(layerProp);
+		auto layerParser=_layerParsersCreator.Create(type);
 
-		layers.emplace_back(layer);	
+		auto newLayer=layerParser->Parse(json);
+
+		layers.emplace_back(std::move(newLayer));	
 	}
 	return layers;
 }
@@ -105,8 +86,9 @@ std::vector<Test::Tileset> FromJsonLevelLoader::ParseTilesets(nlohmann::basic_js
 		newTileset.FirstGridId = firstgId;
 
 		_textureManager.LoadTextureFromFile(newTileset.ImageSource, newTileset.Name);
+
 		tilesets.emplace_back(newTileset);
 	}
-	return tilesets;
+	return std::move(tilesets);
 }
 

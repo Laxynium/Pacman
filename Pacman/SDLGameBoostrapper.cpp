@@ -11,6 +11,8 @@
 #include "ILevelLoader.h"
 #include "FromJsonLevelLoader.h"
 #include "SDLCollisionManager.h"
+#include "ILayerParsersCreator.h"
+#include "LayerParsersCreator.h"
 namespace di = boost::di;
 
 
@@ -24,7 +26,8 @@ void SDLGameBoostrapper::Initialize()
 		di::bind<ITextureManager>().to<SDLTextureManager>().in(di::singleton),
 		di::bind<IRenderer>().to<SDLRenderer>().in(di::singleton),
 		di::bind<IInputHandler>().to<SDLInputHandler>().in(di::unique),
-		di::bind<ICollisionManager>().to<SDLCollisionManager>().in(di::singleton)
+		di::bind<ICollisionManager>().to<SDLCollisionManager>().in(di::singleton),
+		di::bind<LayerParsersCreator>().to<LayerParsersCreator>().in(di::singleton)
 		);
 		_game = injector.create<std::shared_ptr<Game>>();
 }

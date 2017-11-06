@@ -136,13 +136,16 @@
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IGameBoostrapper.h" />
     <ClInclude Include="IInputHandler.h" />
+    <ClInclude Include="ILayerParser.h" />
+    <ClInclude Include="ILayerParsersCreator.h" />
     <ClInclude Include="ILevelLoader.h" />
     <ClInclude Include="IMovable.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="ITextureManager.h" />
     <ClInclude Include="JsonParser.h" />
     <ClInclude Include="Layer.h" />
-    <ClInclude Include="Level.h" />
+    <ClInclude Include="LayerBase.h" />
+    <ClInclude Include="LayerParsersCreator.h" />
     <ClInclude Include="LayerProperties.h" />
     <ClInclude Include="MoveableGameObject.h" />
     <ClInclude Include="Rect.h" />
@@ -156,6 +159,8 @@
     <ClInclude Include="Square.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileLayer.h" />
+    <ClInclude Include="TileLayerParser.h" />
     <ClInclude Include="Tileset.h" />
     <ClInclude Include="Wrapper.h" />
   </ItemGroup>
@@ -164,7 +169,10 @@
     <ClCompile Include="FromJsonLevelLoader.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="ILayerParser.cpp" />
+    <ClCompile Include="ILayerParsersCreator.cpp" />
+    <ClCompile Include="LayerBase.cpp" />
+    <ClCompile Include="LayerParsersCreator.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LayerProperties.cpp" />
     <ClCompile Include="main.cpp" />
@@ -175,6 +183,8 @@
     <ClCompile Include="SDLTextureManager.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileLayer.cpp" />
+    <ClCompile Include="TileLayerParser.cpp" />
     <ClCompile Include="Tileset.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

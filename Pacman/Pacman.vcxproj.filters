@@ -49,6 +49,24 @@
     <Filter Include="Source Files\Wrappers">
       <UniqueIdentifier>{45193f26-488b-41dd-a437-c4efa733594b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Collisions">
+      <UniqueIdentifier>{228bf2dc-5bbe-4c3c-bd55-f91fdb09e73c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NewFiles">
+      <UniqueIdentifier>{2e834f2f-a0ce-490f-a558-78c2caf8018c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\NewFiles">
+      <UniqueIdentifier>{f57b8162-84bf-4ee5-9961-055aa4182435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\NewFiles\InterfacesAndBases">
+      <UniqueIdentifier>{c939b74f-266a-4727-80ab-654be69b0351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\NewFiles\InterfacesAndBases\Source Files">
+      <UniqueIdentifier>{f49a1702-ff91-4b33-ba14-f6ae07795123}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\NewFiles\Implementations">
+      <UniqueIdentifier>{7240d05b-ebf2-4009-a875-9dd9c74ce506}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -111,9 +129,6 @@
     <ClInclude Include="ILevelLoader.h">
       <Filter>Header Files\Maps</Filter>
     </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Header Files\Maps</Filter>
-    </ClInclude>
     <ClInclude Include="FromJsonLevelLoader.h">
       <Filter>Header Files\Maps</Filter>
     </ClInclude>
@@ -132,26 +147,44 @@
     <ClInclude Include="SpecialSDLActionType.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="ICollisionManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MoveableGameObject.h">
       <Filter>Header Files\Models\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLCollisionManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ICollidable.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Maps</Filter>
     </ClInclude>
-    <ClInclude Include="Tag.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ball.h">
       <Filter>Header Files\Models\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollidable.h">
+      <Filter>Header Files\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollisionManager.h">
+      <Filter>Header Files\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLCollisionManager.h">
+      <Filter>Header Files\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="Tag.h">
+      <Filter>Header Files\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="ILayerParsersCreator.h">
+      <Filter>Header Files\NewFiles\InterfacesAndBases</Filter>
+    </ClInclude>
+    <ClInclude Include="ILayerParser.h">
+      <Filter>Header Files\NewFiles\InterfacesAndBases</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerBase.h">
+      <Filter>Header Files\NewFiles\InterfacesAndBases</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerParsersCreator.h">
+      <Filter>Header Files\NewFiles\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="TileLayerParser.h">
+      <Filter>Header Files\NewFiles\Implementations</Filter>
+    </ClInclude>
+    <ClInclude Include="TileLayer.h">
+      <Filter>Header Files\NewFiles\Implementations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,9 +205,6 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Source Files\Maps</Filter>
     </ClCompile>
     <ClCompile Include="Tileset.cpp">
       <Filter>Source Files\Maps</Filter>
@@ -202,6 +232,24 @@
     </ClCompile>
     <ClCompile Include="Ball.cpp">
       <Filter>Header Files\Models\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ILayerParser.cpp">
+      <Filter>Header Files\NewFiles\InterfacesAndBases\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ILayerParsersCreator.cpp">
+      <Filter>Header Files\NewFiles\InterfacesAndBases\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerBase.cpp">
+      <Filter>Header Files\NewFiles\InterfacesAndBases\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerParsersCreator.cpp">
+      <Filter>Header Files\NewFiles\Implementations</Filter>
+    </ClCompile>
+    <ClCompile Include="TileLayerParser.cpp">
+      <Filter>Header Files\NewFiles\Implementations</Filter>
+    </ClCompile>
+    <ClCompile Include="TileLayer.cpp">
+      <Filter>Header Files\NewFiles\Implementations</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

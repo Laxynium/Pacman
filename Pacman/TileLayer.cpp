@@ -1,25 +1,23 @@
-﻿#include "Layer.h"
-#include "JsonParser.h"
-#include "Rect.h"
+﻿#include "TileLayer.h"
+#include "ITextureManager.h"
 #include "IRenderer.h"
 
-
-Test::Layer::Layer(ITextureManager& texureManager,IRenderer&renderer)
-	:_textureManager(texureManager), _renderer(renderer)
+Test::TileLayer::TileLayer(const std::string& type,ITextureManager&textureManager,IRenderer&renderer):
+LayerBase(type), _textureManager(textureManager), _renderer(renderer)
 {
 }
 
-vector<Tile*> Test::Layer::GetTiles() 
+std::vector<Tile*> Test::TileLayer::GetTiles()
 {
-	vector<Tile*>vec;
-	for(auto&el:_tiles)
+	std::vector<Tile*>vec;
+	for (auto&el : _tiles)
 	{
 		vec.push_back(el.get());
 	}
 	return vec;
 }
 
-void Test::Layer::GenerateTiles()
+void Test::TileLayer::GenerateTiles()
 {
 	auto data = _properties.GetData();
 
@@ -47,33 +45,33 @@ void Test::Layer::GenerateTiles()
 			Rect s{ x,y,w,h };
 			Rect d{ j*w,i*h,w,h };
 
-			auto tile = make_shared<Tile>(d, s, tileset->Name);
+			auto tile = std::make_shared<Tile>(d, s, tileset->Name);
 
-			_tiles.push_back(move(tile));
+			_tiles.push_back(std::move(tile));
 
 		}
 	}
-		
+
 }
 
-Test::Tileset* Test::Layer::FindTileset(int id)
+Test::Tileset* Test::TileLayer::FindTileset(int id)
 {
-	for (auto&tileset : _properties._tilesets)
+	for (auto&tileset : _properties.Tilesets())
 	{
-		if(tileset.FirstGridId<=id&&id<=(tileset.FirstGridId+tileset.TileCount-1))
+		if (tileset.FirstGridId <= id&&id <= (tileset.FirstGridId + tileset.TileCount - 1))
 		{
 			return &tileset;
 		}
 	}
 	return nullptr;
 }
-void Test::Layer::Draw()
+void Test::TileLayer::Draw()
 {
-	for(auto&tile:_tiles)
+	for (auto&tile : _tiles)
 	{
 		auto&texture = _textureManager.FindTexture(tile->TextureName());
 		Rect dRect = tile->DscRect();
-		_renderer.CopyEx(texture, &tile->SrcRect(),&dRect);
+		_renderer.CopyEx(texture, &tile->SrcRect(), &dRect);
 		/*dRect.color = Color{ 255,255,0,0 };
 		_renderer.DrawRect(dRect);*/
 	}

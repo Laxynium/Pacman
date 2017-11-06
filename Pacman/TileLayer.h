@@ -1,30 +1,28 @@
 ﻿#pragma once
-#include <string>
-#include <vector>
-#include "Tileset.h"
-#include "IDrawable.h"
-#include "ITextureManager.h"
-#include "IRenderer.h"
+#include "LayerBase.h"
 #include "LayerProperties.h"
 #include "Tile.h"
 #include <memory>
 
-using namespace std;
+struct ITextureManager;
+struct IRenderer;
+
 namespace Test
 {
-	class Layer:public IDrawable
-	{	
+	class TileLayer :public LayerBase
+	{
 		ITextureManager&_textureManager;
 
 		IRenderer& _renderer;
 
 		LayerProperties _properties;
 
-		std::vector<shared_ptr<Tile>>_tiles;
+		std::vector<std::shared_ptr<Tile>>_tiles;
 
 		Tileset*  FindTileset(int id);
-
 	public:
+		explicit TileLayer(const std::string& type, ITextureManager&textureManager, IRenderer&renderer);
+
 		void GenerateTiles();
 
 		void SetProperties(const LayerProperties& level_properties)
@@ -32,15 +30,14 @@ namespace Test
 			_properties = level_properties;
 		}
 
-		LayerProperties& Properties() 
+		LayerProperties& Properties()
 		{
 			return _properties;
 		}
 
-		Layer(ITextureManager&texureManager, IRenderer&renderer);
+		std::vector<Tile*> GetTiles();
 
-		vector<Tile*> GetTiles();
-
-		void Draw() override;	
+		void Draw() override;
 	};
 }
+

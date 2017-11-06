@@ -8,7 +8,7 @@
 
 
 Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> inputHandler,
-	std::shared_ptr<ILevelLoader>levelLoader, shared_ptr<ICollisionManager>collisionManager) :
+	std::shared_ptr<ILevelLoader>levelLoader, std::shared_ptr<ICollisionManager>collisionManager) :
 	_input_handler(std::move(inputHandler)), _renderer(renderer),
 	_levelLoader(levelLoader), _collisionManager(collisionManager)
 {
@@ -22,11 +22,11 @@ Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> in
 	drawable2.reset(square_2);
 	drawable2->SetPostion({ 96, 96 });
 
-	_balls.push_back(std::make_unique<Ball>(*_renderer,make_pair<int,int>(64,32)));
-	_balls.push_back(std::make_unique<Ball>(*_renderer,make_pair<int,int>(96,32)));
-	_balls.push_back(std::make_unique<Ball>(*_renderer,make_pair<int,int>(128,32)));
-	_balls.push_back(std::make_unique<Ball>(*_renderer,make_pair<int,int>(160,32)));	
-	_balls.push_back(std::make_unique<Ball>(*_renderer, make_pair<int, int>(192, 32)));
+	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int,int>(64,32)));
+	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int,int>(96,32)));
+	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int,int>(128,32)));
+	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int,int>(160,32)));	
+	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int, int>(192, 32)));
 
 	for (auto&ball : _balls)
 		_collisionManager->Register(dynamic_cast<Ball&>(*ball));

@@ -23,15 +23,15 @@ class Game
 
 	std::shared_ptr<ILevelLoader> _levelLoader;
 
-	shared_ptr<ICollisionManager> _collisionManager;
+	std::shared_ptr<ICollisionManager> _collisionManager;
 
 	std::vector<std::unique_ptr<GameObject>>_balls;
 
-	unique_ptr<Level> _level;
+	std::unique_ptr<Level> _level;
 
 public:
 	Game(std::shared_ptr<IRenderer> renderer ,std::unique_ptr<IInputHandler> inputHandler,std::shared_ptr<ILevelLoader>levelLoader,
-			shared_ptr<ICollisionManager>collisionManager);
+	     std::shared_ptr<ICollisionManager>collisionManager);
 
 	Game(Game&& other) noexcept = default;
 

@@ -13,7 +13,7 @@ namespace Test
 
 	public:
 
-		std::vector<Test::Tileset> Tilesets() const
+		std::vector<Test::Tileset>& Tilesets() 
 		{
 			return _tilesets;
 		}
