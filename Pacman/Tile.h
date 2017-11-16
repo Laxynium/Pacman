@@ -17,7 +17,6 @@ public:
 
 	Tile(Rect& dscrect,Rect&srcrect,const std::string&textureName);
 
-		
 	 Rect& DscRect();
 
 	 Rect& SrcRect();

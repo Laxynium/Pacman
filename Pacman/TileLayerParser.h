@@ -4,15 +4,16 @@
 #include "IRenderer.h"
 #include "ICollisionManager.h"
 #include "Tileset.h"
+#include "Factory.h"
 
 class TileLayerParser:public ILayerParser
 {
 	ICollisionManager& _collisionManager;
-	IRenderer& _renderer;
-	ITextureManager& _textureManager;
-	std::vector<Test::Tileset>& _tilesets;
+	std::vector<Properties::Tileset>& _tilesets;
+	Factory& _factory;
 public:
-	TileLayerParser(ITextureManager&textureManager, IRenderer&renderer, ICollisionManager&collisonManager, std::vector<Test::Tileset>& tilesets);
+	TileLayerParser(ICollisionManager&collisonManager, 
+		std::vector<Properties::Tileset>& tilesets, Factory &factory);
 
 	std::unique_ptr<LayerBase> Parse(nlohmann::basic_json<> json) override;
 };

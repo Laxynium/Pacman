@@ -7,13 +7,14 @@
 #include "Tile.h"
 #include "ICollisionManager.h"
 #include "LayerBase.h"
+#include "ObjectBase.h"
 
-class Level:IDrawable
+class Level:public ObjectBase
 {
 private:
 	std::vector<std::unique_ptr<LayerBase>>_layers;
 
-	std::vector<Test::Tileset>_tileset;
+	std::vector<Properties::Tileset>_tileset;
 
 	IRenderer &_renderer;
 
@@ -26,6 +27,8 @@ public:
 		ITextureManager &textureManager,ICollisionManager&collisionManager);
 
 	void Draw() override;
+
+	void Update()override;
 
 	~Level();
 };

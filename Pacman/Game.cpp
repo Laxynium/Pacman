@@ -8,32 +8,19 @@
 
 
 Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> inputHandler,
-	std::shared_ptr<ILevelLoader>levelLoader, std::shared_ptr<ICollisionManager>collisionManager) :
+	std::shared_ptr<ILevelLoader>levelLoader, std::shared_ptr<ICollisionManager>collisionManager,GameLogicHandler&gameLogicHandler) :
 	_input_handler(std::move(inputHandler)), _renderer(renderer),
-	_levelLoader(levelLoader), _collisionManager(collisionManager)
+	_levelLoader(levelLoader), _collisionManager(collisionManager), _gameLogicHandler(gameLogicHandler)
 {
 	auto *square_1 = new Square(*_renderer, *_collisionManager);
 	_collisionManager->Register(*square_1);
 	drawable.reset(square_1);
 	drawable->SetPostion({ 32, 32 });
 
-	auto*square_2 = new Square(*_renderer, *_collisionManager);
-	_collisionManager->Register(*square_2);
-	drawable2.reset(square_2);
-	drawable2->SetPostion({ 96, 96 });
-
-	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int,int>(64,32)));
-	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int,int>(96,32)));
-	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int,int>(128,32)));
-	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int,int>(160,32)));	
-	_balls.push_back(std::make_unique<Ball>(*_renderer, std::make_pair<int, int>(192, 32)));
-
-	for (auto&ball : _balls)
-		_collisionManager->Register(dynamic_cast<Ball&>(*ball));
-
 	BindInput();
 
-	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiled.json"));
+	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiledTest2.json"));
+	_gameLogicHandler.SetOnGameEnded([&]() {_isRunning = false; });
 }
 
 void Game::BindInput()
@@ -68,10 +55,11 @@ bool Game::IsRunning() const
 
 void Game::Update() const
 {
+	_collisionManager->DetectAll();
+
+	_level->Update();
+
 	drawable->Update();
-	drawable2->Update();
-	for (auto&ball : _balls)
-		ball->Update();
 }
 
 void Game::HandleInput()
@@ -88,10 +76,6 @@ void Game::Render() const
 	_level->Draw();
 
 	 drawable->Draw();
-	 drawable2->Draw();
-
-	 for (auto&ball : _balls)
-		 ball->Draw();
 
 	_renderer->Present();
 }

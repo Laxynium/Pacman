@@ -6,6 +6,7 @@
 #include <future>
 
 
+
 int main(int argc, char *args[])
 {
 	std::unique_ptr<IGameBoostrapper> boostrapper = std::make_unique<SDLGameBoostrapper>();

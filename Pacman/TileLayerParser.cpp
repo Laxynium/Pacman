@@ -1,9 +1,10 @@
 ﻿#include "TileLayerParser.h"
 #include "TileLayer.h"
+#include "Factory.h"
 using nlohmann::json;
-namespace Test
+namespace Properties
 {
-	void from_json(const json& layerJson, Test::LayerProperties& p) {
+	void from_json(const json& layerJson, Properties::TileLayerProperties& p) {
 		auto data = layerJson.at("data").get<std::vector<int>>();
 		p.Height = layerJson.at("height").get<int>();
 		p.Width = layerJson.at("width").get<int>();
@@ -15,20 +16,20 @@ namespace Test
 	}
 }
 
-TileLayerParser::TileLayerParser(ITextureManager& textureManager, IRenderer& renderer,
-	ICollisionManager& collisonManager, std::vector<Test::Tileset>& tilesets)
-	:_textureManager(textureManager),_renderer(renderer),_collisionManager(collisonManager), _tilesets(tilesets)
+TileLayerParser::TileLayerParser(ICollisionManager& collisonManager, std::vector<Properties::Tileset>& tilesets,Factory &factory)
+	:_collisionManager(collisonManager), _tilesets(tilesets), _factory(factory)
 {
 }
 
 std::unique_ptr<LayerBase> TileLayerParser::Parse(nlohmann::basic_json<> json)
 {
 	auto type = json.at("type").get<std::string>();
-	auto tileLayer = std::make_unique<Test::TileLayer>(type,_textureManager, _renderer);
 
-	const Test::LayerProperties layerProp = json;
+	std::unique_ptr<Properties::TileLayer> tileLayer(_factory.CreateTileLayer(type));
 
-	tileLayer->SetProperties(layerProp);
+	const Properties::TileLayerProperties layerProp = json;
+
+	tileLayer->SetProperties(std::move(layerProp));
 
 	tileLayer->Properties().SetTilesets(_tilesets);
 

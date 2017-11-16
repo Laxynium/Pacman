@@ -14,6 +14,8 @@ private:
 	std::pair<int, int>_vecToMove;
 	Color _color;
 	Tag _tag;
+	bool _collided = false;
+	std::pair<int, int>_oldPosistion;
 public:
 	void Draw() override;
 	void Move(const std::pair<int,int>& vec) override;

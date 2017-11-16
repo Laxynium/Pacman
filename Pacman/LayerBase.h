@@ -1,8 +1,9 @@
 ﻿#pragma once
 #include <string>
 #include "IDrawable.h"
+#include "ObjectBase.h"
 
-class LayerBase :public IDrawable
+class LayerBase :public ObjectBase 
 {
 protected:
 	const std::string&_type;

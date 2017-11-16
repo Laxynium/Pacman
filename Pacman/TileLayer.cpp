@@ -2,12 +2,12 @@
 #include "ITextureManager.h"
 #include "IRenderer.h"
 
-Test::TileLayer::TileLayer(const std::string& type,ITextureManager&textureManager,IRenderer&renderer):
+Properties::TileLayer::TileLayer(const std::string& type,ITextureManager&textureManager,IRenderer&renderer):
 LayerBase(type), _textureManager(textureManager), _renderer(renderer)
 {
 }
 
-std::vector<Tile*> Test::TileLayer::GetTiles()
+std::vector<Tile*> Properties::TileLayer::GetTiles()
 {
 	std::vector<Tile*>vec;
 	for (auto&el : _tiles)
@@ -17,9 +17,9 @@ std::vector<Tile*> Test::TileLayer::GetTiles()
 	return vec;
 }
 
-void Test::TileLayer::GenerateTiles()
+void Properties::TileLayer::GenerateTiles()
 {
-	auto data = _properties.GetData();
+	auto data = _properties->GetData();
 
 	for (int i = 0; i<data.size(); ++i)
 	{
@@ -54,9 +54,19 @@ void Test::TileLayer::GenerateTiles()
 
 }
 
-Test::Tileset* Test::TileLayer::FindTileset(int id)
+void Properties::TileLayer::SetProperties(const TileLayerProperties&& level_properties)
 {
-	for (auto&tileset : _properties.Tilesets())
+	_properties = std::make_unique<TileLayerProperties>(std::move(level_properties));
+}
+
+Properties::TileLayerProperties& Properties::TileLayer::Properties() const
+{
+	return *_properties;
+}
+
+Properties::Tileset* Properties::TileLayer::FindTileset(int id)const
+{
+	for (auto&tileset : _properties->tilesets())
 	{
 		if (tileset.FirstGridId <= id&&id <= (tileset.FirstGridId + tileset.TileCount - 1))
 		{
@@ -65,7 +75,7 @@ Test::Tileset* Test::TileLayer::FindTileset(int id)
 	}
 	return nullptr;
 }
-void Test::TileLayer::Draw()
+void Properties::TileLayer::Draw()
 {
 	for (auto&tile : _tiles)
 	{
@@ -75,4 +85,9 @@ void Test::TileLayer::Draw()
 		/*dRect.color = Color{ 255,255,0,0 };
 		_renderer.DrawRect(dRect);*/
 	}
+}
+
+void Properties::TileLayer::Update()
+{
+
 }

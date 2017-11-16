@@ -128,8 +128,11 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="BoostDI.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="EnumParser.h" />
+    <ClInclude Include="Factory.h" />
     <ClInclude Include="FromJsonLevelLoader.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameLogicHandler.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="ICollisionManager.h" />
@@ -143,11 +146,14 @@
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="ITextureManager.h" />
     <ClInclude Include="JsonParser.h" />
-    <ClInclude Include="Layer.h" />
     <ClInclude Include="LayerBase.h" />
     <ClInclude Include="LayerParsersCreator.h" />
-    <ClInclude Include="LayerProperties.h" />
+    <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="ObjectLayerProperties.h" />
+    <ClInclude Include="TileLayerProperties.h" />
     <ClInclude Include="MoveableGameObject.h" />
+    <ClInclude Include="ObjectLayer.h" />
+    <ClInclude Include="ObjectLayerParser.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="SDLActionType.h" />
     <ClInclude Include="SDLCollisionManager.h" />
@@ -166,16 +172,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FromJsonLevelLoader.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameLogicHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="ILayerParser.cpp" />
     <ClCompile Include="ILayerParsersCreator.cpp" />
     <ClCompile Include="LayerBase.cpp" />
     <ClCompile Include="LayerParsersCreator.cpp" />
     <ClCompile Include="Level.cpp" />
-    <ClCompile Include="LayerProperties.cpp" />
+    <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="TileLayerProperties.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ObjectLayer.cpp" />
+    <ClCompile Include="ObjectLayerParser.cpp" />
+    <ClCompile Include="ObjectLayerProperties.cpp" />
     <ClCompile Include="SDLCollisionManager.cpp" />
     <ClCompile Include="SDLGameBoostrapper.cpp" />
     <ClCompile Include="SDLInputHandler.cpp" />

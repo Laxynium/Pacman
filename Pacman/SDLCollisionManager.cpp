@@ -1,4 +1,5 @@
 #include "SDLCollisionManager.h"
+#include <algorithm>
 
 
 bool SDLCollisionManager::IsCollisionBetween(ICollidable* A, ICollidable* B)
@@ -38,10 +39,8 @@ bool SDLCollisionManager::DetectCollision(ICollidable & object, Tag withWhat)
 
 		if (IsCollisionBetween(otherObject, &object))
 		{
-			otherObject->OnCollsion(object);
 			return true;
-		}
-			
+		}			
 	}
 
 	return false;
@@ -50,4 +49,51 @@ bool SDLCollisionManager::DetectCollision(ICollidable & object, Tag withWhat)
 void SDLCollisionManager::Register(ICollidable & object)
 {
 	_objectsToDectection.push_back(&object);
+}
+
+void SDLCollisionManager::Subscribe(Tag objectA, Tag objectB,
+	std::function<void(ICollidable&, ICollidable&)> onCollison)
+{
+	_subscribers.push_back({ {objectA,objectB},onCollison});
+}
+
+void SDLCollisionManager::DetectAll()
+{
+	for(int i=0;i<_objectsToDectection.size();++i)
+	{
+		auto*object = _objectsToDectection[i];
+
+		for(int j=i+1;j<_objectsToDectection.size();++j)
+		{
+			auto*otherObject = _objectsToDectection[j];
+
+			if (object == otherObject)
+				continue;
+
+			if(IsCollisionBetween(object,otherObject))
+			{
+				object->OnCollsion(*otherObject);
+				otherObject->OnCollsion(*object);
+
+				auto sub = std::find_if(_subscribers.begin(), _subscribers.end(), [&](Element&pair)
+				{
+					return (pair.first.first == object->GetTag() && pair.first.second == otherObject->GetTag())
+						|| (pair.first.second == object->GetTag() && pair.first.first == otherObject->GetTag());
+
+				});
+				if (sub != _subscribers.end())
+					sub->second(*object, *otherObject);
+			}
+		}
+	}
+}
+
+void SDLCollisionManager::Deregister(ICollidable& object)
+{
+	 auto objectToDeregister=std::find_if(_objectsToDectection.begin(), _objectsToDectection.end(),[&](ICollidable *a)
+	{
+		 return a == &object;
+	});
+	 if(objectToDeregister!=_objectsToDectection.end())
+		_objectsToDectection.erase(objectToDeregister);
 }

@@ -13,6 +13,7 @@
 #include "SDLCollisionManager.h"
 #include "ILayerParsersCreator.h"
 #include "LayerParsersCreator.h"
+#include "Factory.h"
 namespace di = boost::di;
 
 
@@ -27,7 +28,9 @@ void SDLGameBoostrapper::Initialize()
 		di::bind<IRenderer>().to<SDLRenderer>().in(di::singleton),
 		di::bind<IInputHandler>().to<SDLInputHandler>().in(di::unique),
 		di::bind<ICollisionManager>().to<SDLCollisionManager>().in(di::singleton),
-		di::bind<LayerParsersCreator>().to<LayerParsersCreator>().in(di::singleton)
+		di::bind<LayerParsersCreator>().to<LayerParsersCreator>().in(di::singleton),
+		di::bind<GameLogicHandler>().to<GameLogicHandler>().in(di::singleton),
+		di::bind<Factory>().to<Factory>().in(di::singleton)
 		);
 		_game = injector.create<std::shared_ptr<Game>>();
 }
@@ -56,7 +59,6 @@ void SDLGameBoostrapper::Run()
 
 SDLGameBoostrapper::SDLGameBoostrapper()
 {
-
 }
 
 

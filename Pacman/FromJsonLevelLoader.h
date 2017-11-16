@@ -8,24 +8,23 @@
 #include "ICollisionManager.h"
 #include "ILayerParsersCreator.h"
 
-namespace Test
+namespace Properties
 {
 	struct Tileset;
 	class Layer;
 }
 class FromJsonLevelLoader:public ILevelLoader
 {
-	IRenderer &_renderer;
 	ITextureManager &_textureManager;
-	ICollisionManager& _collisionManager;
 	LayerParsersCreator& _layerParsersCreator;
+	Factory& _factory;
 public:
-	FromJsonLevelLoader(IRenderer&renderer, ITextureManager&textureManager,ICollisionManager&collisionManager, LayerParsersCreator&layerParsersCreator);
+	FromJsonLevelLoader( ITextureManager&textureManager, LayerParsersCreator&layerParsersCreator,Factory&factory);
 
 	std::unique_ptr<Level> LoadLevel(const std::string& fileName) override;
 
 private:
-	std::vector<Test::Tileset> ParseTilesets(nlohmann::basic_json<>json);
-	std::vector<std::unique_ptr<LayerBase>> ParseLayers(nlohmann::basic_json<> level_json, std::vector<Test::Tileset>&&tilesets);
+	std::vector<Properties::Tileset> ParseTilesets(nlohmann::basic_json<>json);
+	std::vector<std::unique_ptr<LayerBase>> ParseLayers(nlohmann::basic_json<> level_json, std::vector<Properties::Tileset>&&tilesets);
 };
 

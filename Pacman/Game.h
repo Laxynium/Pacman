@@ -9,6 +9,7 @@
 #include "ITextureManager.h"
 #include "ILevelLoader.h"
 #include "Ball.h"
+class GameLogicHandler;
 namespace di=boost::di;
 class Game
 {
@@ -28,10 +29,11 @@ class Game
 	std::vector<std::unique_ptr<GameObject>>_balls;
 
 	std::unique_ptr<Level> _level;
+	GameLogicHandler& _gameLogicHandler;
 
 public:
 	Game(std::shared_ptr<IRenderer> renderer ,std::unique_ptr<IInputHandler> inputHandler,std::shared_ptr<ILevelLoader>levelLoader,
-	     std::shared_ptr<ICollisionManager>collisionManager);
+	     std::shared_ptr<ICollisionManager>collisionManager, GameLogicHandler&gameLogicHandler);
 
 	Game(Game&& other) noexcept = default;
 

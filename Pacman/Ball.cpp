@@ -1,12 +1,15 @@
 ﻿#include "Ball.h"
 #include "IRenderer.h"
-Ball::Ball(IRenderer& renderer, const std::pair<int, int>&pos):_renderer(renderer)
+#include <iostream>
+#include "ICollisionManager.h"
+
+Ball::Ball(IRenderer& renderer,ICollisionManager&collisionManager,const std::pair<int, int>&pos,int width,int height):_renderer(renderer), _collisionManager(collisionManager)
 {
 	_tag = Tag::Pickable;
 	_position = pos;
-	_position.first += 10, _position.second += 10;
-	_height = 12;
-	_width = 12;
+	_width = width;
+	_height = height;
+	_position.first += (16-(width/2)), _position.second += (16-(height/2));
 }
 
 void Ball::Draw()
@@ -33,10 +36,9 @@ void Ball::OnCollsion(ICollidable& collidedObject)
 	if (collidedObject.GetTag() != Tag::Picker)
 		return;
 
-	if (IsPicked)
-		return;
-
-	IsPicked = true;
+	std::cout << "Ball collided\n";
 
 	_color = { 255, 255, 0, 0 };
+
+	_collisionManager.Deregister(*this);
 }

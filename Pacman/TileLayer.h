@@ -1,13 +1,13 @@
 ﻿#pragma once
 #include "LayerBase.h"
-#include "LayerProperties.h"
+#include "TileLayerProperties.h"
 #include "Tile.h"
 #include <memory>
 
 struct ITextureManager;
 struct IRenderer;
 
-namespace Test
+namespace Properties
 {
 	class TileLayer :public LayerBase
 	{
@@ -15,29 +15,25 @@ namespace Test
 
 		IRenderer& _renderer;
 
-		LayerProperties _properties;
+		std::unique_ptr<TileLayerProperties> _properties;
 
 		std::vector<std::shared_ptr<Tile>>_tiles;
 
-		Tileset*  FindTileset(int id);
+		Tileset*  FindTileset(int id)const;
 	public:
 		explicit TileLayer(const std::string& type, ITextureManager&textureManager, IRenderer&renderer);
 
 		void GenerateTiles();
 
-		void SetProperties(const LayerProperties& level_properties)
-		{
-			_properties = level_properties;
-		}
+		void SetProperties(const TileLayerProperties&& level_properties);
 
-		LayerProperties& Properties()
-		{
-			return _properties;
-		}
+		TileLayerProperties& Properties() const;
 
 		std::vector<Tile*> GetTiles();
 
 		void Draw() override;
+
+		void Update() override;
 	};
 }
 

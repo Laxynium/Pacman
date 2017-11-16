@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-namespace Test
+namespace Properties
 {
 	struct Tileset
 	{

@@ -17,6 +17,13 @@ void Level::Draw()
 	}
 }
 
+void Level::Update()
+{
+	for (auto&layer : _layers)
+	{
+		layer->Update();
+	}
+}
 
 Level::~Level()
 {

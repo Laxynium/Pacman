@@ -1,15 +1,14 @@
 #pragma once
-#include "IDrawable.h"
 #include "IMovable.h"
+#include "ObjectBase.h"
 
-class GameObject:public IDrawable
+class GameObject:public ObjectBase
 {
 protected:
 	std::pair<int, int>_position;
 	int _width;
 	int _height;
 public:
-	virtual void Update() = 0;
 
 	virtual const std::pair<int,int>& GetPosition()const;
 

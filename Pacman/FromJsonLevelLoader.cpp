@@ -2,12 +2,12 @@
 #include "JsonParser.h"
 #include "Tileset.h"
 #include <fstream>
-#include "LayerProperties.h"
+#include "TileLayerProperties.h"
 #include "ILayerParsersCreator.h"
 using namespace std;
 using nlohmann::json;
 
-namespace Test {
+namespace Properties {
 	void from_json(const json& j, Tileset& p) {
 		p.Columns = j.at("columns").get<int>();
 		p.TileCount = j.at("tilecount").get<int>();
@@ -39,15 +39,17 @@ std::unique_ptr<Level> FromJsonLevelLoader::LoadLevel(const std::string& fileNam
 
 	auto layers = std::move(ParseLayers(levelJson,std::move(tilesets)));
 
-	return std::make_unique<Level>(_renderer, std::move(layers),_textureManager,_collisionManager);
+	std::unique_ptr<Level> level(_factory.CreateLevel(std::move(layers)));
+
+	return std::move(level);
 }
 
-FromJsonLevelLoader::FromJsonLevelLoader(IRenderer&renderer,ITextureManager&textureManager,ICollisionManager&collisionManager,LayerParsersCreator&layerParsersCreator)
-	:_renderer(renderer),_textureManager(textureManager), _collisionManager(collisionManager), _layerParsersCreator(layerParsersCreator)
+FromJsonLevelLoader::FromJsonLevelLoader(ITextureManager&textureManager,LayerParsersCreator&layerParsersCreator,Factory&factory)
+	:_textureManager(textureManager), _layerParsersCreator(layerParsersCreator), _factory(factory)
 {
 }
 
-std::vector<std::unique_ptr<LayerBase>> FromJsonLevelLoader::ParseLayers(nlohmann::basic_json<> level_json,std::vector<Test::Tileset>&&tilesets)
+std::vector<std::unique_ptr<LayerBase>> FromJsonLevelLoader::ParseLayers(nlohmann::basic_json<> level_json,std::vector<Properties::Tileset>&&tilesets)
 {
 	_layerParsersCreator.AddTilesets(std::move(tilesets));
 
@@ -66,12 +68,12 @@ std::vector<std::unique_ptr<LayerBase>> FromJsonLevelLoader::ParseLayers(nlohman
 	return layers;
 }
 
-std::vector<Test::Tileset> FromJsonLevelLoader::ParseTilesets(nlohmann::basic_json<> json)
+std::vector<Properties::Tileset> FromJsonLevelLoader::ParseTilesets(nlohmann::basic_json<> json)
 {
-	std::vector<Test::Tileset> tilesets;
+	std::vector<Properties::Tileset> tilesets;
 	for (const auto&tileset : json["tilesets"])
 	{
-		Test::Tileset newTileset;
+		Properties::Tileset newTileset;
 
 		auto source = tileset["source"].get<string>();
 		auto firstgId = tileset["firstgid"].get<int>();
