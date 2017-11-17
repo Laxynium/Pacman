@@ -1,18 +1,19 @@
 #pragma once
 #include "IMovable.h"
 #include "ObjectBase.h"
+#include "Vector2D.h"
 
 class GameObject:public ObjectBase
 {
 protected:
-	std::pair<int, int>_position;
+	Vector2D _position;
 	int _width;
 	int _height;
 public:
 
-	virtual const std::pair<int,int>& GetPosition()const;
+	virtual const Vector2D& GetPosition() const;
 
-	virtual void SetPostion(const std::pair<int, int>&newPos);
+	virtual void SetPostion(const Vector2D& newPos);
 
 	virtual const int GetWidth()const;
 	virtual void SetWidth(int width);

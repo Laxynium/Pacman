@@ -2,7 +2,7 @@
 #include <memory>
 #include "Level.h"
 #include "Ball.h"
-#include "Square.h"
+#include "Pacman.h"
 #include "TileLayer.h"
 
 class Factory
@@ -17,10 +17,10 @@ public:
 	Properties::TileLayer* CreateTileLayer(const std::string& type) const;
 
 	///Client is resposible for live of this object
-	Ball* CreateBall(const std::pair<int, int>&pos, int width, int height) const;
+	Ball* CreateBall(const Vector2D&pos, int width, int height) const;
 
 	///Client is resposible for live of this object
-	Square* CreateSquare() const;
+	Pacman* CreateSquare() const;
 
 	ITextureManager& _textureManager;
 	IRenderer& _renderer;

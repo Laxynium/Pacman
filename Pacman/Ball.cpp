@@ -2,19 +2,20 @@
 #include "IRenderer.h"
 #include <iostream>
 #include "ICollisionManager.h"
+#include "Vector2D.h"
 
-Ball::Ball(IRenderer& renderer,ICollisionManager&collisionManager,const std::pair<int, int>&pos,int width,int height):_renderer(renderer), _collisionManager(collisionManager)
+Ball::Ball(IRenderer& renderer,ICollisionManager&collisionManager,const Vector2D&pos,int width,int height):_renderer(renderer), _collisionManager(collisionManager)
 {
 	_tag = Tag::Pickable;
 	_position = pos;
 	_width = width;
 	_height = height;
-	_position.first += (16-(width/2)), _position.second += (16-(height/2));
+	_position += Vector2D(16 - (width / 2), 16 - (height / 2));
 }
 
 void Ball::Draw()
 {
-	_renderer.FillRect(Rect {_position.first,_position.second,_width,_height,_color});
+	_renderer.FillRect(Rect {static_cast<int>(_position.X()),static_cast<int>(_position.Y()),_width,_height,_color});
 }
 
 void Ball::Update()
@@ -23,7 +24,7 @@ void Ball::Update()
 
 Rect Ball::GetAreaOfCollision() const
 {
-	return Rect{ _position.first,_position.second,_width,_height };
+	return Rect{ static_cast<int>(_position.X()),static_cast<int>(_position.Y()),_width,_height };
 }
 
 Tag Ball::GetTag() const

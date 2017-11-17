@@ -4,7 +4,7 @@
 #include "IInputHandler.h"
 #include <memory>
 #include "IRenderer.h"
-#include "Square.h"
+#include "Pacman.h"
 #include "BoostDI.h"
 #include "ITextureManager.h"
 #include "ILevelLoader.h"

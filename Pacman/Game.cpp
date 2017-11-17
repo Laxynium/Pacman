@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "IInputHandler.h"
 #include "SDLActionType.h"
-#include "Square.h"
+#include "Pacman.h"
 #include "Color.h"
 #include "FromJsonLevelLoader.h"
 #include "SpecialSDLActionType.h"
@@ -12,7 +12,7 @@ Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> in
 	_input_handler(std::move(inputHandler)), _renderer(renderer),
 	_levelLoader(levelLoader), _collisionManager(collisionManager), _gameLogicHandler(gameLogicHandler)
 {
-	auto *square_1 = new Square(*_renderer, *_collisionManager);
+	auto *square_1 = new Pacman(*_renderer, *_collisionManager);
 	_collisionManager->Register(*square_1);
 	drawable.reset(square_1);
 	drawable->SetPostion({ 32, 32 });
@@ -30,19 +30,19 @@ void Game::BindInput()
 
 	actions.emplace_back(std::make_pair(new SpecialSDLActionType{ SDL_SCANCODE_W }, [&]()
 	{
-		drawable->Move({ 0,-2 });
+		drawable->Move({ 0,-1 });
 	}));
 	actions.emplace_back(std::make_pair(new SpecialSDLActionType{ SDL_SCANCODE_S }, [&]()
 	{
-		drawable->Move({ 0,2 });
+		drawable->Move({ 0,1 });
 	}));
 	actions.emplace_back(std::make_pair(new SpecialSDLActionType{ SDL_SCANCODE_A }, [&]()
 	{
-		drawable->Move({ -2,0 });
+		drawable->Move({ -1,0 });
 	}));
 	actions.emplace_back(std::make_pair(new SpecialSDLActionType{ SDL_SCANCODE_D }, [&]()
 	{
-		drawable->Move({ 2,0 });
+		drawable->Move({ 1,0 });
 	}));
 
 	_input_handler->SetBindings(actions);

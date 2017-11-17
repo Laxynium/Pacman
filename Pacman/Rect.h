@@ -3,6 +3,7 @@
 
 struct Rect
 {
-	int x, y, w, h;
+	int x, y;
+	int w, h;
 	Color color;
 };

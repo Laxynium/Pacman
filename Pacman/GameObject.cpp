@@ -1,13 +1,12 @@
 #include "GameObject.h"
 
 
-
-const std::pair<int, int>& GameObject::GetPosition() const
+const Vector2D& GameObject::GetPosition() const
 {
 	return _position;
 }
 
-void GameObject::SetPostion(const std::pair<int, int>& newPos)
+void GameObject::SetPostion(const Vector2D& newPos)
 {
 	_position = newPos;
 }

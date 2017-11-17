@@ -162,12 +162,13 @@
     <ClInclude Include="SDLRenderer.h" />
     <ClInclude Include="SDLTextureManager.h" />
     <ClInclude Include="SpecialSDLActionType.h" />
-    <ClInclude Include="Square.h" />
+    <ClInclude Include="Pacman.h" />
     <ClInclude Include="Tag.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileLayer.h" />
     <ClInclude Include="TileLayerParser.h" />
     <ClInclude Include="Tileset.h" />
+    <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Wrapper.h" />
   </ItemGroup>
   <ItemGroup>
@@ -193,11 +194,12 @@
     <ClCompile Include="SDLInputHandler.cpp" />
     <ClCompile Include="SDLRenderer.cpp" />
     <ClCompile Include="SDLTextureManager.cpp" />
-    <ClCompile Include="Square.cpp" />
+    <ClCompile Include="Pacman.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileLayer.cpp" />
     <ClCompile Include="TileLayerParser.cpp" />
     <ClCompile Include="Tileset.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

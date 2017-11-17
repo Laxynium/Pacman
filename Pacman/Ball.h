@@ -12,7 +12,7 @@ class Ball:public GameObject,public ICollidable
 	Color _color = { 100,100,100,0 };
 	ICollisionManager& _collisionManager;
 public:
-	Ball(IRenderer&renderer, ICollisionManager&collisionManager,const std::pair<int,int>&pos,int width, int height);
+	Ball(IRenderer&renderer, ICollisionManager&collisionManager,const Vector2D&pos,int width, int height);
 	
 	void Draw() override;
 

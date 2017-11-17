@@ -172,9 +172,6 @@
     <ClInclude Include="MoveableGameObject.h">
       <Filter>Game\Models\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Square.h">
-      <Filter>Game\Models\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Game\Utilities\Models</Filter>
     </ClInclude>
@@ -206,6 +203,12 @@
       <Filter>Game\Models\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="Vector2D.h">
+      <Filter>Game\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Pacman.h">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -262,9 +265,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Game\Models\GameObjects\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="Square.cpp">
-      <Filter>Game\Models\GameObjects\Sources</Filter>
-    </ClCompile>
     <ClCompile Include="Ball.cpp">
       <Filter>Game\Models\GameObjects\Sources</Filter>
     </ClCompile>
@@ -287,5 +287,11 @@
       <Filter>Game\Models\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="Factory.cpp" />
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Game\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Pacman.cpp">
+      <Filter>Game\Models\GameObjects\Sources</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

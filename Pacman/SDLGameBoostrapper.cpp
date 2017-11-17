@@ -3,7 +3,7 @@
 #include "SDLInputHandler.h"
 #include "BoostDI.h"
 #include "SDLRenderer.h"
-#include "Square.h"
+#include "Pacman.h"
 #include "IRenderer.h"
 #include "SDLRenderer.h"
 #include <winsock.h>

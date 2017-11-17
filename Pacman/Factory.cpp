@@ -1,5 +1,5 @@
 #include "Factory.h"
-#include "Square.h"
+#include "Pacman.h"
 #include "TileLayer.h"
 
 
@@ -21,12 +21,12 @@ Properties::TileLayer* Factory::CreateTileLayer(const std::string& type)const
 {
 	return new Properties::TileLayer(type, _textureManager, _renderer);
 }
-Ball * Factory::CreateBall(const std::pair<int, int>& pos, int width, int height) const
+Ball * Factory::CreateBall(const Vector2D& pos, int width, int height) const
 {
 	return new Ball(_renderer,_collisionManager,pos, width,height);
 }
 
-Square*Factory::CreateSquare() const
+Pacman*Factory::CreateSquare() const
 {
-	return new Square(_renderer, _collisionManager);
+	return new Pacman(_renderer, _collisionManager);
 }

@@ -7,7 +7,7 @@ struct BallProperties
 {
 	int Width;
 	int Height;
-	std::pair<int,int> Posistion;
+	Vector2D Posistion;
 };
 namespace std
 {
@@ -18,8 +18,8 @@ namespace std
 				BallProperties properties;
 				properties.Width = obj.at("width").get<int>();
 				properties.Height = obj.at("height").get<int>();
-				properties.Posistion.first = obj.at("x").get<int>();
-				properties.Posistion.second = obj.at("y").get<int>();
+				properties.Posistion.SetX(obj.at("x").get<int>());
+				properties.Posistion.SetY(obj.at("y").get<int>());
 				ballProperties.emplace_back(properties);
 			}
 		}
