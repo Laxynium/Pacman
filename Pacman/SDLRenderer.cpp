@@ -4,7 +4,7 @@
 
 SDLRenderer::SDLRenderer():
 	_window(SDL_CreateWindow("PACMAN", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		640, 480, SDL_WindowFlags::SDL_WINDOW_SHOWN),
+		896, 992, SDL_WindowFlags::SDL_WINDOW_SHOWN),
 	[](SDL_Window*win)
 	{
 		SDL_DestroyWindow(win);

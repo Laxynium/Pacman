@@ -15,6 +15,7 @@ private:
 	Color _color;
 	Tag _tag;
 	double _speed = 2;
+
 public:
 	void Draw() override;
 	void Move(const Vector2D& vec) override;

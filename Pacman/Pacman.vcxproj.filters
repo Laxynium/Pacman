@@ -71,6 +71,9 @@
     <Filter Include="Game\Factory">
       <UniqueIdentifier>{61049927-5058-4201-8369-1744785ad2b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Models\GameObjects\Enemies">
+      <UniqueIdentifier>{55440b10-42ad-41c8-bfb0-39720900eb4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParsersCreator.h">
@@ -209,6 +212,9 @@
     <ClInclude Include="Pacman.h">
       <Filter>Game\Models\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Ghost.h">
+      <Filter>Game\Models\GameObjects\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -292,6 +298,9 @@
     </ClCompile>
     <ClCompile Include="Pacman.cpp">
       <Filter>Game\Models\GameObjects\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghost.cpp">
+      <Filter>Game\Models\GameObjects\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

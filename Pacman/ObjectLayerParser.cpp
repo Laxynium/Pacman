@@ -33,6 +33,7 @@ ObjectLayerParser::ObjectLayerParser(ICollisionManager& collisionManager,
 
 std::unique_ptr<LayerBase> ObjectLayerParser::Parse(nlohmann::basic_json<> json)
 {
+	//TODO add factory which creates proper objecjlayer based on type read from json 
 	auto objectLayer = std::make_unique<ObjectLayer>(json["type"].get<std::string>(),_gameLogicHandler);
 
 	Properties::ObjectLayerProperties objectLayerProperties;

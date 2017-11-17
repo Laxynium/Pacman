@@ -37,9 +37,6 @@ void Ball::OnCollsion(ICollidable& collidedObject)
 	if (collidedObject.GetTag() != Tag::Picker)
 		return;
 
-	std::cout << "Ball collided\n";
-
-	_color = { 255, 255, 0, 0 };
-
+	//std::cout << "Ball collided\n";
 	_collisionManager.Deregister(*this);
 }

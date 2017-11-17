@@ -1,6 +1,5 @@
 #include "ObjectLayer.h"
 #include <algorithm>
-#include <iostream>
 
 
 void ObjectLayer::OnCollisionBetweenPickerAndPickable(ICollidable& objectA, ICollidable& objectB)

@@ -9,6 +9,7 @@
 #include "ITextureManager.h"
 #include "ILevelLoader.h"
 #include "Ball.h"
+#include "Ghost.h"
 class GameLogicHandler;
 namespace di=boost::di;
 class Game
@@ -20,7 +21,8 @@ class Game
 	bool _isRunning = true;
 
 	std::unique_ptr<MoveableGameObject> drawable;
-	std::unique_ptr<MoveableGameObject> drawable2;
+
+	std::vector<std::unique_ptr<Ghost>> _ghosts;
 
 	std::shared_ptr<ILevelLoader> _levelLoader;
 

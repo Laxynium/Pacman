@@ -134,6 +134,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLogicHandler.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Ghost.h" />
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="ICollisionManager.h" />
     <ClInclude Include="IDrawable.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameLogicHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="ILayerParser.cpp" />
     <ClCompile Include="ILayerParsersCreator.cpp" />
     <ClCompile Include="LayerBase.cpp" />
