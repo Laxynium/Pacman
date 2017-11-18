@@ -1,15 +1,19 @@
 ﻿#pragma once
 #include <functional>
+#include "Event.h"
 
 class GameLogicHandler
 {
-	std::function<void()>_onGameEnded;
 public:
-	void GameEnded();
+	Event<void>GameEnded;
 
-	void SetOnGameEnded(const std::function<void()>& onGameEnded);
+	Event<void> PlayerPickedUpSuperBall;
 
+	Event<void> PlayerPickedUpBall;
+
+	Event<void> PlayerAteEnemy;
+
+	Event<void> EnemyHitPlayer;
 	//void PlayerWon(std::function<void()>&action);
-	//void PlayerTookUpBall(std::function<void()>&action);//TODO add params to function;
 	//void PlayerCollidedWithEnemy(std::function<void()>&action);//TODO add params to function
 };

@@ -48,7 +48,10 @@ Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> in
 	BindInput();
 
 	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiled.json"));
-	_gameLogicHandler.SetOnGameEnded([&]() {_isRunning = false; });
+	_gameLogicHandler.GameEnded+=[&]()
+	{
+		_isRunning = false;
+	};
 }
 
 void Game::BindInput()

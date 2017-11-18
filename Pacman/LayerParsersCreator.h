@@ -5,6 +5,7 @@
 #include "Tileset.h"
 #include "GameLogicHandler.h"
 #include "Factory.h"
+#include "IInnerObjectLayerParsersCreator.h"
 
 
 class ICollisionManager;
@@ -20,8 +21,10 @@ class LayerParsersCreator
 	std::map<std::string, std::function<std::unique_ptr<ILayerParser>()>>_mappedParsers;
 	GameLogicHandler& _gameLogicHandler;
 	Factory &_factory;
+	IInnerObjectLayerParsersCreator& _innerObjectLayerParsersCreator;
 public:
-	LayerParsersCreator(ITextureManager&textureManager, IRenderer&renderer, ICollisionManager&collisionManager,GameLogicHandler&gameLogicHandler,Factory &factory);
+	LayerParsersCreator(ITextureManager&textureManager, IRenderer&renderer, ICollisionManager&collisionManager,GameLogicHandler&gameLogicHandler,Factory &factory
+						, IInnerObjectLayerParsersCreator &innerObjectLayerParsersCreator);
 	
 	void AddTilesets(std::vector<Properties::Tileset>&&tilesets);
 

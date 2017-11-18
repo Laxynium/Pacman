@@ -74,6 +74,15 @@
     <Filter Include="Game\Models\GameObjects\Enemies">
       <UniqueIdentifier>{55440b10-42ad-41c8-bfb0-39720900eb4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Events">
+      <UniqueIdentifier>{6935671d-f90e-4666-979d-118846db9f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\3rdPartEvent">
+      <UniqueIdentifier>{c79f8f96-74e0-42a9-b369-a904c00813df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Parsers\InnerObjectLayerParser">
+      <UniqueIdentifier>{43c13f91-2048-442d-9051-4f117d935472}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParsersCreator.h">
@@ -215,6 +224,27 @@
     <ClInclude Include="Ghost.h">
       <Filter>Game\Models\GameObjects\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Game\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Game\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="InnerObjectLayerParsersCreator.h">
+      <Filter>Game\Parsers\InnerObjectLayerParser</Filter>
+    </ClInclude>
+    <ClInclude Include="IInnerObjectLayerParser.h">
+      <Filter>Game\Parsers\InnerObjectLayerParser</Filter>
+    </ClInclude>
+    <ClInclude Include="BallObjectLayerParser.h">
+      <Filter>Game\Parsers\InnerObjectLayerParser</Filter>
+    </ClInclude>
+    <ClInclude Include="BallsObjectLayer.h">
+      <Filter>Game\Parsers\InnerObjectLayerParser</Filter>
+    </ClInclude>
+    <ClInclude Include="IInnerObjectLayerParsersCreator.h">
+      <Filter>Game\Parsers\InnerObjectLayerParser</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -301,6 +331,21 @@
     </ClCompile>
     <ClCompile Include="Ghost.cpp">
       <Filter>Game\Models\GameObjects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Game\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Game\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="InnerObjectLayerParsersCreator.cpp">
+      <Filter>Game\Parsers\InnerObjectLayerParser</Filter>
+    </ClCompile>
+    <ClCompile Include="BallObjectLayerParser.cpp">
+      <Filter>Game\Parsers\InnerObjectLayerParser</Filter>
+    </ClCompile>
+    <ClCompile Include="BallsObjectLayer.cpp">
+      <Filter>Game\Parsers\InnerObjectLayerParser</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

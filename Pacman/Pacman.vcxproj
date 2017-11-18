@@ -126,9 +126,13 @@
   <ItemGroup>
     <ClInclude Include="ActionType.h" />
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="BallObjectLayerParser.h" />
+    <ClInclude Include="BallsObjectLayer.h" />
     <ClInclude Include="BoostDI.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="EnumParser.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FromJsonLevelLoader.h" />
     <ClInclude Include="Game.h" />
@@ -139,11 +143,14 @@
     <ClInclude Include="ICollisionManager.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IGameBoostrapper.h" />
+    <ClInclude Include="IInnerObjectLayerParser.h" />
+    <ClInclude Include="IInnerObjectLayerParsersCreator.h" />
     <ClInclude Include="IInputHandler.h" />
     <ClInclude Include="ILayerParser.h" />
     <ClInclude Include="ILayerParsersCreator.h" />
     <ClInclude Include="ILevelLoader.h" />
     <ClInclude Include="IMovable.h" />
+    <ClInclude Include="InnerObjectLayerParsersCreator.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="ITextureManager.h" />
     <ClInclude Include="JsonParser.h" />
@@ -174,6 +181,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="BallObjectLayerParser.cpp" />
+    <ClCompile Include="BallsObjectLayer.cpp" />
+    <ClCompile Include="Event.cpp" />
+    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FromJsonLevelLoader.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -182,6 +193,7 @@
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="ILayerParser.cpp" />
     <ClCompile Include="ILayerParsersCreator.cpp" />
+    <ClCompile Include="InnerObjectLayerParsersCreator.cpp" />
     <ClCompile Include="LayerBase.cpp" />
     <ClCompile Include="LayerParsersCreator.cpp" />
     <ClCompile Include="Level.cpp" />
