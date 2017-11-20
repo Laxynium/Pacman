@@ -59,6 +59,7 @@ std::unique_ptr<LayerBase> BallObjectLayerParser::Parse(nlohmann::basic_json<> j
 
 	objectLayer->SetGameObjects(gameObjects);
 
+
 	//objectLayer->SubscribeTo(_collisionManager);
 	
 	return objectLayer;

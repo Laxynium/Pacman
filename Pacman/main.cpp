@@ -1,8 +1,8 @@
 #include <iostream>
 #include <SDL.h>
 #include "Game.h"
-#include "IGameBoostrapper.h"
-#include "SDLGameBoostrapper.h"
+#include "IGameBootstrapper.h"
+#include "SDLGameBootstrapper.h"
 #include <future>
 #include "Event.h"
 
@@ -41,7 +41,7 @@ public:
 
 int main(int argc, char *args[])
 {
-	std::unique_ptr<IGameBoostrapper> boostrapper = std::make_unique<SDLGameBoostrapper>();
+	std::unique_ptr<IGameBootstrapper> boostrapper = std::make_unique<SDLGameBootstrapper>();
 	boostrapper->Initialize();
 	boostrapper->Run();
 	

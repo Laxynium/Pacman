@@ -143,7 +143,7 @@
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="ICollisionManager.h" />
     <ClInclude Include="IDrawable.h" />
-    <ClInclude Include="IGameBoostrapper.h" />
+    <ClInclude Include="IGameBootstrapper.h" />
     <ClInclude Include="IInnerObjectLayerParser.h" />
     <ClInclude Include="IInnerObjectLayerParsersCreator.h" />
     <ClInclude Include="IInputHandler.h" />
@@ -164,7 +164,7 @@
     <ClInclude Include="Rect.h" />
     <ClInclude Include="SDLActionType.h" />
     <ClInclude Include="SDLCollisionManager.h" />
-    <ClInclude Include="SDLGameBoostrapper.h" />
+    <ClInclude Include="SDLGameBootstrapper.h" />
     <ClInclude Include="SDLInputHandler.h" />
     <ClInclude Include="SDLRenderer.h" />
     <ClInclude Include="SDLTextureManager.h" />
@@ -202,7 +202,7 @@
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectLayerParser.cpp" />
     <ClCompile Include="SDLCollisionManager.cpp" />
-    <ClCompile Include="SDLGameBoostrapper.cpp" />
+    <ClCompile Include="SDLGameBootstrapper.cpp" />
     <ClCompile Include="SDLInputHandler.cpp" />
     <ClCompile Include="SDLRenderer.cpp" />
     <ClCompile Include="SDLTextureManager.cpp" />
