@@ -32,15 +32,6 @@ Tag Ball::GetTag() const
 	return _tag;
 }
 
-void Ball::OnCollsion(ICollidable& collidedObject)
-{
-	if (collidedObject.GetTag() != Tag::Player)
-		return;
-
-	//std::cout << "Ball collided\n";
-	_collisionManager.Deregister(*this);
-}
-
 void Ball::SetTag(const Tag& tag)
 {
 	_tag = tag;

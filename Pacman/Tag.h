@@ -3,7 +3,7 @@
 
 enum class Tag
 {
-	Pickable, Player, Wall, Enemy, SuperBall
+	Pickable, Player, Wall, Enemy, SuperBall,Invulnerable
 };
 
 inline EnumParser<Tag>::EnumParser()

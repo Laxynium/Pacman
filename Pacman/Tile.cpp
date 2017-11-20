@@ -8,11 +8,6 @@ Rect Tile::GetAreaOfCollision() const
 	return r;
 }
 
-void Tile::OnCollsion(ICollidable& collidedObject)
-{
-	std::string text = (collidedObject.GetTag() == Tag::Wall) ? ("blocked") : ("pickabe");
-	std::cout << "I was hit by " << text << std::endl;
-}
 
 Tag Tile::GetTag() const
 {

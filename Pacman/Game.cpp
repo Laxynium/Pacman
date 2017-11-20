@@ -6,7 +6,7 @@
 #include "FromJsonLevelLoader.h"
 #include "SpecialSDLActionType.h"
 #include "GameLogicHandler.h"
-
+#include <functional>
 
 Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> inputHandler,
 	std::shared_ptr<ILevelLoader>levelLoader, std::shared_ptr<ICollisionManager>collisionManager,std::shared_ptr<GameLogicHandler>gameLogicHandler) :
@@ -14,10 +14,15 @@ Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> in
 	_levelLoader(levelLoader), _collisionManager(collisionManager), _gameLogicHandler(gameLogicHandler)
 {
 	auto *square_1 = new Pacman(*_renderer, *_collisionManager);
-	_collisionManager->Register(*square_1);
-	drawable.reset(square_1);
-	drawable->SetPostion({ 32, 32 });
 
+	_collisionManager->Register(*square_1);
+
+	_gameLogicHandler->GhostHitPlayer += std::bind(&Pacman::OnBeingHit, square_1);
+
+	drawable.reset(square_1);
+
+
+	drawable->SetPostion({ 32, 32 });
 
 
 	BindInput();

@@ -23,8 +23,6 @@ public:
 	
 	Tag GetTag() const override;
 	
-	void OnCollsion(ICollidable& collidedObject) override;
-
 	void SetTag(const Tag& tag);
 
 	IRenderer& _renderer;

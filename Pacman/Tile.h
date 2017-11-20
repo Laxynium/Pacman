@@ -11,8 +11,6 @@ class Tile : public ICollidable
 public:
 	Rect GetAreaOfCollision() const override;
 
-	void OnCollsion(ICollidable& collidedObject) override;
-
 	Tag GetTag() const override;
 
 	Tile(Rect& dscrect,Rect&srcrect,const std::string&textureName);

@@ -53,17 +53,16 @@ Rect Pacman::GetAreaOfCollision()const
 	return { static_cast<int>(_position.X()),static_cast<int>(_position.Y()),_width,_height};
 }
 
-void Pacman::OnCollsion(ICollidable& collidedObject)
-{
-	if(collidedObject.GetTag()==Tag::Enemy)
-	{	
-		std::cout << "Pacman hit and enemy\n";
-	}
-}
 
 Tag Pacman::GetTag() const
 {
 	return _tag;
+}
+
+void Pacman::OnBeingHit()
+{
+	_position = _startPosition;
+	_vecToMove = {};
 }
 
 Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager)
@@ -78,8 +77,10 @@ Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager)
 	_tag = Tag::Player;
 }
 
-
-Pacman::~Pacman()
+void Pacman::SetPostion(const Vector2D& newPos)
 {
+	GameObject::SetPostion(newPos);
+	_startPosition = newPos;
 }
+
 

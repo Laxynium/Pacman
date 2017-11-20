@@ -9,7 +9,5 @@ public:
 
 	virtual Tag GetTag()const = 0;
 
-	virtual void OnCollsion(ICollidable&collidedObject) = 0;
-
 	virtual ~ICollidable(){}
 };

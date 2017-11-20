@@ -72,8 +72,6 @@ void SDLCollisionManager::DetectAll()
 
 			if(IsCollisionBetween(object,otherObject))
 			{
-				object->OnCollsion(*otherObject);
-				otherObject->OnCollsion(*object);
 				std::vector<Element>matches;
 				auto sub = std::copy_if(_subscribers.begin(), _subscribers.end(),std::back_inserter(matches),[&](Element&pair)
 				{

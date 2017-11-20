@@ -2,18 +2,6 @@
 #include <random>
 #include <iostream>
 
-void Ghost::UpdateState()
-{
-	if(clock()-_startTime>=_timeOfBlueState)
-	{
-		_isBlueState = false;
-		_color = _regularColor;
-		_speed = 2;
-		_vecToMove = _vecToMove.Normalized()*_speed;
-		return;
-	}
-}
-
 Ghost::Ghost(IRenderer& renderer, ICollisionManager& collisionManager) : _renderer(renderer),
 _collisionManager(collisionManager)
 {
@@ -32,11 +20,6 @@ void Ghost::Draw()
 
 void Ghost::Update()
 {
-	if(_isBlueState)
-	{
-		UpdateState();
-	}
-
 	 Vector2D oldPosition = _position;
 
 	 _position += _vecToMove;
@@ -72,8 +55,6 @@ void Ghost::Update()
 
 	int randomNumber = generate();
 
-	auto aferNorm = _vecToMove.Normalized();
-
 	while (_moves[randomNumber] == _vecToMove.Normalized()*-1)
 		randomNumber = generate();
 
@@ -93,14 +74,11 @@ Tag Ghost::GetTag() const
 	return _tag;
 }
 
-void Ghost::OnCollsion(ICollidable& collidedObject)
+
+void Ghost::SetPostion(const Vector2D& newPos)
 {
-	if(collidedObject.GetTag()==Tag::Player)
-	{
-		std::cout << "Ghost color(" << _color.r << " " << _color.g << " " << _color.b << ") was hit by pacman\n";
-	}
-	//TODO if pacman took super ball back to base
-	//else do nothing or something else dont know yet
+	GameObject::SetPostion(newPos);
+	_startPosition = newPos;
 }
 
 void Ghost::SetColor(const Color& color)
@@ -116,8 +94,26 @@ void Ghost::SetTag(Tag tag)
 void Ghost::OnPlayerPickedUpSuperBall(ICollidable&superBall)
 {
 	_color = { 0,0,255,0 };
-	_isBlueState = true;
-	_startTime = clock();
 	_speed = 1.5;
 	_vecToMove = _vecToMove.Normalized()*_speed;
+}
+
+void Ghost::OnEndDurationsOfSuperBall()
+{
+	_color = _regularColor;
+	_speed = 2;
+	_vecToMove = _vecToMove.Normalized()*_speed;
+}
+
+void Ghost::OnBeingAte(ICollidable&ghost)
+{
+	if (this != &ghost)
+		return;
+
+	_position = _startPosition;
+}
+
+void Ghost::OnHitPlayer()
+{
+	_position = _startPosition;
 }

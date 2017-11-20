@@ -60,6 +60,12 @@ std::unique_ptr<LayerBase> EnemiesObjectLayerParser::Parse(nlohmann::basic_json<
 
 		_gameLogicHandler.PlayerPickedSuperBall += std::bind(&Ghost::OnPlayerPickedUpSuperBall, ghost.get(), std::placeholders::_1);
 
+		_gameLogicHandler.DurationOfSuperBallEnded += std::bind(&Ghost::OnEndDurationsOfSuperBall, ghost.get());
+
+		_gameLogicHandler.PlayerAteGhost += std::bind(&Ghost::OnBeingAte, ghost.get(),std::placeholders::_1);
+
+		_gameLogicHandler.GhostHitPlayer += std::bind(&Ghost::OnHitPlayer, ghost.get());
+
 		ghosts.emplace_back(ghost);
 	}
 

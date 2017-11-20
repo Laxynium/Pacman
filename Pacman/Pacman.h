@@ -10,20 +10,36 @@ class Pacman:public MoveableGameObject,public ICollidable
 {
 private:
 	IRenderer&_renderer;
+
 	ICollisionManager& _collisionManager;
+
 	Vector2D _vecToMove;
+
 	Color _color;
+
 	Tag _tag;
+
 	double _speed = 2;
 
+	Vector2D _startPosition;
+
 public:
+
+	Pacman(IRenderer &renderer, ICollisionManager&collisionManager);
+
+	void SetPostion(const Vector2D& newPos) override;
+
 	void Draw() override;
+
 	void Move(const Vector2D& vec) override;
+
 	void Update() override;
+
 	Rect GetAreaOfCollision()const override;
-	void OnCollsion(ICollidable& collidedObject) override;
+
 	Tag GetTag() const override;
-	Pacman(IRenderer &renderer,ICollisionManager&collisionManager);
-	~Pacman();
+
+	void OnBeingHit();
+
 };
 
