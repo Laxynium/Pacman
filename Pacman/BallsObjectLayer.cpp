@@ -7,25 +7,21 @@ BallsObjectLayer::BallsObjectLayer(const std::string& type): ObjectLayer(
 }
 
 
-void BallsObjectLayer::OnCollisionWithPlayer(ICollidable& objectA, ICollidable& objectB)
+void BallsObjectLayer::OnCollisionWithPlayer(ICollidable& objectA)
 {
-	auto &objectToDelete = (objectA.GetTag() != Tag::Player) ? objectA : objectB;
-
-	RemoveObject(objectToDelete);
-
+	RemoveObject(objectA);
 }
 
-void BallsObjectLayer::OnCollisionSuperBallWithPlayer(ICollidable& objectA, ICollidable& objectB)
+
+void BallsObjectLayer::OnCollisionSuperBallWithPlayer(ICollidable& objectA)
 {
-	//_gameLogicHandler.PlayerPickedUpSuperBall(objectA);
-
-	auto &objectToDelete = (objectA.GetTag() != Tag::Player) ? objectA : objectB;
-
-	RemoveObject(objectToDelete);
+	RemoveObject(objectA);
 }
 
 void BallsObjectLayer::RemoveObject(ICollidable& objectToDelete)
 {
+	if (_gameObjects.empty())return;
+
 	auto toDelete = std::find_if(_gameObjects.begin(), _gameObjects.end(), [&](auto&object)
 	{
 		ICollidable * collidable = dynamic_cast<ICollidable*>(object.get());
@@ -39,17 +35,6 @@ void BallsObjectLayer::RemoveObject(ICollidable& objectToDelete)
 		_gameObjects.erase(toDelete);
 }
 
-void BallsObjectLayer::SubscribeTo(ICollisionManager& collisionManager)
-{
-	collisionManager.Subscribe(Tag::Player, Tag::Pickable, [&](auto&objectA, auto&objectB)
-	{
-		OnCollisionWithPlayer(objectA, objectB);
-	});
-	collisionManager.Subscribe(Tag::Player, Tag::SuperBall, [&](auto&objectA, auto&objectB)
-	{
-		OnCollisionSuperBallWithPlayer(objectA, objectB);
-	});
-}
 
 void BallsObjectLayer::Update()
 {

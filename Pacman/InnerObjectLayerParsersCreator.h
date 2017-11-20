@@ -11,13 +11,9 @@ private:
 	std::map<std::string, std::function<std::unique_ptr<IInnerObjectLayerParser>()>>_parsers;
 	ICollisionManager& _collisionManager;
 	Factory& _factory;
+	GameLogicHandler& _gameLogicHandler;
 public:
-	InnerObjectLayerParsersCreator(Factory&factory,ICollisionManager&collisionManager):
-		_collisionManager(collisionManager), _factory(factory)
-	{
-		_parsers["Balls"] = [&]() {return std::make_unique<BallObjectLayerParser>(_factory, _collisionManager); };
-		_parsers["Ghosts"] = [&]() {return std::make_unique<EnemiesObjectLayerParser>(_factory, _collisionManager); };
-	}
+	InnerObjectLayerParsersCreator(Factory& factory, ICollisionManager& collisionManager,GameLogicHandler&gameLogicHandler);
 
 	std::unique_ptr<IInnerObjectLayerParser> Create(const std::string& type) override;
 

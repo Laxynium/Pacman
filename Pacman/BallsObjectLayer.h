@@ -4,13 +4,17 @@
 class BallsObjectLayer:public ObjectLayer
 {
 protected:
-	void OnCollisionWithPlayer(ICollidable&objectA, ICollidable&objectB);
-	void OnCollisionSuperBallWithPlayer(ICollidable&objectA, ICollidable&objectB);
 	void RemoveObject(ICollidable&objectToDelete);
 public:
+
+	BallsObjectLayer( BallsObjectLayer&) = delete;
+
 	BallsObjectLayer(const std::string& type);
 
-	void SubscribeTo(ICollisionManager&collisionManager);
+
+	void OnCollisionWithPlayer(ICollidable&objectA);
+
+	void OnCollisionSuperBallWithPlayer(ICollidable&objectA);
 
 	void Update() override;
 

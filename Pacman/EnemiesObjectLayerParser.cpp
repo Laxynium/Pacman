@@ -3,6 +3,7 @@
 #include "EnemiesObjectLayer.h"
 #include "Ghost.h"
 #include "Factory.h"
+#include "GameLogicHandler.h"
 #ifndef GHOSTPROP
 #define GHOSTPROP
 using nlohmann::json;
@@ -30,7 +31,7 @@ void from_json(const json& json, std::vector<GhostProperites>&ghostProperties)
 #endif
 
 
-EnemiesObjectLayerParser::EnemiesObjectLayerParser(Factory&factory,ICollisionManager&collisionManager):_factory(factory), _collisionManager(collisionManager)
+EnemiesObjectLayerParser::EnemiesObjectLayerParser(Factory&factory,ICollisionManager&collisionManager,GameLogicHandler&gameLogicHandler):_factory(factory), _collisionManager(collisionManager), _gameLogicHandler(gameLogicHandler)
 {
 }
 
@@ -57,11 +58,7 @@ std::unique_ptr<LayerBase> EnemiesObjectLayerParser::Parse(nlohmann::basic_json<
 		//TODO bind here controlers to proper ghosts
 		_collisionManager.Register(*ghost);
 
-		//_gameLogicHandler.SubscribeToPlayerPickedUpSuperBall([&](ICollidable&c) {ghost->OnPlayerPickedUpSuperBall(c); });
-
-	/*	_gameLogicHandler.PlayerPickedUpSuperBall += std::bind(&Ghost::OnPlayerPickedUpSuperBall, ghost.get(),std::placeholders::_1);
-
-		_gameLogicHandler.PlayerPickedUpSuperBall += [&](ICollidable&c) {ghost->OnPlayerPickedUpSuperBall(c); };*/
+		_gameLogicHandler.PlayerPickedSuperBall += std::bind(&Ghost::OnPlayerPickedUpSuperBall, ghost.get(), std::placeholders::_1);
 
 		ghosts.emplace_back(ghost);
 	}

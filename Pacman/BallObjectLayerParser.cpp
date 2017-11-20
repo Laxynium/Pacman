@@ -1,8 +1,9 @@
 ﻿#include "BallObjectLayerParser.h"
 #include "BallsObjectLayer.h"
+#include "GameLogicHandler.h"
 
-BallObjectLayerParser::BallObjectLayerParser(Factory&factory,ICollisionManager&collisionManager) :
-	 _factory(factory), _collisionManager(collisionManager)
+BallObjectLayerParser::BallObjectLayerParser(Factory&factory,ICollisionManager&collisionManager,GameLogicHandler&gameLogicHandler) :
+	 _factory(factory), _collisionManager(collisionManager), _gameLogicHandler(gameLogicHandler)
 {
 }
 
@@ -39,7 +40,7 @@ namespace std
 
 std::unique_ptr<LayerBase> BallObjectLayerParser::Parse(nlohmann::basic_json<> json)
 {
-	auto objectLayer = std::make_unique<BallsObjectLayer>(json["name"].get<std::string>());
+	auto ballsObjectLayer = std::make_unique<BallsObjectLayer>(json["name"].get<std::string>());
 
 
 	std::vector<BallProperties>ballProperties = json.at("objects");
@@ -57,10 +58,13 @@ std::unique_ptr<LayerBase> BallObjectLayerParser::Parse(nlohmann::basic_json<> j
 		gameObjects.emplace_back(ball);
 	}
 
-	objectLayer->SetGameObjects(gameObjects);
+	_gameLogicHandler.SetGameEndPoint(ballProperties.size());
 
+	ballsObjectLayer->SetGameObjects(gameObjects);
 
-	//objectLayer->SubscribeTo(_collisionManager);
+	_gameLogicHandler.PlayerPickedSuperBall += std::bind(&BallsObjectLayer::OnCollisionSuperBallWithPlayer, ballsObjectLayer.get(), std::placeholders::_1);
+
+	_gameLogicHandler.PlayerPickedBall	+= std::bind(&BallsObjectLayer::OnCollisionWithPlayer, ballsObjectLayer.get(), std::placeholders::_1);
 	
-	return objectLayer;
+	return ballsObjectLayer;
 }

@@ -22,7 +22,13 @@ Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> in
 
 	BindInput();
 
-	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiledTest5.json"));	
+	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiledTest5.json"));
+	
+	_gameLogicHandler->GameEnded += [&]()
+	{
+		_isRunning = false;
+	};
+
 }
 
 void Game::BindInput()
@@ -58,6 +64,8 @@ bool Game::IsRunning() const
 void Game::Update() const
 {
 	_collisionManager->DetectAll();
+
+	_gameLogicHandler->Update();
 
 	_level->Update();
 
