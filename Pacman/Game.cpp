@@ -5,12 +5,13 @@
 #include "Color.h"
 #include "FromJsonLevelLoader.h"
 #include "SpecialSDLActionType.h"
+#include "GameLogicHandler.h"
 
 
 Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> inputHandler,
-	std::shared_ptr<ILevelLoader>levelLoader, std::shared_ptr<ICollisionManager>collisionManager) :
+	std::shared_ptr<ILevelLoader>levelLoader, std::shared_ptr<ICollisionManager>collisionManager,std::shared_ptr<GameLogicHandler>gameLogicHandler) :
 	_input_handler(std::move(inputHandler)), _renderer(renderer),
-	_levelLoader(levelLoader), _collisionManager(collisionManager)
+	_levelLoader(levelLoader), _collisionManager(collisionManager), _gameLogicHandler(gameLogicHandler)
 {
 	auto *square_1 = new Pacman(*_renderer, *_collisionManager);
 	_collisionManager->Register(*square_1);

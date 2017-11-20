@@ -137,6 +137,7 @@
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FromJsonLevelLoader.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameLogicHandler.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Ghost.h" />
     <ClInclude Include="ICollidable.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FromJsonLevelLoader.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameLogicHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="ILayerParser.cpp" />

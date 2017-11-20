@@ -245,6 +245,9 @@
     <ClInclude Include="EnemiesObjectLayer.h">
       <Filter>Game\Parsers\InnerObjectLayerParser\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="GameLogicHandler.h">
+      <Filter>Game\GameLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -340,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="EnemiesObjectLayer.cpp">
       <Filter>Game\Parsers\InnerObjectLayerParser\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLogicHandler.cpp">
+      <Filter>Game\GameLogic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
