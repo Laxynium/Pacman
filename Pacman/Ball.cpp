@@ -10,7 +10,7 @@ Ball::Ball(IRenderer& renderer,ICollisionManager&collisionManager,const Vector2D
 	_position = pos;
 	_width = width;
 	_height = height;
-	_position += Vector2D(16 - (width / 2), 16 - (height / 2));
+	_position += Vector2D(16 - (width / 2), 16 - (height / 2));//16 becouse its half of tile
 }
 
 void Ball::Draw()
@@ -34,9 +34,14 @@ Tag Ball::GetTag() const
 
 void Ball::OnCollsion(ICollidable& collidedObject)
 {
-	if (collidedObject.GetTag() != Tag::Picker)
+	if (collidedObject.GetTag() != Tag::Player)
 		return;
 
 	//std::cout << "Ball collided\n";
 	_collisionManager.Deregister(*this);
+}
+
+void Ball::SetTag(const Tag& tag)
+{
+	_tag = tag;
 }

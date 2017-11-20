@@ -1,20 +1,22 @@
 #pragma once
 #include "LayerBase.h"
-#include "ObjectLayerProperties.h"
 #include "ICollisionManager.h"
-#include "GameLogicHandler.h"
+#include <memory>
 
 class ObjectLayer:public LayerBase
 {
 protected:
 
 	std::vector<std::shared_ptr<GameObject>>_gameObjects;
-	GameLogicHandler& _gameLogicHandler;
 
 public:
-	 ObjectLayer(const std::string& type,GameLogicHandler&gameLogicHandler);
+	 ObjectLayer(const std::string& type);
 
 	~ObjectLayer();
+
+	void SetGameObjects(const std::vector<std::shared_ptr<GameObject>>& sharedPtrs);
+
+	std::vector<std::shared_ptr<GameObject>>& GameObjects();
 
 	void Draw() override;
 

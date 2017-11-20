@@ -3,8 +3,8 @@
 
 
 ObjectLayerParser::ObjectLayerParser(ICollisionManager& collisionManager, 
-										GameLogicHandler &gameLogicHandler, Factory&factory, IInnerObjectLayerParsersCreator&objectLayerParsersCreator):
-											_collisionManager(collisionManager), _gameLogicHandler(gameLogicHandler), _factory(factory), _objectLayerParsersCreator(objectLayerParsersCreator)
+										 Factory&factory, IInnerObjectLayerParsersCreator&objectLayerParsersCreator):
+											_collisionManager(collisionManager), _factory(factory), _objectLayerParsersCreator(objectLayerParsersCreator)
 {
 }
 

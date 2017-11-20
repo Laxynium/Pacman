@@ -1,8 +1,8 @@
 ﻿#include "BallObjectLayerParser.h"
 #include "BallsObjectLayer.h"
 
-BallObjectLayerParser::BallObjectLayerParser(GameLogicHandler& gameLogicHandler, Factory&factory,ICollisionManager&collisionManager) :
-	_gameLogicHandler(gameLogicHandler), _factory(factory), _collisionManager(collisionManager)
+BallObjectLayerParser::BallObjectLayerParser(Factory&factory,ICollisionManager&collisionManager) :
+	 _factory(factory), _collisionManager(collisionManager)
 {
 }
 
@@ -15,6 +15,7 @@ struct BallProperties
 	int Width;
 	int Height;
 	Vector2D Posistion;
+	Tag Tag;
 };
 namespace std
 {
@@ -27,6 +28,9 @@ namespace std
 			properties.Height = obj.at("height").get<int>();
 			properties.Posistion.SetX(obj.at("x").get<int>());
 			properties.Posistion.SetY(obj.at("y").get<int>());
+
+			properties.Tag= EnumParser<Tag>().ParseSomeEnum(obj.at("properties").at("tag").get<std::string>());
+
 			ballProperties.emplace_back(properties);
 		}
 	}
@@ -35,29 +39,18 @@ namespace std
 
 std::unique_ptr<LayerBase> BallObjectLayerParser::Parse(nlohmann::basic_json<> json)
 {
-	auto objectLayer = std::make_unique<BallsObjectLayer>(json["name"].get<std::string>(),_gameLogicHandler);
+	auto objectLayer = std::make_unique<BallsObjectLayer>(json["name"].get<std::string>());
 
-	Properties::ObjectLayerProperties objectLayerProperties;
-	objectLayerProperties.Name = json["name"].get<std::string>();
-
-
-	auto propertiesJson = json["properties"];
-	objectLayerProperties.TextureSource = propertiesJson["texture"].get<std::string>();
-	objectLayerProperties.TextureName = propertiesJson["textureName"].get<std::string>();
-	//objectLayerProperties.ObjectsCount = propertiesJson["ballCount"].get<int>();
-
-	const auto tagName = propertiesJson["tag"];
-
-	EnumParser<Tag> parser;
-	objectLayerProperties.Tag = parser.ParseSomeEnum(tagName);
-
-	objectLayer->SetProperties(std::move(objectLayerProperties));
 
 	std::vector<BallProperties>ballProperties = json.at("objects");
+
 	std::vector<std::shared_ptr<GameObject>>gameObjects;
+
 	for (auto&balProp : ballProperties)
 	{
 		auto ball = _factory.CreateBall(balProp.Posistion, balProp.Width, balProp.Height);
+
+		ball->SetTag(balProp.Tag);
 
 		_collisionManager.Register(*ball);
 
@@ -66,9 +59,7 @@ std::unique_ptr<LayerBase> BallObjectLayerParser::Parse(nlohmann::basic_json<> j
 
 	objectLayer->SetGameObjects(gameObjects);
 
-	objectLayer->SubscribeTo(_collisionManager);
-
-
+	//objectLayer->SubscribeTo(_collisionManager);
 	
 	return objectLayer;
 }

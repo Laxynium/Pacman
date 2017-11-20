@@ -2,8 +2,6 @@
 #include "JsonParser.h"
 #include "Tileset.h"
 #include <fstream>
-#include "TileLayerProperties.h"
-#include "ILayerParsersCreator.h"
 using namespace std;
 using nlohmann::json;
 

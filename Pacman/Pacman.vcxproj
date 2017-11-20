@@ -130,13 +130,13 @@
     <ClInclude Include="BallsObjectLayer.h" />
     <ClInclude Include="BoostDI.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="EnemiesObjectLayer.h" />
+    <ClInclude Include="EnemiesObjectLayerParser.h" />
     <ClInclude Include="EnumParser.h" />
     <ClInclude Include="Event.h" />
-    <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FromJsonLevelLoader.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameLogicHandler.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Ghost.h" />
     <ClInclude Include="ICollidable.h" />
@@ -147,7 +147,6 @@
     <ClInclude Include="IInnerObjectLayerParsersCreator.h" />
     <ClInclude Include="IInputHandler.h" />
     <ClInclude Include="ILayerParser.h" />
-    <ClInclude Include="ILayerParsersCreator.h" />
     <ClInclude Include="ILevelLoader.h" />
     <ClInclude Include="IMovable.h" />
     <ClInclude Include="InnerObjectLayerParsersCreator.h" />
@@ -157,7 +156,6 @@
     <ClInclude Include="LayerBase.h" />
     <ClInclude Include="LayerParsersCreator.h" />
     <ClInclude Include="ObjectBase.h" />
-    <ClInclude Include="ObjectLayerProperties.h" />
     <ClInclude Include="TileLayerProperties.h" />
     <ClInclude Include="MoveableGameObject.h" />
     <ClInclude Include="ObjectLayer.h" />
@@ -183,16 +181,15 @@
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="BallObjectLayerParser.cpp" />
     <ClCompile Include="BallsObjectLayer.cpp" />
+    <ClCompile Include="EnemiesObjectLayer.cpp" />
+    <ClCompile Include="EnemiesObjectLayerParser.cpp" />
     <ClCompile Include="Event.cpp" />
-    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FromJsonLevelLoader.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameLogicHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="ILayerParser.cpp" />
-    <ClCompile Include="ILayerParsersCreator.cpp" />
     <ClCompile Include="InnerObjectLayerParsersCreator.cpp" />
     <ClCompile Include="LayerBase.cpp" />
     <ClCompile Include="LayerParsersCreator.cpp" />
@@ -202,7 +199,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />
     <ClCompile Include="ObjectLayerParser.cpp" />
-    <ClCompile Include="ObjectLayerProperties.cpp" />
     <ClCompile Include="SDLCollisionManager.cpp" />
     <ClCompile Include="SDLGameBoostrapper.cpp" />
     <ClCompile Include="SDLInputHandler.cpp" />
@@ -215,6 +211,17 @@
     <ClCompile Include="Tileset.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\boost.1.65.1.0\build\native\boost.targets" Condition="Exists('..\packages\boost.1.65.1.0\build\native\boost.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\boost.1.65.1.0\build\native\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.65.1.0\build\native\boost.targets'))" />
+  </Target>
 </Project>

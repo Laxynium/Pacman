@@ -1,12 +1,29 @@
 ﻿#pragma once
 #include <memory>
-#include "EventHandler.h"
 #include <vector>
+#include <functional>
+
 template<typename Arg>
 class Event
 {
 	std::vector<std::function<void(Arg)>>_actions;
 public:
+	Event() = default;
+	Event(const Event&event)
+	{
+		for(auto action:event._actions)
+		{
+			_actions.push_back(action);
+		}
+	}
+	Event&operator=(const Event&event)
+	{
+		for (auto action : event._actions)
+		{
+			_actions.push_back(action);
+		}
+		return this;
+	}
 	void operator()(Arg arg)
 	{
 		for (auto&action : _actions)
@@ -16,10 +33,9 @@ public:
 
 	Event& operator+=(std::function<void(Arg)>action)
 	{
-		_actions.push_back(action);
+		_actions.emplace_back(action);
 		return *this;
 	}
-
 };
 template<>
 class Event<void>
@@ -35,7 +51,7 @@ public:
 
 	Event& operator+=(std::function<void()>action)
 	{
-		_actions.push_back(action);
+		_actions.emplace_back(action);
 		return *this;
 	}
 };

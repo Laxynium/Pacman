@@ -3,19 +3,17 @@
 #include "SDLInputHandler.h"
 #include "BoostDI.h"
 #include "SDLRenderer.h"
-#include "Pacman.h"
 #include "IRenderer.h"
-#include "SDLRenderer.h"
 #include <winsock.h>
 #include "SDLTextureManager.h"
 #include "ILevelLoader.h"
 #include "FromJsonLevelLoader.h"
 #include "SDLCollisionManager.h"
-#include "ILayerParsersCreator.h"
 #include "LayerParsersCreator.h"
 #include "Factory.h"
 #include "IInnerObjectLayerParsersCreator.h"
 #include "InnerObjectLayerParsersCreator.h"
+
 namespace di = boost::di;
 
 
@@ -31,7 +29,6 @@ void SDLGameBoostrapper::Initialize()
 		di::bind<IInputHandler>().to<SDLInputHandler>().in(di::unique),
 		di::bind<ICollisionManager>().to<SDLCollisionManager>().in(di::singleton),
 		di::bind<LayerParsersCreator>().to<LayerParsersCreator>().in(di::singleton),
-		di::bind<GameLogicHandler>().to<GameLogicHandler>().in(di::singleton),
 		di::bind<Factory>().to<Factory>().in(di::singleton),
 		di::bind<IInnerObjectLayerParsersCreator>().to<InnerObjectLayerParsersCreator>().in(di::singleton)
 		);

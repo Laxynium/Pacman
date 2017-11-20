@@ -5,8 +5,7 @@
 #include "JsonParser.h"
 #include "FromJsonLevelLoader.h"
 #include "ITextureManager.h"
-#include "ICollisionManager.h"
-#include "ILayerParsersCreator.h"
+#include "LayerParsersCreator.h"
 
 namespace Properties
 {

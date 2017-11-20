@@ -3,13 +3,14 @@
 
 enum class Tag
 {
-	Pickable,Picker,Blocked,Enemy
+	Pickable, Player, Wall, Enemy, SuperBall
 };
 
 inline EnumParser<Tag>::EnumParser()
 {
 	enumMap["pickable"] = Tag::Pickable;
-	enumMap["picker"] = Tag::Picker;
-	enumMap["blocked"] = Tag::Blocked;
+	enumMap["picker"] = Tag::Player;
+	enumMap["blocked"] = Tag::Wall;
 	enumMap["enemy"] = Tag::Enemy;
+	enumMap["superball"] = Tag::SuperBall;
 }

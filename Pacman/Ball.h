@@ -7,6 +7,7 @@ struct IRenderer;
 
 class Ball:public GameObject,public ICollidable
 {
+protected:
 	Tag _tag;
 	bool IsPicked = false;
 	Color _color = { 255,255,0,0 };
@@ -23,6 +24,8 @@ public:
 	Tag GetTag() const override;
 	
 	void OnCollsion(ICollidable& collidedObject) override;
-	
+
+	void SetTag(const Tag& tag);
+
 	IRenderer& _renderer;
 };

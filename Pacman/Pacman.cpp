@@ -17,7 +17,7 @@ void Pacman::Move(const Vector2D& vec)
 	_position += svec;
 
 	//check if with new velocity pacman won't hit wall, if not accept itdw
-	if(!_collisionManager.DetectCollision(*this,Tag::Blocked))
+	if(!_collisionManager.DetectCollision(*this,Tag::Wall))
 	{	
 		_vecToMove = svec;// vec.Normalized() * _speed;
 	}
@@ -34,7 +34,7 @@ void Pacman::Update()
 	_position += _vecToMove;
 
 	//Check if after that move won't hit wall
-	if (_collisionManager.DetectCollision(*this, Tag::Blocked))
+	if (_collisionManager.DetectCollision(*this, Tag::Wall))
 	{
 		_position = oldPos;
 	}
@@ -75,7 +75,7 @@ Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager)
 
 	_color = { 255,255,0,0};
 
-	_tag = Tag::Picker;
+	_tag = Tag::Player;
 }
 
 

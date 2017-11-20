@@ -26,7 +26,12 @@ Ball * Factory::CreateBall(const Vector2D& pos, int width, int height) const
 	return new Ball(_renderer,_collisionManager,pos, width,height);
 }
 
-Pacman*Factory::CreateSquare() const
+Pacman*Factory::CreatePacman() const
 {
 	return new Pacman(_renderer, _collisionManager);
+}
+
+Ghost* Factory::CreateGhost() const
+{
+	return new Ghost(_renderer, _collisionManager);
 }

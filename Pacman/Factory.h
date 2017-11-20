@@ -4,6 +4,7 @@
 #include "Ball.h"
 #include "Pacman.h"
 #include "TileLayer.h"
+#include "Ghost.h"
 
 class Factory
 {
@@ -20,7 +21,9 @@ public:
 	Ball* CreateBall(const Vector2D&pos, int width, int height) const;
 
 	///Client is resposible for live of this object
-	Pacman* CreateSquare() const;
+	Pacman* CreatePacman() const;
+
+	Ghost*CreateGhost()const;
 
 	ITextureManager& _textureManager;
 	IRenderer& _renderer;

@@ -10,7 +10,7 @@ Rect Tile::GetAreaOfCollision() const
 
 void Tile::OnCollsion(ICollidable& collidedObject)
 {
-	std::string text = (collidedObject.GetTag() == Tag::Blocked) ? ("blocked") : ("pickabe");
+	std::string text = (collidedObject.GetTag() == Tag::Wall) ? ("blocked") : ("pickabe");
 	std::cout << "I was hit by " << text << std::endl;
 }
 
@@ -22,7 +22,7 @@ Tag Tile::GetTag() const
 Tile::Tile(Rect& dscrect, Rect&srcrect, const std::string&textureName) :
 	_dscrect(dscrect),_srcrect(srcrect),_textureName(textureName)
 {
-	_tag = Tag::Blocked;
+	_tag = Tag::Wall;
 }
 
 Rect& Tile::DscRect() 

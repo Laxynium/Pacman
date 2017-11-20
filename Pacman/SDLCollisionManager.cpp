@@ -74,15 +74,17 @@ void SDLCollisionManager::DetectAll()
 			{
 				object->OnCollsion(*otherObject);
 				otherObject->OnCollsion(*object);
-
-				auto sub = std::find_if(_subscribers.begin(), _subscribers.end(), [&](Element&pair)
+				std::vector<Element>matches;
+				auto sub = std::copy_if(_subscribers.begin(), _subscribers.end(),std::back_inserter(matches),[&](Element&pair)
 				{
 					return (pair.first.first == object->GetTag() && pair.first.second == otherObject->GetTag())
 						|| (pair.first.second == object->GetTag() && pair.first.first == otherObject->GetTag());
 
 				});
-				if (sub != _subscribers.end())
-					sub->second(*object, *otherObject);
+				for (auto& sub :matches)
+				{
+					sub.second(*object, *otherObject);
+				}
 			}
 		}
 	}
