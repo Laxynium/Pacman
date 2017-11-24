@@ -25,6 +25,10 @@ class GameLogicHandler
 
 	int _numberOfLives = 3;
 
+	int _numberOfScoredPoints = 0;
+
+	int _numberOfGhostsEatenInRow = 0;
+
 public:
 	GameLogicHandler(GameLogicHandler&) = delete;
 	GameLogicHandler(GameLogicHandler&&) = default;

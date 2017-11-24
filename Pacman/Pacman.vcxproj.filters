@@ -248,6 +248,9 @@
     <ClInclude Include="IGameBootstrapper.h">
       <Filter>Game\Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreHandler.h">
+      <Filter>Game\GameLogic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -346,6 +349,9 @@
     </ClCompile>
     <ClCompile Include="SDLGameBootstrapper.cpp">
       <Filter>Game\Utilities\Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreHandler.cpp">
+      <Filter>Game\GameLogic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

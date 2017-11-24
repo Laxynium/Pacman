@@ -12,12 +12,14 @@ void Pacman::Move(const Vector2D& vec)
 {
 	//Cache postion
 	const Vector2D oldPos = _position;
+
 	Vector2D svec = vec;
 	svec *= 2;
+
 	_position += svec;
 
 	//check if with new velocity pacman won't hit wall, if not accept itdw
-	if(!_collisionManager.DetectCollision(*this,Tag::Wall))
+	if(!_collisionManager.DetectCollision(*this,Tag::Wall)&& !_collisionManager.DetectCollision(*this, Tag::WallToPlayer))
 	{	
 		_vecToMove = svec;// vec.Normalized() * _speed;
 	}
@@ -30,15 +32,15 @@ void Pacman::Update()
 	//Cache position
 	const Vector2D oldPos = _position;
 
-
 	_position += _vecToMove;
 
 	//Check if after that move won't hit wall
-	if (_collisionManager.DetectCollision(*this, Tag::Wall))
+	if (_collisionManager.DetectCollision(*this, Tag::Wall)|| _collisionManager.DetectCollision(*this, Tag::WallToPlayer))
 	{
 		_position = oldPos;
 	}
 
+	//Transistion between edges of map
 	if(_position.X()<0)
 	{
 		//TODO remove magic number which is width of game

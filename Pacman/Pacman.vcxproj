@@ -157,6 +157,7 @@
     <ClInclude Include="LayerBase.h" />
     <ClInclude Include="LayerParsersCreator.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="ScoreHandler.h" />
     <ClInclude Include="TileLayerProperties.h" />
     <ClInclude Include="MoveableGameObject.h" />
     <ClInclude Include="ObjectLayer.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="LayerParsersCreator.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="ScoreHandler.cpp" />
     <ClCompile Include="TileLayerProperties.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjectLayer.cpp" />

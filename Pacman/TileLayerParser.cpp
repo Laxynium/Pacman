@@ -13,6 +13,7 @@ namespace Properties
 		p.Name = layerJson.at("name").get<std::string>();
 		p.SetData(data);
 		p.IsCollidable = layerJson.at("properties").at("collidable").get<bool>();
+		p.Tag = EnumParser<Tag>().ParseSomeEnum(layerJson.at("properties").at("tag").get<std::string>());
 	}
 }
 

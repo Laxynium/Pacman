@@ -24,13 +24,14 @@ void Ghost::Update()
 
 	 _position += _vecToMove;
 
+	 const int mazeWidth = 896;
 	 if (_position.X()<0)
 	 {
 		 //TODO remove magic number which is width of game
-		 _position.SetX(896 + _position.X());
+		 _position.SetX(mazeWidth + _position.X());
 	 }
-	 if (_position.X() > 896)
-		 _position.SetX(_position.X() - 896);
+	 if (_position.X() > mazeWidth)
+		 _position.SetX(_position.X() - mazeWidth);
 
 	if(!_collisionManager.DetectCollision(*this,Tag::Wall))
 	{
@@ -55,8 +56,8 @@ void Ghost::Update()
 
 	int randomNumber = generate();
 
-	while (_moves[randomNumber] == _vecToMove.Normalized()*-1)
-		randomNumber = generate();
+	/*while (_moves[randomNumber] == _vecToMove.Normalized()*-1)
+		randomNumber = generate();*/
 
 	_vecToMove = _moves[randomNumber] * _speed;
 

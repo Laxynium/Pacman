@@ -22,12 +22,12 @@ Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> in
 	drawable.reset(square_1);
 
 
-	drawable->SetPostion({ 32, 32 });
+	drawable->SetPostion({ 432, 736 });
 
 
 	BindInput();
 
-	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiledTest5.json"));
+	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiledTest6.json"));
 	
 	_gameLogicHandler->GameEnded += [&]()
 	{

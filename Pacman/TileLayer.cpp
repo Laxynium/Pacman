@@ -45,7 +45,7 @@ void Properties::TileLayer::GenerateTiles()
 			Rect s{ x,y,w,h };
 			Rect d{ j*w,i*h,w,h };
 
-			auto tile = std::make_shared<Tile>(d, s, tileset->Name);
+			auto tile = std::make_shared<Tile>(d, s, tileset->Name,_properties->Tag);
 
 			_tiles.push_back(std::move(tile));
 

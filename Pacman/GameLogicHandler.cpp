@@ -1,5 +1,6 @@
 ﻿#include "GameLogicHandler.h"
 #include <ctime>
+#include <iostream>
 
 void GameLogicHandler::OnPlayerPickedSuperBall(ICollidable& A, ICollidable& B)
 {
@@ -10,6 +11,12 @@ void GameLogicHandler::OnPlayerPickedSuperBall(ICollidable& A, ICollidable& B)
 	PlayerPickedSuperBall(ball);
 
 	_collisionManager.Deregister(ball);
+
+	//TODO move to ScoreHandler
+	_numberOfScoredPoints += 50;
+	std::cout << "Score " << _numberOfScoredPoints << std::endl;
+
+	_numberOfGhostsEatenInRow = 0;
 
 	_isSuperBallPicked = true;
 
@@ -32,6 +39,10 @@ void GameLogicHandler::OnPlayerPickedBall(ICollidable& A, ICollidable& B)
 
 	_collisionManager.Deregister(ball);
 
+	//TODO move to ScoreHandler
+	_numberOfScoredPoints += 10;
+	std::cout << "Score " << _numberOfScoredPoints << std::endl;
+
 	if (_countOfPickedBalls >= _countOfBalls)
 	{
 		GameEnded();
@@ -44,12 +55,14 @@ void GameLogicHandler::OnPlayerGhostCollision(ICollidable& A, ICollidable& B)
 
 	if(_isSuperBallPicked)
 	{
+		_numberOfScoredPoints += 200 * (++_numberOfGhostsEatenInRow);
+		std::cout << "Score " << _numberOfScoredPoints << std::endl;
 		PlayerAteGhost(GetCollidableWith(Tag::Enemy,A,B));
 	}
 	else
 	{
 		--_numberOfLives;
-
+		std::cout << "Actuall count of lives "<<_numberOfLives << std::endl;
 		if (_numberOfLives <= 0)
 			GameEnded();
 

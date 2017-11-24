@@ -14,10 +14,10 @@ Tag Tile::GetTag() const
 	return _tag;
 }
 
-Tile::Tile(Rect& dscrect, Rect&srcrect, const std::string&textureName) :
+Tile::Tile(Rect& dscrect, Rect&srcrect, const std::string&textureName,Tag tag) :
 	_dscrect(dscrect),_srcrect(srcrect),_textureName(textureName)
 {
-	_tag = Tag::Wall;
+	_tag = tag;
 }
 
 Rect& Tile::DscRect() 

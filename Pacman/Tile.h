@@ -13,7 +13,7 @@ public:
 
 	Tag GetTag() const override;
 
-	Tile(Rect& dscrect,Rect&srcrect,const std::string&textureName);
+	Tile(Rect& dscrect,Rect&srcrect,const std::string&textureName, Tag tag);
 
 	 Rect& DscRect();
 

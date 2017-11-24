@@ -1,6 +1,8 @@
 #pragma once
 #include "Tileset.h"
 #include <vector>
+#include "Tag.h"
+
 namespace Properties
 {
 	class TileLayerProperties
@@ -33,6 +35,7 @@ namespace Properties
 
 		bool IsCollidable;
 
+		Tag Tag;
 	};
 }
 
