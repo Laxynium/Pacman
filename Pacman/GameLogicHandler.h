@@ -2,7 +2,7 @@
 #include "ICollisionManager.h"
 #include "Event.h"
 
-class GameLogicHandler
+class GameLogicHandler:public IUpdateable
 {
 	ICollisionManager& _collisionManager;
 
@@ -41,7 +41,7 @@ public:
 		_collisionManager.Subscribe(Tag::Player, Tag::Enemy, [this](auto&A, auto&B) {this->OnPlayerGhostCollision(A, B); });
 	}
 
-	void Update();
+	void Update() override;
 
 	void SetGameEndPoint(int numberOfBalls);
 

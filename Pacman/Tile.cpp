@@ -4,7 +4,7 @@
 Rect Tile::GetAreaOfCollision() const
 {
 	Rect r = _dscrect;
-	//r.x += 2, r.y += 2, r.w -= 2, r.h -= 2;
+	//r.x += 4, r.y += 4, r.w /= 2, r.h /= 2;
 	return r;
 }
 

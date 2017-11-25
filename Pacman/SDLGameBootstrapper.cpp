@@ -33,6 +33,7 @@ void SDLGameBootstrapper::Initialize()
 		di::bind<IInnerObjectLayerParsersCreator>().to<InnerObjectLayerParsersCreator>().in(di::singleton),
 		di::bind<GameLogicHandler>().to<GameLogicHandler>().in(di::singleton)
 		);
+		
 		_game = injector.create<std::shared_ptr<Game>>();
 }
 

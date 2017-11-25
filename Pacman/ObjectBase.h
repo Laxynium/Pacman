@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include "IDrawable.h"
+#include "IUpdateable.h"
 
-class ObjectBase:public IDrawable
+class ObjectBase:public IDrawable,public IUpdateable
 {
-public:
-	virtual void Update() = 0;
+
 };

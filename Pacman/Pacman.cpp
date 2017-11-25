@@ -13,12 +13,11 @@ void Pacman::Move(const Vector2D& vec)
 	//Cache postion
 	const Vector2D oldPos = _position;
 
-	Vector2D svec = vec;
-	svec *= 2;
+	Vector2D svec = vec.Normalized()*_speed;
 
 	_position += svec;
 
-	//check if with new velocity pacman won't hit wall, if not accept itdw
+	//check if with new velocity pacman won't hit wall, if not accept it
 	if(!_collisionManager.DetectCollision(*this,Tag::Wall)&& !_collisionManager.DetectCollision(*this, Tag::WallToPlayer))
 	{	
 		_vecToMove = svec;// vec.Normalized() * _speed;
