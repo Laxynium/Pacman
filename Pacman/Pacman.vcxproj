@@ -75,11 +75,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2-2.0.7\include;C:\Games\Pacman\SDL2_image-2.0.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2-2.0.7\lib\x86;C:\Games\Pacman\SDL2_image-2.0.2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_image-2.0.2\lib\x86;C:\Games\Pacman\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -88,7 +88,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_image-2.0.2\lib\x64;C:\Games\Pacman\SDL2-2.0.7\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -128,6 +133,7 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="BallObjectLayerParser.h" />
     <ClInclude Include="BallsObjectLayer.h" />
+    <ClInclude Include="BehaviourBase.h" />
     <ClInclude Include="BoostDI.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="EnemiesObjectLayer.h" />
@@ -153,10 +159,13 @@
     <ClInclude Include="InnerObjectLayerParsersCreator.h" />
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="ITextureManager.h" />
+    <ClInclude Include="IUpdateable.h" />
     <ClInclude Include="JsonParser.h" />
     <ClInclude Include="LayerBase.h" />
     <ClInclude Include="LayerParsersCreator.h" />
+    <ClInclude Include="MoveToPositionBehaviour.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="RandomBehaviour.h" />
     <ClInclude Include="ScoreHandler.h" />
     <ClInclude Include="TileLayerProperties.h" />
     <ClInclude Include="MoveableGameObject.h" />
@@ -183,6 +192,7 @@
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="BallObjectLayerParser.cpp" />
     <ClCompile Include="BallsObjectLayer.cpp" />
+    <ClCompile Include="BehaviourBase.cpp" />
     <ClCompile Include="EnemiesObjectLayer.cpp" />
     <ClCompile Include="EnemiesObjectLayerParser.cpp" />
     <ClCompile Include="Event.cpp" />
@@ -194,10 +204,13 @@
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="ILayerParser.cpp" />
     <ClCompile Include="InnerObjectLayerParsersCreator.cpp" />
+    <ClCompile Include="IUpdateable.cpp" />
     <ClCompile Include="LayerBase.cpp" />
     <ClCompile Include="LayerParsersCreator.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="MoveToPositionBehaviour.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="RandomBehaviour.cpp" />
     <ClCompile Include="ScoreHandler.cpp" />
     <ClCompile Include="TileLayerProperties.cpp" />
     <ClCompile Include="main.cpp" />

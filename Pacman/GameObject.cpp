@@ -6,7 +6,7 @@ const Vector2D& GameObject::GetPosition() const
 	return _position;
 }
 
-void GameObject::SetPostion(const Vector2D& newPos)
+void GameObject::SetPosition(const Vector2D& newPos)
 {
 	_position = newPos;
 }

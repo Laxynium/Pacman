@@ -49,7 +49,7 @@ std::unique_ptr<LayerBase> EnemiesObjectLayerParser::Parse(nlohmann::basic_json<
 	{
 		auto ghost=std::shared_ptr<Ghost>(_factory.CreateGhost());
 
-		ghost->SetPostion(ghostProp.Position);
+		ghost->SetPosition(ghostProp.Position);
 		ghost->SetWidth(ghostProp.Width);
 		ghost->SetHeight(ghostProp.Height);
 		ghost->SetColor(ghostProp.Color);

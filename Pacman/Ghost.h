@@ -3,6 +3,7 @@
 #include "IRenderer.h"
 #include "ICollisionManager.h"
 #include <ctime>
+#include "MoveToPositionBehaviour.h"
 
 class Ghost:public GameObject,public ICollidable
 {
@@ -16,12 +17,19 @@ class Ghost:public GameObject,public ICollidable
 
 	Tag _tag;
 
-	Vector2D _vecToMove = {};
+	Vector2D _velocity = {};
 
 	int _speed = 2;
 
 	Vector2D _startPosition = {};
 
+	BehaviourBase * _currentBehaviour;
+	std::vector<std::unique_ptr<BehaviourBase>>_behaviours;
+	bool _initialized=false;
+
+	time_t _clock;
+	int _delay = 10000;
+	bool _done = false;
 public:
 	Ghost(IRenderer& renderer, ICollisionManager& collisionManager/*,IAiController controller*/);
 	void Draw() override;
@@ -31,11 +39,24 @@ public:
 
 	Tag GetTag() const override;
 
-	void SetPostion(const Vector2D& newPos) override;
+	void SetPosition(const Vector2D& newPos) override;
 
 	void SetColor(const Color& color);
 
 	void SetTag(Tag tag);
+
+
+	Vector2D& GetVelocity()
+	{
+		return _velocity;
+	}
+
+	void SetVelocity(const Vector2D& velocity)
+	{
+		_velocity = velocity;
+	}
+
+	int GetSpeed();
 
 	void OnPlayerPickedUpSuperBall(ICollidable&superBall);
 
@@ -45,4 +66,5 @@ public:
 
 	void OnHitPlayer();
 
+	
 };

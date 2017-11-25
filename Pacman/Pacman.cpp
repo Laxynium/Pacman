@@ -78,9 +78,9 @@ Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager)
 	_tag = Tag::Player;
 }
 
-void Pacman::SetPostion(const Vector2D& newPos)
+void Pacman::SetPosition(const Vector2D& newPos)
 {
-	GameObject::SetPostion(newPos);
+	GameObject::SetPosition(newPos);
 	_startPosition = newPos;
 }
 

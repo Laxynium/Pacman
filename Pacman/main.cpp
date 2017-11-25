@@ -1,10 +1,8 @@
-#include <iostream>
 #include <SDL.h>
 #include "Game.h"
 #include "IGameBootstrapper.h"
 #include "SDLGameBootstrapper.h"
 #include <future>
-#include "Event.h"
 
 int main(int argc, char *args[])
 {

@@ -13,7 +13,7 @@ public:
 
 	virtual const Vector2D& GetPosition() const;
 
-	virtual void SetPostion(const Vector2D& newPos);
+	virtual void SetPosition(const Vector2D& newPos);
 
 	virtual const int GetWidth()const;
 	virtual void SetWidth(int width);

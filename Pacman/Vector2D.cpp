@@ -78,6 +78,11 @@ bool Vector2D::operator==(const Vector2D& vec)
 	return _x == vec.X() && _y == vec.Y();
 }
 
+bool Vector2D::operator!=(const Vector2D& vec)
+{
+	return !(*this==vec);
+}
+
 Vector2D Vector2D::Normalized()const
 {
 	Vector2D newVec = *this;

@@ -89,6 +89,9 @@
     <Filter Include="Game\GameLogic">
       <UniqueIdentifier>{c0d9e79c-f155-4119-80b7-659ac4aa89d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\GhostBehaviours">
+      <UniqueIdentifier>{7cd7dd9e-3da4-405d-973a-474c9ae7ddd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParser.h">
@@ -251,6 +254,18 @@
     <ClInclude Include="ScoreHandler.h">
       <Filter>Game\GameLogic</Filter>
     </ClInclude>
+    <ClInclude Include="IUpdateable.h">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveToPositionBehaviour.h">
+      <Filter>Game\GhostBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomBehaviour.h">
+      <Filter>Game\GhostBehaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourBase.h">
+      <Filter>Game\GhostBehaviours</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -352,6 +367,18 @@
     </ClCompile>
     <ClCompile Include="ScoreHandler.cpp">
       <Filter>Game\GameLogic</Filter>
+    </ClCompile>
+    <ClCompile Include="IUpdateable.cpp">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveToPositionBehaviour.cpp">
+      <Filter>Game\GhostBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomBehaviour.cpp">
+      <Filter>Game\GhostBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourBase.cpp">
+      <Filter>Game\GhostBehaviours</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

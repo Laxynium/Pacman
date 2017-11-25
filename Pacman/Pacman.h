@@ -27,7 +27,7 @@ public:
 
 	Pacman(IRenderer &renderer, ICollisionManager&collisionManager);
 
-	void SetPostion(const Vector2D& newPos) override;
+	void SetPosition(const Vector2D& newPos) override;
 
 	void Draw() override;
 
