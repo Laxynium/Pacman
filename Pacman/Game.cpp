@@ -27,7 +27,7 @@ Game::Game(std::shared_ptr<IRenderer>renderer, std::unique_ptr<IInputHandler> in
 
 	BindInput();
 
-	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiledTest9.json"));
+	_level=std::move(_levelLoader->LoadLevel("Assets/PacmanTiledTest8.json"));
 	
 	_gameLogicHandler->GameEnded += [&]()
 	{

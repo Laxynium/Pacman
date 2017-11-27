@@ -4,6 +4,7 @@
 #include "ICollisionManager.h"
 #include "BehaviourBase.h"
 #include <list>
+#include "Event.h"
 class Ghost;
 
 class MoveToPositionBehaviour:public BehaviourBase
@@ -24,9 +25,11 @@ class MoveToPositionBehaviour:public BehaviourBase
 	Direction GetOpposite(Direction dir);
 	Direction GetSwitched(Direction dir);
 	void SetPriorites();
+	void CheckIfReachedToDestination();
 public:
 	MoveToPositionBehaviour(ICollisionManager& collisionManager);
 	void SetDestination(Vector2D destination);
 	bool IsCollision(const Vector2D& vector);
 	void Update() override;
+	Event<void>ReachedToDestination;
 };

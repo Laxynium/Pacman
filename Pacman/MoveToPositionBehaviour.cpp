@@ -29,18 +29,44 @@ std::vector<MoveToPositionBehaviour::Direction> MoveToPositionBehaviour::GetPosi
 	Vector2D newVelo = Vector2D{ 1,0 }*_ghost->GetSpeed();
 	if (!IsCollision(newVelo))
 		posibleDirections.emplace_back(Right);
+	else
+	{
+		newVelo = Vector2D{ 1,0 };
+		if (!IsCollision(newVelo))
+			posibleDirections.emplace_back(Right);
+	}
 
 	newVelo = Vector2D{ -1,0 }*_ghost->GetSpeed();
 	if (!IsCollision(newVelo))
 		posibleDirections.emplace_back(Left);
+	else
+	{
+		newVelo = Vector2D{ -1,0 };
+		if (!IsCollision(newVelo))
+			posibleDirections.emplace_back(Left);
+	}
 
 	newVelo=Vector2D{0,1}*_ghost->GetSpeed();
 	if (!IsCollision(newVelo))
 		posibleDirections.emplace_back(Down);
+	else
+	{
+		//Try with greater precision
+		newVelo = Vector2D{ 0,1 };
+		if (!IsCollision(newVelo))
+			posibleDirections.emplace_back(Down);
+	}
 
 	newVelo = Vector2D{ 0,-1 }*_ghost->GetSpeed();
 	if (!IsCollision(newVelo))
 		posibleDirections.emplace_back(Up);
+	else
+	{
+		//Try with greater precision
+		newVelo = Vector2D{ 0,-1 };
+		if (!IsCollision(newVelo))
+			posibleDirections.emplace_back(Up);
+	}
 
 	return posibleDirections;
 }
@@ -89,10 +115,9 @@ Vector2D MoveToPositionBehaviour::GetVectorFromDirection(Direction dir)
 void MoveToPositionBehaviour::MoveGhost(Direction dir)
 {
 	auto vec=GetVectorFromDirection(dir);
-
-	OnTransition(vec+_ghost->GetPosition());
-
-	//_ghost->SetPosition(vec+ _ghost->GetPosition());
+	auto oldPos = _ghost->GetPosition();
+	_ghost->SetPosition(oldPos + vec);
+	OnTransition(_ghost->GetPosition());
 }
 
 void MoveToPositionBehaviour::SetGhostVelo(Direction dir)
@@ -140,6 +165,17 @@ void MoveToPositionBehaviour::SetPriorites()
 
 }
 
+void MoveToPositionBehaviour::CheckIfReachedToDestination()
+{
+	Vector2D diffrenece = _destination - _ghost->GetPosition();
+	diffrenece.SetX(abs(diffrenece.X()));
+	diffrenece.SetY(abs(diffrenece.Y()));
+	if (diffrenece.X()<2&&diffrenece.Y()<2)
+	{
+		ReachedToDestination();
+	}
+}
+
 void MoveToPositionBehaviour::Update()
 {
 	auto posibleDirections = GetPosibleDirections();
@@ -155,6 +191,7 @@ void MoveToPositionBehaviour::Update()
 			MoveGhost(_actualPriority);
 			SetGhostVelo(_actualPriority);
 			SetPriorites();
+			CheckIfReachedToDestination();
 			return;
 		}
 
@@ -164,6 +201,7 @@ void MoveToPositionBehaviour::Update()
 			MoveGhost(_secondPriority);
 			SetGhostVelo(_secondPriority);
 			SetPriorites();
+			CheckIfReachedToDestination();
 			return;
 		}
 
@@ -173,6 +211,7 @@ void MoveToPositionBehaviour::Update()
 		MoveGhost(currentDirection);
 		SetGhostVelo(currentDirection);
 		SetPriorites();
+		CheckIfReachedToDestination();
 		return;
 	}
 
@@ -182,6 +221,7 @@ void MoveToPositionBehaviour::Update()
 		MoveGhost(switchDirection);
 		SetGhostVelo(switchDirection);
 		SetPriorites();
+		CheckIfReachedToDestination();
 		return;
 	}
 
@@ -191,6 +231,7 @@ void MoveToPositionBehaviour::Update()
 		MoveGhost(switchDirection);
 		SetGhostVelo(switchDirection);
 		SetPriorites();
+		CheckIfReachedToDestination();
 		return;
 	}
 
@@ -200,6 +241,7 @@ void MoveToPositionBehaviour::Update()
 		MoveGhost(opposite);
 		SetGhostVelo(opposite);
 		SetPriorites();
+		CheckIfReachedToDestination();
 		return;
 	}
 

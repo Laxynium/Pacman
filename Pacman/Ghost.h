@@ -24,15 +24,24 @@ class Ghost:public GameObject,public ICollidable
 	Vector2D _startPosition = {};
 
 	BehaviourBase * _currentBehaviour;
+
 	std::vector<std::unique_ptr<BehaviourBase>>_behaviours;
+
 	bool _initialized=false;
 
-	time_t _clock;
-	int _delay = 10000;
-	bool _done = false;
+	int _counter=0;
+
+	bool _isEaten = false;
+
+	void LeftBaseCallback();
+
+	void ReturnedToBaseCallback();
+
 public:
 	Ghost(IRenderer& renderer, ICollisionManager& collisionManager/*,IAiController controller*/);
+
 	void Draw() override;
+
 	void Update() override;
 
 	Rect GetAreaOfCollision() const override;
