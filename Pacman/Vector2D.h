@@ -20,15 +20,18 @@ public:
 	{
 		return sqrt((_x*_x) + (_y*_y));
 	}
-	Vector2D operator + (const Vector2D&vec);
 
-	Vector2D operator-(const Vector2D& vec);
+	Vector2D ToDirection() const;
+
+	Vector2D operator + (const Vector2D&vec) const;
+
+	Vector2D operator-(const Vector2D& vec) const;
 
 	Vector2D& operator+=(const Vector2D& vec);
 
 	Vector2D& operator-=(const Vector2D& vec);
 
-	Vector2D operator *(double scalar);
+	Vector2D operator *(double scalar) const;
 
 	Vector2D& operator *=(double scalar);
 

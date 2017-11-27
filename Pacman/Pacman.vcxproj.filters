@@ -92,6 +92,9 @@
     <Filter Include="Game\GhostBehaviours">
       <UniqueIdentifier>{7cd7dd9e-3da4-405d-973a-474c9ae7ddd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\HUD">
+      <UniqueIdentifier>{01e87a73-a435-4f11-b368-94b05ecb974a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParser.h">
@@ -266,6 +269,9 @@
     <ClInclude Include="BehaviourBase.h">
       <Filter>Game\GhostBehaviours</Filter>
     </ClInclude>
+    <ClInclude Include="GameHud.h">
+      <Filter>Game\HUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -379,6 +385,9 @@
     </ClCompile>
     <ClCompile Include="BehaviourBase.cpp">
       <Filter>Game\GhostBehaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="GameHud.cpp">
+      <Filter>Game\HUD</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

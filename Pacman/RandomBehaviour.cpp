@@ -44,7 +44,7 @@ void RandomBehaviour::Update()
 
 	if (!_collisionManager.DetectCollision(*_ghost, Tag::Wall))
 	{
-		_ghost->SetVelocity(velocity);
+		_ghost->SetDirection(velocity.ToDirection());
 		return;
 	}
 
@@ -52,6 +52,6 @@ void RandomBehaviour::Update()
 
 	OnTransition(oldPosition + velocity);
 
-	_ghost->SetVelocity(velocity);
+	_ghost->SetDirection(velocity.ToDirection());
 
 }

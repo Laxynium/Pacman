@@ -82,7 +82,14 @@ void GameLogicHandler::Update()
 	{
 		DurationOfSuperBallEnded();
 		_isSuperBallPicked=false;
+		_isFlashingStarted = false;
 	}
+	if (_isSuperBallPicked&&!_isFlashingStarted&&clock()-_startTime>=_startFlashingTime)
+	{
+		SuperBallPowerIsAboutToEnd();
+		_isFlashingStarted = true;
+	}
+
 }
 
 void GameLogicHandler::SetGameEndPoint(int numberOfBalls)

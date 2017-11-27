@@ -5,6 +5,12 @@ struct Color
 {
 	int r, g, b, a;
 	static Color FromHex(const std::string&hex);
+
+	bool operator ==(const Color&color)
+	{
+		return color.r == this->r&&color.g == this->g&&color.b == this->b&&color.a==this->a;
+	}
+
 };
 
 inline Color Color::FromHex(const std::string& hex)

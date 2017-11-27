@@ -7,6 +7,12 @@
 
 class Ghost:public GameObject,public ICollidable
 {
+	enum class State
+	{
+		Base, Normal,BackToBase,Scared
+	};
+	State _currentState=State::Base;
+
 	IRenderer& _renderer;
 
 	ICollisionManager& _collisionManager;
@@ -15,11 +21,13 @@ class Ghost:public GameObject,public ICollidable
 
 	Color _color = _regularColor;
 
-	Tag _tag;
+	Tag _tag=Tag::Enemy;
 
-	Vector2D _velocity = {};
+	Vector2D _direction = { 1,0 };
 
 	int _speed = 2;
+
+	Vector2D _velocity = {};
 
 	Vector2D _startPosition = {};
 
@@ -27,15 +35,27 @@ class Ghost:public GameObject,public ICollidable
 
 	std::vector<std::unique_ptr<BehaviourBase>>_behaviours;
 
-	bool _initialized=false;
+	bool _isStartPositionInitialized=false;
 
-	int _counter=0;
+	bool _isColorFlashing = false;
+
+	clock_t _colorFlashingStart = 0;
+
+	Color _tempColor = { 0,0,255,0 };
 
 	bool _isEaten = false;
 
-	void LeftBaseCallback();
+	void OnLeaveBase();
 
-	void ReturnedToBaseCallback();
+	void OnReturnToBase();
+
+	void SetupBehaviours();
+
+	void IncreaseVelocity();
+
+	void SetupDefaultValues();
+
+	void SetVelocity(const Vector2D& velocity);
 
 public:
 	Ghost(IRenderer& renderer, ICollisionManager& collisionManager/*,IAiController controller*/);
@@ -55,19 +75,16 @@ public:
 	void SetTag(Tag tag);
 
 
-	Vector2D& GetVelocity()
-	{
-		return _velocity;
-	}
+	const Vector2D& GetVelocity() const;
 
-	void SetVelocity(const Vector2D& velocity)
-	{
-		_velocity = velocity;
-	}
+	const Vector2D& GetDirection() const;
+
+	void SetDirection(const Vector2D& direction);
 
 	int GetSpeed();
 
 	void OnPlayerPickedUpSuperBall(ICollidable&superBall);
+	void OnSuperBallSuperEnding();
 
 	void OnEndDurationsOfSuperBall();
 

@@ -13,6 +13,7 @@
 #include "Factory.h"
 #include "IInnerObjectLayerParsersCreator.h"
 #include "InnerObjectLayerParsersCreator.h"
+#include <SDL_image.h>
 
 namespace di = boost::di;
 

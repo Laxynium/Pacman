@@ -14,22 +14,38 @@ class MoveToPositionBehaviour:public BehaviourBase
 		Left, Right, Up, Down
 	};
 	Vector2D _destination;
+
 	Direction _actualPriority=Right;
+
 	Direction _secondPriority = Up;
+
 	std::vector<Direction> GetPosibleDirections();
+
 	bool Contains(std::vector<Direction> directiones, Direction dir);
-	Direction GetDirectionFromVector(const Vector2D& vec);
+
+	 Direction GetDirectionFromVector(const Vector2D& vec);
+
 	Vector2D GetVectorFromDirection(Direction dir);
+
 	void MoveGhost(Direction dir);
-	void SetGhostVelo(Direction dir);
+
+	void SetGhostDirection(Direction dir);
+
 	Direction GetOpposite(Direction dir);
+
 	Direction GetSwitched(Direction dir);
+
 	void SetPriorites();
+
 	void CheckIfReachedToDestination();
 public:
 	MoveToPositionBehaviour(ICollisionManager& collisionManager);
+
 	void SetDestination(Vector2D destination);
+
 	bool IsCollision(const Vector2D& vector);
+
 	void Update() override;
+
 	Event<void>ReachedToDestination;
 };

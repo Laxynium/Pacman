@@ -88,11 +88,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_ttf-devel-2.0.14-VC\SDL2_ttf-2.0.14\include;C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_image-2.0.2\lib\x64;C:\Games\Pacman\SDL2-2.0.7\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_ttf-devel-2.0.14-VC\SDL2_ttf-2.0.14\lib\x86;C:\Games\Pacman\SDL2_image-2.0.2\lib\x64;C:\Games\Pacman\SDL2-2.0.7\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -143,6 +144,7 @@
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FromJsonLevelLoader.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameHud.h" />
     <ClInclude Include="GameLogicHandler.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Ghost.h" />
@@ -199,6 +201,7 @@
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FromJsonLevelLoader.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameHud.cpp" />
     <ClCompile Include="GameLogicHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Ghost.cpp" />

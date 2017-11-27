@@ -25,12 +25,27 @@ void Vector2D::SetY(const double y)
 	_y = y;
 }
 
-Vector2D Vector2D::operator+(const Vector2D& vec)
+Vector2D Vector2D::ToDirection() const
+{
+	Vector2D dir;
+	if (X() > 0)
+		dir._x = 1;
+	if (Y() > 0)
+		dir._y = 1;
+	if (X() < 0)
+		dir._x = -1;
+	if (Y() < 0)
+		dir._y = -1;
+
+	return dir;
+}
+
+Vector2D Vector2D::operator+(const Vector2D& vec) const
 {
 	return Vector2D(this->_x + vec.X(), this->_y + vec.Y());
 }
 
-Vector2D Vector2D::operator-(const Vector2D& vec)
+Vector2D Vector2D::operator-(const Vector2D& vec) const
 {
 	return Vector2D(this->_x - vec.X(), this->_y - vec.Y());
 }
@@ -49,7 +64,7 @@ Vector2D& Vector2D::operator-=(const Vector2D& vec)
 	return *this;
 }
 
-Vector2D Vector2D::operator*(double scalar)
+Vector2D Vector2D::operator*(double scalar) const
 {
 	return Vector2D(this->_x*scalar, this->_y*scalar);
 }

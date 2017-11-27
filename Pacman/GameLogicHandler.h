@@ -19,9 +19,13 @@ class GameLogicHandler:public IUpdateable
 
 	bool _isSuperBallPicked = false;
 
+	bool _isFlashingStarted = false;
+
 	time_t _startTime;
 
 	int _duration = 7000;
+
+	int _startFlashingTime = 5000;
 
 	int _numberOfLives = 3;
 
@@ -56,5 +60,7 @@ public:
 	Event<void>	GameEnded;
 
 	Event<void>DurationOfSuperBallEnded;
+
+	Event<void>SuperBallPowerIsAboutToEnd;
 };
 
