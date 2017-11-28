@@ -14,7 +14,7 @@
 #include "IInnerObjectLayerParsersCreator.h"
 #include "InnerObjectLayerParsersCreator.h"
 #include <SDL_image.h>
-
+#include <SDL_ttf.h>
 namespace di = boost::di;
 
 
@@ -22,6 +22,10 @@ void SDLGameBootstrapper::Initialize()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 		throw new std::exception("Could not initialize subsystems.");
+
+	if(TTF_Init()<0)
+		throw new std::exception("Could not initialize subsystems.");
+
 
 	auto injector = di::make_injector(
 		di::bind<ILevelLoader>().to<FromJsonLevelLoader>().in(di::singleton),
@@ -67,5 +71,7 @@ SDLGameBootstrapper::SDLGameBootstrapper()
 
 SDLGameBootstrapper::~SDLGameBootstrapper()
 {
+	TTF_Quit();
+	IMG_Quit();
 	SDL_Quit();
 }

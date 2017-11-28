@@ -2,8 +2,8 @@
 #include "ITextureManager.h"
 #include "IRenderer.h"
 
-Properties::TileLayer::TileLayer(const std::string& type,ITextureManager&textureManager,IRenderer&renderer):
-LayerBase(type), _textureManager(textureManager), _renderer(renderer)
+Properties::TileLayer::TileLayer(const std::string& type,ITextureManager&textureManager,IRenderer&renderer, ICollisionManager&collisionManager):
+LayerBase(type), _textureManager(textureManager), _renderer(renderer), _collisionManager(collisionManager)
 {
 }
 
@@ -64,7 +64,7 @@ Properties::TileLayerProperties& Properties::TileLayer::Properties() const
 	return *_properties;
 }
 
-Properties::Tileset* Properties::TileLayer::FindTileset(int id)const
+Properties::Tileset* Properties::TileLayer::FindTileset(int id) const
 {
 	for (auto&tileset : _properties->tilesets())
 	{
@@ -90,4 +90,12 @@ void Properties::TileLayer::Draw()
 void Properties::TileLayer::Update()
 {
 
+}
+
+Properties::TileLayer::~TileLayer()
+{
+	for (auto& collidable : _tiles)
+	{
+		_collisionManager.Deregister(*collidable);
+	}
 }

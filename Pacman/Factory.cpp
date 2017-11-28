@@ -19,7 +19,7 @@ Level* Factory::CreateLevel(std::vector<std::unique_ptr<LayerBase>>&& layers) co
 
 Properties::TileLayer* Factory::CreateTileLayer(const std::string& type)const
 {
-	return new Properties::TileLayer(type, _textureManager, _renderer);
+	return new Properties::TileLayer(type, _textureManager, _renderer,_collisionManager);
 }
 Ball * Factory::CreateBall(const Vector2D& pos, int width, int height) const
 {

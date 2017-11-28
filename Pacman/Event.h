@@ -2,9 +2,10 @@
 #include <memory>
 #include <vector>
 #include <functional>
+#include "IClearable.h"
 
 template<typename Arg>
-class Event
+class Event:public IClearable
 {
 	std::vector<std::function<void(Arg)>>_actions;
 public:
@@ -36,9 +37,13 @@ public:
 		_actions.emplace_back(action);
 		return *this;
 	}
+	void Clear()override
+	{
+		_actions.clear();
+	}
 };
 template<>
-class Event<void>
+class Event<void>:public IClearable
 {
 	std::vector<std::function<void()>>_actions;
 public:
@@ -53,5 +58,9 @@ public:
 	{
 		_actions.emplace_back(action);
 		return *this;
+	}
+	void Clear() override
+	{
+		_actions.clear();
 	}
 };

@@ -22,7 +22,9 @@ public:
 	void Subscribe(Tag objectA, Tag objectB, std::function<void(ICollidable&, ICollidable&)>onCollison) override;
 
 	void DetectAll() override;
-
+		
 	void Deregister(ICollidable& object) override;
+
+	void DeregisterAll() override;
 };
 

@@ -4,8 +4,5 @@
 class EnemiesObjectLayer:public ObjectLayer
 {
 public:
-	EnemiesObjectLayer(const std::string& type)
-		: ObjectLayer(type)
-	{
-	}
+	EnemiesObjectLayer(const std::string& type,ICollisionManager&collisionManager);
 };

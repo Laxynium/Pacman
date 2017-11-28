@@ -272,6 +272,9 @@
     <ClInclude Include="GameHud.h">
       <Filter>Game\HUD</Filter>
     </ClInclude>
+    <ClInclude Include="IClearable.h">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -388,6 +391,9 @@
     </ClCompile>
     <ClCompile Include="GameHud.cpp">
       <Filter>Game\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="IClearable.cpp">
+      <Filter>Game\Models\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

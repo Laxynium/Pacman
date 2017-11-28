@@ -97,3 +97,8 @@ void SDLCollisionManager::Deregister(ICollidable& object)
 	 if(objectToDeregister!=_objectsToDectection.end())
 		_objectsToDectection.erase(objectToDeregister);
 }
+
+void SDLCollisionManager::DeregisterAll()
+{
+	_objectsToDectection.clear();
+}

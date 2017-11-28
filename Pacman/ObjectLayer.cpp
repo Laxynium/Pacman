@@ -2,7 +2,7 @@
 #include "BallsObjectLayer.h"
 
 
-ObjectLayer::ObjectLayer(const std::string& type): LayerBase(type)
+ObjectLayer::ObjectLayer(const std::string& type, ICollisionManager&collisionManager): LayerBase(type), _collisionManager(collisionManager)
 {
 }
 
@@ -24,6 +24,15 @@ void ObjectLayer::Draw()
 
 ObjectLayer::~ObjectLayer()
 {
+	for (auto&gameObject : _gameObjects)
+	{
+		auto collidable = dynamic_cast<ICollidable*>(gameObject.get());
+
+		if(collidable!=nullptr)
+		{
+			_collisionManager.Deregister(*collidable);
+		}
+	}		
 }
 
 void ObjectLayer::Update()

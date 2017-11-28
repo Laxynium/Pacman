@@ -2,7 +2,7 @@
 #include "ICollisionManager.h"
 #include "Event.h"
 
-class GameLogicHandler:public IUpdateable
+class GameLogicHandler:public IUpdateable,public IClearable
 {
 	ICollisionManager& _collisionManager;
 
@@ -36,14 +36,7 @@ class GameLogicHandler:public IUpdateable
 public:
 	GameLogicHandler(GameLogicHandler&) = delete;
 	GameLogicHandler(GameLogicHandler&&) = default;
-	GameLogicHandler(ICollisionManager&collisionManager): _collisionManager(collisionManager) 
-	{
-		_collisionManager.Subscribe(Tag::Player, Tag::SuperBall, [this](auto&A, auto&B) {this->OnPlayerPickedSuperBall(A, B); });
-
-		_collisionManager.Subscribe(Tag::Player, Tag::Pickable, [this](auto&A, auto&B) {this->OnPlayerPickedBall(A, B); });
-
-		_collisionManager.Subscribe(Tag::Player, Tag::Enemy, [this](auto&A, auto&B) {this->OnPlayerGhostCollision(A, B); });
-	}
+	GameLogicHandler(ICollisionManager& collisionManager);
 
 	void Update() override;
 
@@ -59,8 +52,17 @@ public:
 
 	Event<void>	GameEnded;
 
+	Event<void> LevelEnded;
+
 	Event<void>DurationOfSuperBallEnded;
 
 	Event<void>SuperBallPowerIsAboutToEnd;
+
+	Event<int>PlayerScoreChanged;
+
+	Event<int>PlayerLivesChanged;
+
+	void Clear()override;
+
 };
 

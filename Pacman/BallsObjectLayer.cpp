@@ -1,8 +1,9 @@
 ﻿#include "BallsObjectLayer.h"
 #include <algorithm>
+#include <iostream>
 
-BallsObjectLayer::BallsObjectLayer(const std::string& type): ObjectLayer(
-	type)
+BallsObjectLayer::BallsObjectLayer(const std::string& type, ICollisionManager&collisionManager): ObjectLayer(
+	type,collisionManager)
 {
 }
 
@@ -24,6 +25,7 @@ void BallsObjectLayer::RemoveObject(ICollidable& objectToDelete)
 
 	auto toDelete = std::find_if(_gameObjects.begin(), _gameObjects.end(), [&](auto&object)
 	{
+
 		ICollidable * collidable = dynamic_cast<ICollidable*>(object.get());
 
 		if (collidable == nullptr)return false;
@@ -38,10 +40,6 @@ void BallsObjectLayer::RemoveObject(ICollidable& objectToDelete)
 
 void BallsObjectLayer::Update()
 {
-	static bool hasEnded = false;
-	if (_gameObjects.empty() && !hasEnded)
-		;//_gameLogicHandler.GameEnded();
-
 	for (auto&gameObject : _gameObjects)
 		gameObject->Update();
 }

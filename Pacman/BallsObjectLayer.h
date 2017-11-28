@@ -9,7 +9,7 @@ public:
 
 	BallsObjectLayer( BallsObjectLayer&) = delete;
 
-	BallsObjectLayer(const std::string& type);
+	BallsObjectLayer(const std::string& type,ICollisionManager&collisionManager);
 
 
 	void OnCollisionWithPlayer(ICollidable&objectA);
@@ -17,5 +17,7 @@ public:
 	void OnCollisionSuperBallWithPlayer(ICollidable&objectA);
 
 	void Update() override;
+
+
 
 };

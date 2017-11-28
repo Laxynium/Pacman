@@ -40,7 +40,7 @@ namespace std
 
 std::unique_ptr<LayerBase> BallObjectLayerParser::Parse(nlohmann::basic_json<> json)
 {
-	auto ballsObjectLayer = std::make_unique<BallsObjectLayer>(json["name"].get<std::string>());
+	auto ballsObjectLayer = std::make_unique<BallsObjectLayer>(json["name"].get<std::string>(),_collisionManager);
 
 
 	std::vector<BallProperties>ballProperties = json.at("objects");

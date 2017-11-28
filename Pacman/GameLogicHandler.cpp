@@ -8,12 +8,12 @@ void GameLogicHandler::OnPlayerPickedSuperBall(ICollidable& A, ICollidable& B)
 
 	auto &ball = GetCollidableWith(Tag::SuperBall, A, B);
 
-	PlayerPickedSuperBall(ball);
-
 	_collisionManager.Deregister(ball);
 
-	//TODO move to ScoreHandler
+	PlayerPickedSuperBall(ball);
+
 	_numberOfScoredPoints += 50;
+	PlayerScoreChanged(_numberOfScoredPoints);
 	std::cout << "Score " << _numberOfScoredPoints << std::endl;
 
 	_numberOfGhostsEatenInRow = 0;
@@ -35,17 +35,18 @@ void GameLogicHandler::OnPlayerPickedBall(ICollidable& A, ICollidable& B)
 
 	auto &ball = GetCollidableWith(Tag::Pickable, A, B);
 
-	PlayerPickedBall(ball);
-
 	_collisionManager.Deregister(ball);
+
+	PlayerPickedBall(ball);
 
 	//TODO move to ScoreHandler
 	_numberOfScoredPoints += 10;
+	PlayerScoreChanged(_numberOfScoredPoints);
 	std::cout << "Score " << _numberOfScoredPoints << std::endl;
 
 	if (_countOfPickedBalls >= _countOfBalls)
 	{
-		GameEnded();
+		LevelEnded();
 	}
 }
 
@@ -56,6 +57,7 @@ void GameLogicHandler::OnPlayerGhostCollision(ICollidable& A, ICollidable& B)
 	if(_isSuperBallPicked)
 	{
 		_numberOfScoredPoints += 200 * (++_numberOfGhostsEatenInRow);
+		PlayerScoreChanged(_numberOfScoredPoints);
 		std::cout << "Score " << _numberOfScoredPoints << std::endl;
 		PlayerAteGhost(GetCollidableWith(Tag::Enemy,A,B));
 	}
@@ -66,6 +68,8 @@ void GameLogicHandler::OnPlayerGhostCollision(ICollidable& A, ICollidable& B)
 		if (_numberOfLives <= 0)
 			GameEnded();
 
+		PlayerLivesChanged(_numberOfLives);
+
 		GhostHitPlayer();
 	}
 
@@ -74,6 +78,16 @@ void GameLogicHandler::OnPlayerGhostCollision(ICollidable& A, ICollidable& B)
 ICollidable& GameLogicHandler::GetCollidableWith(Tag tag, ICollidable& A, ICollidable& B)
 {
 	return A.GetTag() == tag ? A : B;
+}
+
+GameLogicHandler::GameLogicHandler(ICollisionManager& collisionManager): _collisionManager(collisionManager)
+{
+	_collisionManager.Subscribe(Tag::Player, Tag::SuperBall,
+	                            [this](auto& A, auto& B) { this->OnPlayerPickedSuperBall(A, B); });
+
+	_collisionManager.Subscribe(Tag::Player, Tag::Pickable, [this](auto& A, auto& B) { this->OnPlayerPickedBall(A, B); });
+
+	_collisionManager.Subscribe(Tag::Player, Tag::Enemy, [this](auto& A, auto& B) { this->OnPlayerGhostCollision(A, B); });
 }
 
 void GameLogicHandler::Update()
@@ -95,4 +109,33 @@ void GameLogicHandler::Update()
 void GameLogicHandler::SetGameEndPoint(int numberOfBalls)
 {
 	_countOfBalls = numberOfBalls;
+}
+
+void GameLogicHandler::Clear()
+{
+	PlayerPickedSuperBall.Clear();
+
+	PlayerPickedBall.Clear();
+
+	PlayerAteGhost.Clear();
+
+	GhostHitPlayer.Clear();
+
+	GameEnded.Clear();
+
+	LevelEnded.Clear();
+
+	DurationOfSuperBallEnded.Clear();
+
+	SuperBallPowerIsAboutToEnd.Clear();
+
+	PlayerScoreChanged.Clear();
+
+	PlayerLivesChanged.Clear();
+
+	_countOfPickedBalls = 0;
+
+	_isSuperBallPicked = false;
+
+	_isFlashingStarted = false;
 }

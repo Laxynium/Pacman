@@ -75,12 +75,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_ttf-2.0.14\include;C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_image-2.0.2\lib\x86;C:\Games\Pacman\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_ttf-2.0.14\lib\x86;C:\Games\Pacman\SDL2_image-2.0.2\lib\x86;C:\Games\Pacman\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -91,7 +91,7 @@
       <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_ttf-devel-2.0.14-VC\SDL2_ttf-2.0.14\include;C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_ttf-devel-2.0.14-VC\SDL2_ttf-2.0.14\lib\x86;C:\Games\Pacman\SDL2_image-2.0.2\lib\x64;C:\Games\Pacman\SDL2-2.0.7\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_ttf-2.0.14\lib\x64;C:\Games\Pacman\SDL2_image-2.0.2\lib\x64;C:\Games\Pacman\SDL2-2.0.7\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -103,13 +103,13 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_ttf-2.0.14\include;C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_image-2.0.2\lib\x86;C:\Games\Pacman\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_ttf-2.0.14\lib\x86;C:\Games\Pacman\SDL2_image-2.0.2\lib\x86;C:\Games\Pacman\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -148,6 +148,7 @@
     <ClInclude Include="GameLogicHandler.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Ghost.h" />
+    <ClInclude Include="IClearable.h" />
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="ICollisionManager.h" />
     <ClInclude Include="IDrawable.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="GameLogicHandler.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Ghost.cpp" />
+    <ClCompile Include="IClearable.cpp" />
     <ClCompile Include="ILayerParser.cpp" />
     <ClCompile Include="InnerObjectLayerParsersCreator.cpp" />
     <ClCompile Include="IUpdateable.cpp" />

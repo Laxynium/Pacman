@@ -2,6 +2,7 @@
 #include "ITextureManager.h"
 #include "Rect.h"
 #include <algorithm>
+#include <iostream>
 
 Level::Level(IRenderer&renderer, std::vector<std::unique_ptr<LayerBase>>&&layers,
 	ITextureManager &textureManager, ICollisionManager&collisionManager)
@@ -27,4 +28,5 @@ void Level::Update()
 
 Level::~Level()
 {
+	//std::cout << "I am destroying myself\n";
 }

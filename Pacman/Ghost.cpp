@@ -53,6 +53,9 @@ void Ghost::SetupDefaultValues()
 {
 	_position = _startPosition;
 
+	if (_behaviours.empty())
+		return;
+
 	_currentBehaviour = _behaviours[0].get();
 
 	_color = _regularColor;

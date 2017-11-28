@@ -3,6 +3,7 @@
 #include "TileLayerProperties.h"
 #include "Tile.h"
 #include <memory>
+#include "ICollisionManager.h"
 
 struct ITextureManager;
 struct IRenderer;
@@ -19,9 +20,11 @@ namespace Properties
 
 		std::vector<std::shared_ptr<Tile>>_tiles;
 
-		Tileset*  FindTileset(int id)const;
+		ICollisionManager& _collisionManager;
+
+		Tileset*  FindTileset(int id) const;
 	public:
-		explicit TileLayer(const std::string& type, ITextureManager&textureManager, IRenderer&renderer);
+		explicit TileLayer(const std::string& type, ITextureManager&textureManager, IRenderer&renderer,ICollisionManager&collisionManager);
 
 		void GenerateTiles();
 
@@ -34,6 +37,8 @@ namespace Properties
 		void Draw() override;
 
 		void Update() override;
+
+		virtual ~TileLayer();
 	};
 }
 

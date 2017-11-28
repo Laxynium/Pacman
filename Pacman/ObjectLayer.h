@@ -8,9 +8,10 @@ class ObjectLayer:public LayerBase
 protected:
 
 	std::vector<std::shared_ptr<GameObject>>_gameObjects;
+	ICollisionManager& _collisionManager;
 
 public:
-	 ObjectLayer(const std::string& type);
+	 ObjectLayer(const std::string& type, ICollisionManager&collisionManager);
 
 	~ObjectLayer();
 

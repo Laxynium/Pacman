@@ -37,7 +37,7 @@ EnemiesObjectLayerParser::EnemiesObjectLayerParser(Factory&factory,ICollisionMan
 
 std::unique_ptr<LayerBase> EnemiesObjectLayerParser::Parse(nlohmann::basic_json<> json)
 {
-	auto enemiesObjectLayer = std::make_unique<EnemiesObjectLayer>(json["name"].get<std::string>());
+	auto enemiesObjectLayer = std::make_unique<EnemiesObjectLayer>(json["name"].get<std::string>(),_collisionManager);
 
 	const auto tagName=json["properties"]["tag"].get<std::string>();
 

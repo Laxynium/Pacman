@@ -19,6 +19,8 @@ public:
 
 	virtual void Deregister(ICollidable&object) = 0;
 
+	virtual void DeregisterAll() = 0;
+
 	virtual ~ICollisionManager() {}
 };
 
