@@ -13,8 +13,6 @@ PlayState::PlayState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInput
 	_stateName = "PlayState";
 	SetupPacman();
 
-	BindInput();
-
 	_level = std::move(_levelLoader->LoadLevel(_mapPath));
 	
 	BindToGameLogicHandler();

@@ -12,7 +12,6 @@ MenuState::~MenuState()
 
 void MenuState::OnEnterPressed()
 {
-	std::cout << "Pressed enter\n";
 	PushedState("PlayState");
 }
 void MenuState::Update()
@@ -33,7 +32,7 @@ void MenuState::HandleInput()
 
 void MenuState::OnEnter()
 {
-	_inputHandler->AddBindings({ { (new SpecialSDLActionType(SDL_SCANCODE_F1))->SetUniuqueName("EnterPressed"),[this]()
+	_inputHandler->AddBindings({ { (new SpecialSDLActionType(SDL_SCANCODE_RETURN))->SetUniuqueName("EnterPressed"),[this]()
 	{
 		OnEnterPressed();
 	} } });

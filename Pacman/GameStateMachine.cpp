@@ -47,7 +47,7 @@ void GameStateMachine::OnPushedState(const std::string& stateName)
 
 	_currentState = _gameStates.back();
 
-	//_currentState->OnEnter();
+	_currentState->OnEnter();
 
 	std::cout << "Push state " << stateName << std::endl;
 }

@@ -48,7 +48,10 @@ void SDLInputHandler::HandleActions()
 
 		if (keyStates[actionType->KeyCode])
 			if (action.second != nullptr)
+			{
 				action.second();
+			}
+				
 	}
 	SDL_Event event;
 	if(SDL_PollEvent(&event))
@@ -66,10 +69,9 @@ void SDLInputHandler::HandleActions()
 
 			});
 
-			while(OnQuit!=_actions.end())
+			if(OnQuit!=_actions.end())
 			{
 				OnQuit->second();
-				++OnQuit;
 			}
 		}
 	}
