@@ -151,8 +151,10 @@
     <ClInclude Include="IClearable.h" />
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="ICollisionManager.h" />
+    <ClInclude Include="IDestroyable.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IGameBootstrapper.h" />
+    <ClInclude Include="IGameState.h" />
     <ClInclude Include="IInnerObjectLayerParser.h" />
     <ClInclude Include="IInnerObjectLayerParsersCreator.h" />
     <ClInclude Include="IInputHandler.h" />
@@ -168,6 +170,7 @@
     <ClInclude Include="LayerParsersCreator.h" />
     <ClInclude Include="MoveToPositionBehaviour.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="RandomBehaviour.h" />
     <ClInclude Include="ScoreHandler.h" />
     <ClInclude Include="TileLayerProperties.h" />
@@ -207,6 +210,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="IClearable.cpp" />
+    <ClCompile Include="IDestroyable.cpp" />
+    <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="ILayerParser.cpp" />
     <ClCompile Include="InnerObjectLayerParsersCreator.cpp" />
     <ClCompile Include="IUpdateable.cpp" />
@@ -215,6 +220,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="MoveToPositionBehaviour.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="RandomBehaviour.cpp" />
     <ClCompile Include="ScoreHandler.cpp" />
     <ClCompile Include="TileLayerProperties.cpp" />

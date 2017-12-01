@@ -50,6 +50,7 @@ void Game::OnLevelEnd()
 
 	//_level.reset(nullptr);
 	this->_level = std::move(this->_levelLoader->LoadLevel("Assets/PacmanTiledTest8.json"));
+
 	_pacman->SetPosition({ 432, 736 });
 
 	_gameLogicHandler->GameEnded += std::bind(&Game::OnGameEnd, this);

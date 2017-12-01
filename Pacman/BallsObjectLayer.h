@@ -17,7 +17,4 @@ public:
 	void OnCollisionSuperBallWithPlayer(ICollidable&objectA);
 
 	void Update() override;
-
-
-
 };

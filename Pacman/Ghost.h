@@ -4,6 +4,7 @@
 #include "ICollisionManager.h"
 #include <ctime>
 #include "MoveToPositionBehaviour.h"
+#include "IDestroyable.h"
 
 class Ghost:public GameObject,public ICollidable
 {

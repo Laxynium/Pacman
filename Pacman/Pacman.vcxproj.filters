@@ -95,6 +95,9 @@
     <Filter Include="Game\HUD">
       <UniqueIdentifier>{01e87a73-a435-4f11-b368-94b05ecb974a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\GameStates">
+      <UniqueIdentifier>{1b04b35a-f559-4395-b6f7-cc0217cb2ae5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParser.h">
@@ -275,6 +278,15 @@
     <ClInclude Include="IClearable.h">
       <Filter>Game\Models\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="IDestroyable.h">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameState.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -394,6 +406,15 @@
     </ClCompile>
     <ClCompile Include="IClearable.cpp">
       <Filter>Game\Models\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="IDestroyable.cpp">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameState.cpp">
+      <Filter>Game\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

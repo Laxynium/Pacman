@@ -39,7 +39,6 @@ void GameLogicHandler::OnPlayerPickedBall(ICollidable& A, ICollidable& B)
 
 	PlayerPickedBall(ball);
 
-	//TODO move to ScoreHandler
 	_numberOfScoredPoints += 10;
 	PlayerScoreChanged(_numberOfScoredPoints);
 	std::cout << "Score " << _numberOfScoredPoints << std::endl;
@@ -52,7 +51,6 @@ void GameLogicHandler::OnPlayerPickedBall(ICollidable& A, ICollidable& B)
 
 void GameLogicHandler::OnPlayerGhostCollision(ICollidable& A, ICollidable& B)
 {
-	//TODO calculate things required to score points
 
 	if(_isSuperBallPicked)
 	{

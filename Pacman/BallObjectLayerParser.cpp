@@ -66,5 +66,6 @@ std::unique_ptr<LayerBase> BallObjectLayerParser::Parse(nlohmann::basic_json<> j
 
 	_gameLogicHandler.PlayerPickedBall	+= std::bind(&BallsObjectLayer::OnCollisionWithPlayer, ballsObjectLayer.get(), std::placeholders::_1);
 	
+
 	return ballsObjectLayer;
 }
