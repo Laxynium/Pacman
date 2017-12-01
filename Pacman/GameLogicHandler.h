@@ -64,5 +64,7 @@ public:
 
 	void Clear()override;
 
+	void ClearAll();
+
 };
 

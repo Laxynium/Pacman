@@ -281,10 +281,22 @@
     <ClInclude Include="IDestroyable.h">
       <Filter>Game\Models\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerState.h">
+    <ClInclude Include="IGameState.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="IGameState.h">
+    <ClInclude Include="GameStateMachine.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="IHandleInput.h">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateFactory.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
@@ -410,10 +422,22 @@
     <ClCompile Include="IDestroyable.cpp">
       <Filter>Game\Models\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
+    <ClCompile Include="IGameState.cpp">
       <Filter>Game\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="IGameState.cpp">
+    <ClCompile Include="GameStateMachine.cpp">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="IHandleInput.cpp">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateFactory.cpp">
       <Filter>Game\GameStates</Filter>
     </ClCompile>
   </ItemGroup>

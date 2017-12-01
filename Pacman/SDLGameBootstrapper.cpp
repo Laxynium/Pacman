@@ -15,6 +15,7 @@
 #include "InnerObjectLayerParsersCreator.h"
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include "PlayState.h"
 namespace di = boost::di;
 
 
@@ -31,12 +32,13 @@ void SDLGameBootstrapper::Initialize()
 		di::bind<ILevelLoader>().to<FromJsonLevelLoader>().in(di::singleton),
 		di::bind<ITextureManager>().to<SDLTextureManager>().in(di::singleton),
 		di::bind<IRenderer>().to<SDLRenderer>().in(di::singleton),
-		di::bind<IInputHandler>().to<SDLInputHandler>().in(di::unique),
+		di::bind<IInputHandler>().to<SDLInputHandler>().in(di::singleton),
 		di::bind<ICollisionManager>().to<SDLCollisionManager>().in(di::singleton),
 		di::bind<LayerParsersCreator>().to<LayerParsersCreator>().in(di::singleton),
 		di::bind<Factory>().to<Factory>().in(di::singleton),
 		di::bind<IInnerObjectLayerParsersCreator>().to<InnerObjectLayerParsersCreator>().in(di::singleton),
-		di::bind<GameLogicHandler>().to<GameLogicHandler>().in(di::singleton)
+		di::bind<GameLogicHandler>().to<GameLogicHandler>().in(di::singleton),
+		di::bind<IGameState>().to<PlayState>().in(di::singleton)
 		);
 		
 		_game = injector.create<std::shared_ptr<Game>>();

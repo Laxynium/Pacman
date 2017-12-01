@@ -61,14 +61,17 @@ void GameLogicHandler::OnPlayerGhostCollision(ICollidable& A, ICollidable& B)
 	}
 	else
 	{
+		GhostHitPlayer();
+
 		--_numberOfLives;
-		std::cout << "Actuall count of lives "<<_numberOfLives << std::endl;
-		if (_numberOfLives <= 0)
-			GameEnded();
 
 		PlayerLivesChanged(_numberOfLives);
 
-		GhostHitPlayer();
+		std::cout << "Actuall count of lives "<<_numberOfLives << std::endl;
+		if (_numberOfLives <= 0)
+		{
+			GameEnded();
+		}	
 	}
 
 }
@@ -86,6 +89,9 @@ GameLogicHandler::GameLogicHandler(ICollisionManager& collisionManager): _collis
 	_collisionManager.Subscribe(Tag::Player, Tag::Pickable, [this](auto& A, auto& B) { this->OnPlayerPickedBall(A, B); });
 
 	_collisionManager.Subscribe(Tag::Player, Tag::Enemy, [this](auto& A, auto& B) { this->OnPlayerGhostCollision(A, B); });
+
+	PlayerLivesChanged(_numberOfLives);
+
 }
 
 void GameLogicHandler::Update()
@@ -136,4 +142,12 @@ void GameLogicHandler::Clear()
 	_isSuperBallPicked = false;
 
 	_isFlashingStarted = false;
+}
+
+void GameLogicHandler::ClearAll()
+{
+	Clear();
+	
+	_numberOfScoredPoints = 0;
+	_numberOfLives = 3;
 }
