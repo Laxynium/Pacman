@@ -174,6 +174,7 @@
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MoveToPositionBehaviour.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="RandomBehaviour.h" />
     <ClInclude Include="ScoreHandler.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MoveToPositionBehaviour.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="RandomBehaviour.cpp" />
     <ClCompile Include="ScoreHandler.cpp" />

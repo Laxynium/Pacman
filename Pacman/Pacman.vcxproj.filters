@@ -299,6 +299,9 @@
     <ClInclude Include="GameStateFactory.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -438,6 +441,9 @@
       <Filter>Game\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="GameStateFactory.cpp">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
       <Filter>Game\GameStates</Filter>
     </ClCompile>
   </ItemGroup>

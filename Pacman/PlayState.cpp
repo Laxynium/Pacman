@@ -58,6 +58,11 @@ void PlayState::BindInput()
 		_pacman->Move({ 1,0 });
 	}));
 
+	actions.emplace_back(std::make_pair((new SpecialSDLActionType{SDL_SCANCODE_ESCAPE})->SetUniuqueName("ESCPressed"),[&]()
+	{
+		PushedState("PauseState");
+	}));
+
 	_inputHandler->AddBindings( actions);
 }
 
