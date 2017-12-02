@@ -54,7 +54,37 @@ void GameStateMachine::OnPushedState(const std::string& stateName)
 
 void GameStateMachine::OnChangedState(const std::string& stateName)
 {
-	std::cout << "Changed state " << stateName << std::endl;
+	_gameStates.back()->OnExit();
+
+	_temporaryState = _gameStates.back();
+
+	_gameStates.pop_back();
+
+	_justRemovedState = true;
+
+	for(auto&state : _gameStates)
+	{
+		state->OnExit();
+	}
+
+	_gameStates.clear();
+
+	auto playState = _gameStateFactory->CreateState(stateName);
+
+	if (playState == nullptr)return;
+
+	playState->PushedState += [this](const auto&name) {OnPushedState(name); };
+
+	playState->ChangedState += [this](const auto&name) {OnChangedState(name); };
+
+	playState->StateEnded += [this]() {OnStateEnded(); };
+
+	_gameStates.push_back(playState);
+
+	_currentState = _gameStates.back();
+
+	_currentState->OnEnter();
+
 }
 
 GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,

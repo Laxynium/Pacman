@@ -88,10 +88,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_ttf-devel-2.0.14-VC\SDL2_ttf-2.0.14\include;C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\GG\Pacman\Pacman\SDL2_image-2.0.2\include;D:\GG\Pacman\Pacman\SDL2_ttf-2.0.14\include;D:\GG\Pacman\Pacman\SDL2-2.0.7\include;C:\Games\Pacman\SDL2_ttf-devel-2.0.14-VC\SDL2_ttf-2.0.14\include;C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_ttf-2.0.14\lib\x64;C:\Games\Pacman\SDL2_image-2.0.2\lib\x64;C:\Games\Pacman\SDL2-2.0.7\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\GG\Pacman\Pacman\SDL2_ttf-2.0.14\lib\x64;D:\GG\Pacman\Pacman\SDL2-2.0.7\lib\x64;D:\GG\Pacman\Pacman\SDL2_image-2.0.2\lib\x64;C:\Games\Pacman\SDL2_ttf-2.0.14\lib\x64;C:\Games\Pacman\SDL2_image-2.0.2\lib\x64;C:\Games\Pacman\SDL2-2.0.7\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
@@ -103,12 +103,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Games\Pacman\SDL2_ttf-2.0.14\include;C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\GG\Pacman\Pacman\SDL2_ttf-2.0.14\include;D:\GG\Pacman\Pacman\SDL2_image-2.0.2\include;D:\GG\Pacman\Pacman\SDL2-2.0.7\include;C:\Games\Pacman\SDL2_ttf-2.0.14\include;C:\Games\Pacman\SDL2_image-2.0.2\include;C:\Games\Pacman\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Games\Pacman\SDL2_ttf-2.0.14\lib\x86;C:\Games\Pacman\SDL2_image-2.0.2\lib\x86;C:\Games\Pacman\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\GG\Pacman\Pacman\SDL2_image-2.0.2\lib\x86;D:\GG\Pacman\Pacman\SDL2_ttf-2.0.14\lib\x86;D:\GG\Pacman\Pacman\SDL2-2.0.7\lib\x86;C:\Games\Pacman\SDL2_ttf-2.0.14\lib\x86;C:\Games\Pacman\SDL2_image-2.0.2\lib\x86;C:\Games\Pacman\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2test.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
