@@ -98,6 +98,9 @@
     <Filter Include="Game\GameStates">
       <UniqueIdentifier>{1b04b35a-f559-4395-b6f7-cc0217cb2ae5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Models\GameObjects\Menus">
+      <UniqueIdentifier>{ba8bb419-feb2-445f-afec-d2cf49d2071e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParser.h">
@@ -302,6 +305,15 @@
     <ClInclude Include="PauseState.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionArg.h">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseMoveActionArg.h">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -445,6 +457,15 @@
     </ClCompile>
     <ClCompile Include="PauseState.cpp">
       <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionArg.cpp">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseMoveActionArg.cpp">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
