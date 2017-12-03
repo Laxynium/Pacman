@@ -130,12 +130,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ActionArg.h" />
     <ClInclude Include="ActionType.h" />
     <ClInclude Include="Ball.h" />
     <ClInclude Include="BallObjectLayerParser.h" />
     <ClInclude Include="BallsObjectLayer.h" />
     <ClInclude Include="BehaviourBase.h" />
     <ClInclude Include="BoostDI.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="EnemiesObjectLayer.h" />
     <ClInclude Include="EnemiesObjectLayerParser.h" />
@@ -163,6 +165,7 @@
     <ClInclude Include="IInputHandler.h" />
     <ClInclude Include="ILayerParser.h" />
     <ClInclude Include="ILevelLoader.h" />
+    <ClInclude Include="IMenuLoader.h" />
     <ClInclude Include="IMovable.h" />
     <ClInclude Include="InnerObjectLayerParsersCreator.h" />
     <ClInclude Include="IRenderer.h" />
@@ -172,8 +175,10 @@
     <ClInclude Include="LayerBase.h" />
     <ClInclude Include="LayerParsersCreator.h" />
     <ClInclude Include="MenuState.h" />
+    <ClInclude Include="MouseMoveActionArg.h" />
     <ClInclude Include="MoveToPositionBehaviour.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="RandomBehaviour.h" />
     <ClInclude Include="ScoreHandler.h" />
@@ -199,10 +204,12 @@
     <ClInclude Include="Wrapper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ActionArg.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="BallObjectLayerParser.cpp" />
     <ClCompile Include="BallsObjectLayer.cpp" />
     <ClCompile Include="BehaviourBase.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="EnemiesObjectLayer.cpp" />
     <ClCompile Include="EnemiesObjectLayerParser.cpp" />
     <ClCompile Include="Event.cpp" />
@@ -220,14 +227,17 @@
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="IHandleInput.cpp" />
     <ClCompile Include="ILayerParser.cpp" />
+    <ClCompile Include="IMenuLoader.cpp" />
     <ClCompile Include="InnerObjectLayerParsersCreator.cpp" />
     <ClCompile Include="IUpdateable.cpp" />
     <ClCompile Include="LayerBase.cpp" />
     <ClCompile Include="LayerParsersCreator.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="MouseMoveActionArg.cpp" />
     <ClCompile Include="MoveToPositionBehaviour.cpp" />
     <ClCompile Include="ObjectBase.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="RandomBehaviour.cpp" />
     <ClCompile Include="ScoreHandler.cpp" />

@@ -1,27 +1,20 @@
 ﻿#include "MenuState.h"
 #include "SpecialSDLActionType.h"
+#include "IRenderer.h"
+#include "Rect.h"
 
-MenuState::MenuState(std::shared_ptr<IInputHandler> inputHandler): _inputHandler(inputHandler)
+MenuState::MenuState(std::shared_ptr<IRenderer>renderer,std::shared_ptr<IInputHandler>inputHandler): _renderer(renderer),_inputHandler(inputHandler)
 {
 	_stateName = "MenuState";
-}
-
-MenuState::~MenuState()
-{
-}
-
-void MenuState::OnEnterPressed()
-{
-	PushedState("PlayState");
-}
-void MenuState::Update()
-{
-	//std::cout << "Updating in MenuState\n";
-}
-
-void MenuState::Draw()
-{
-	//std::cout << "Drawing in MenuState\n";
+	_startButton = std::make_shared<Button>(_renderer, _inputHandler);
+	_startButton->SetPosition({ 100,100 });
+	_startButton->SetHeight(100);
+	_startButton->SetWidth(400);
+	_startButton->Clicked+=[this]()
+	{
+		ChangedState("PlayState");
+		std::cout << "U has clicked me\n";
+	};
 }
 
 void MenuState::HandleInput()
@@ -30,11 +23,26 @@ void MenuState::HandleInput()
 	_inputHandler->HandleActions();
 }
 
+
+void MenuState::Update()
+{
+	_startButton->Update();
+	//std::cout << "Updating in MenuState\n";
+}
+
+void MenuState::Draw()
+{
+	//_renderer->FillRect(Rect{ 0,0,200,200,Color{150,150,150} });
+	_startButton->Draw();
+	//std::cout << "Drawing in MenuState\n";
+}
+
+
 void MenuState::OnEnter()
 {
 	_inputHandler->AddBindings({ { (new SpecialSDLActionType(SDL_SCANCODE_RETURN))->SetUniuqueName("EnterPressed"),[this]()
 	{
-		OnEnterPressed();
+		ChangedState("PlayState");
 	} } });
 	std::cout << "On enter in MenuState\n";
 }

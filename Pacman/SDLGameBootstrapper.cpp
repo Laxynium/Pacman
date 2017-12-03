@@ -16,6 +16,8 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include "PlayState.h"
+#include "GameStateMachine.h"
+#include "GameStateFactory.h"
 namespace di = boost::di;
 
 
@@ -38,7 +40,8 @@ void SDLGameBootstrapper::Initialize()
 		di::bind<Factory>().to<Factory>().in(di::singleton),
 		di::bind<IInnerObjectLayerParsersCreator>().to<InnerObjectLayerParsersCreator>().in(di::singleton),
 		di::bind<GameLogicHandler>().to<GameLogicHandler>().in(di::singleton),
-		di::bind<IGameState>().to<PlayState>().in(di::singleton)
+		di::bind<GameStateMachine>().to<GameStateMachine>().in(di::singleton),
+		di::bind<GameStateFactory>().to<GameStateFactory>().in(di::singleton)
 		);
 		
 		_game = injector.create<std::shared_ptr<Game>>();

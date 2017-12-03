@@ -1,9 +1,7 @@
 ﻿#include "GameStateMachine.h"
 #include "IInputHandler.h"
 #include "SDLActionType.h"
-#include "MenuState.h"
 #include <string>
-#include "PlayState.h"
 
 void GameStateMachine::OnStateEnded()
 {
@@ -31,19 +29,19 @@ void GameStateMachine::OnPushedState(const std::string& stateName)
 	if (_currentState->GetStateName() == stateName)
 		return;
 
-	auto playState = _gameStateFactory->CreateState(stateName);
+	auto state = _gameStateFactory->CreateState(stateName);
 
-	if (playState == nullptr)return;
+	if (state == nullptr)return;
 
-	playState->PushedState += [this](const auto&name) {OnPushedState(name); };
+	state->PushedState += [this](const auto&name) {OnPushedState(name); };
 
-	playState->ChangedState += [this](const auto&name) {OnChangedState(name); };
+	state->ChangedState += [this](const auto&name) {OnChangedState(name); };
 
-	playState->StateEnded += [this]() {OnStateEnded(); };
+	state->StateEnded += [this]() {OnStateEnded(); };
 	
 	_gameStates.back()->OnExit();
 
-	_gameStates.push_back(playState);
+	_gameStates.push_back(state);
 
 	_currentState = _gameStates.back();
 
@@ -54,6 +52,8 @@ void GameStateMachine::OnPushedState(const std::string& stateName)
 
 void GameStateMachine::OnChangedState(const std::string& stateName)
 {
+	if (_gameStates.empty())
+		return;
 	_gameStates.back()->OnExit();
 
 	_temporaryState = _gameStates.back();
@@ -85,6 +85,8 @@ void GameStateMachine::OnChangedState(const std::string& stateName)
 
 	_currentState->OnEnter();
 
+	std::cout << "Change state: " << stateName << std::endl;
+
 }
 
 GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,
@@ -95,9 +97,13 @@ GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,
 		this->GameHasEnded();
 	}) });
 
-	_gameStates.push_back(std::make_shared<MenuState>(_inputHandler));
+	_gameStates.push_back(_gameStateFactory->CreateState("MenuState"));
 
 	_gameStates.back()->PushedState += [this](const auto&name) {this->OnPushedState(name); };
+
+	_gameStates.back()->StateEnded += [this]() {this->OnStateEnded(); };
+
+	_gameStates.back()->ChangedState += [this](const auto&name) {this->OnChangedState(name); };
 
 	_currentState = _gameStates.back();
 

@@ -57,7 +57,10 @@ void PlayState::BindInput()
 	{
 		_pacman->Move({ 1,0 });
 	}));
-
+	actions.emplace_back(std::make_pair((new SpecialSDLActionType{SDL_SCANCODE_ESCAPE})->SetUniuqueName("EnterPressed"),[this]()
+	{
+		PushedState("PauseState");
+	}));
 	_inputHandler->AddBindings( actions);
 }
 
@@ -90,9 +93,9 @@ void PlayState::OnLevelEnd()
 void PlayState::OnGameEnd()
 {
 	//Notifity GameStateMachine that you ended
-	StateEnded();
+	ChangedState("MenuState");
 
-	_isRunning = false;
+	//_isRunning = false;
 }
 
 void PlayState::OnEnter()
@@ -133,5 +136,6 @@ void PlayState::OnExit()
 	_inputHandler->RemoveBinding("SPressed");
 	_inputHandler->RemoveBinding("DPressed");
 	_inputHandler->RemoveBinding("APressed");
+	_inputHandler->RemoveBinding("EnterPressed");
 }
 

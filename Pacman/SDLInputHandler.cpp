@@ -6,6 +6,7 @@
 #include "SDLActionType.h"
 #include <algorithm>
 #include "SpecialSDLActionType.h"
+#include "MouseMoveActionArg.h"
 
 auto SDLInputHandler::SpecialActions()
 {
@@ -54,11 +55,11 @@ void SDLInputHandler::HandleActions()
 				
 	}
 	SDL_Event event;
-	if(SDL_PollEvent(&event))
-	{	
-		if(event.type==SDL_QUIT)
+	if (SDL_PollEvent(&event))
+	{
+		if (event.type == SDL_QUIT)
 		{
-			auto OnQuit=std::find_if(_actions.begin(), _actions.end(), [&](const auto&pair)
+			auto OnQuit = std::find_if(_actions.begin(), _actions.end(), [&](const auto&pair)
 			{
 				SDLActionType* actionType = dynamic_cast<SDLActionType*>(pair.first);
 
@@ -69,10 +70,78 @@ void SDLInputHandler::HandleActions()
 
 			});
 
-			if(OnQuit!=_actions.end())
+			if (OnQuit != _actions.end())
 			{
 				OnQuit->second();
 			}
+		}
+		if (event.type == SDL_MOUSEMOTION)
+		{
+			auto onMove = std::find_if(_actionsWithParams.begin(), _actionsWithParams.end(), [&](const auto&pair)
+			{
+				SDLActionType* actionType = dynamic_cast<SDLActionType*>(pair.first);
+
+				if (actionType == nullptr)return false;
+
+				if (actionType->eventType == SDL_MOUSEMOTION)
+				{
+					return true;
+				}
+				return false;
+			});
+
+			if (onMove != _actionsWithParams.end())
+			{
+				onMove->second(std::make_shared<MouseMoveActionArg>(event.motion.x, event.motion.y));
+			}
+
+			//std::cout << "Moved mouse x=" << event.motion.x << ",y=" << event.motion.y << "\n";
+
+		}
+		if (event.type == SDL_MOUSEBUTTONDOWN)
+		{
+
+			auto onClick = std::find_if(_actions.begin(), _actions.end(), [&](const auto&pair)
+			{
+				SDLActionType* actionType = dynamic_cast<SDLActionType*>(pair.first);
+
+				if (actionType == nullptr)return false;
+
+				if (actionType->eventType == SDL_MOUSEBUTTONDOWN)
+				{
+					return true;
+				}
+				return false;
+			});
+
+			if (onClick != _actions.end())
+			{
+				onClick->second();
+			}
+
+			std::cout << "Pressed\n";
+		}
+		if (event.type == SDL_MOUSEBUTTONUP)
+		{
+			auto onRelease = std::find_if(_actions.begin(), _actions.end(), [&](const auto&pair)
+			{
+				SDLActionType* actionType = dynamic_cast<SDLActionType*>(pair.first);
+
+				if (actionType == nullptr)return false;
+
+				if (actionType->eventType == SDL_MOUSEBUTTONUP)
+				{
+					return true;
+				}
+				return false;
+			});
+
+			if (onRelease != _actions.end())
+			{
+				onRelease->second();
+			}
+
+			std::cout << "Released\n";
 		}
 	}
 }

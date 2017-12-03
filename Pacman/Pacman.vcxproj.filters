@@ -98,6 +98,15 @@
     <Filter Include="Game\GameStates">
       <UniqueIdentifier>{1b04b35a-f559-4395-b6f7-cc0217cb2ae5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\GameStates\MenuState">
+      <UniqueIdentifier>{bdc0e4cc-3091-4875-b5c0-20011d77591f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Models\GameObjects\Menus">
+      <UniqueIdentifier>{81240fc8-205a-4680-a8f1-9a914b0a71f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Loaders\Menus">
+      <UniqueIdentifier>{4bd76f62-238f-4c30-b8a9-bade68f205b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParser.h">
@@ -299,6 +308,21 @@
     <ClInclude Include="GameStateFactory.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="IMenuLoader.h">
+      <Filter>Game\Loaders\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionArg.h">
+      <Filter>Game\Models\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseMoveActionArg.h">
+      <Filter>Game\Models\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -439,6 +463,21 @@
     </ClCompile>
     <ClCompile Include="GameStateFactory.cpp">
       <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="IMenuLoader.cpp">
+      <Filter>Game\Loaders\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionArg.cpp">
+      <Filter>Game\Models\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseMoveActionArg.cpp">
+      <Filter>Game\Models\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
