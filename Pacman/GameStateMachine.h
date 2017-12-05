@@ -6,6 +6,7 @@
 #include "BoostDI.h"
 #include "IInputHandler.h"
 #include "GameStateFactory.h"
+#include "IStatesLoader.h"
 
 class GameStateMachine:public IUpdateable,public IDrawable,public IHandleInput
 {
@@ -17,13 +18,14 @@ class GameStateMachine:public IUpdateable,public IDrawable,public IHandleInput
 	std::shared_ptr<IGameState>_temporaryState;
 
 	bool _justRemovedState = false;
+	std::shared_ptr<IStatesLoader> _statesLoader;
 
 private://methods
 	void OnStateEnded();
 	void OnPushedState(const std::string&stateName);
 	void OnChangedState(const std::string&stateName);
 public:
-	GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,std::shared_ptr<GameStateFactory>gameStateFactory);
+	GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,std::shared_ptr<GameStateFactory>gameStateFactory,std::shared_ptr<IStatesLoader>statesLoader);
 
 	Event<void>GameHasEnded;
 

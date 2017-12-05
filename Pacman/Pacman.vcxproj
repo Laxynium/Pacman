@@ -145,6 +145,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="Factory.h" />
     <ClInclude Include="FromJsonLevelLoader.h" />
+    <ClInclude Include="FromJsonStatesLoader.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameHud.h" />
     <ClInclude Include="GameLogicHandler.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="IMovable.h" />
     <ClInclude Include="InnerObjectLayerParsersCreator.h" />
     <ClInclude Include="IRenderer.h" />
+    <ClInclude Include="IStatesLoader.h" />
     <ClInclude Include="ITextureManager.h" />
     <ClInclude Include="IUpdateable.h" />
     <ClInclude Include="JsonParser.h" />
@@ -215,6 +217,7 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="Factory.cpp" />
     <ClCompile Include="FromJsonLevelLoader.cpp" />
+    <ClCompile Include="FromJsonStatesLoader.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameHud.cpp" />
     <ClCompile Include="GameLogicHandler.cpp" />
@@ -228,6 +231,7 @@
     <ClCompile Include="IHandleInput.cpp" />
     <ClCompile Include="ILayerParser.cpp" />
     <ClCompile Include="InnerObjectLayerParsersCreator.cpp" />
+    <ClCompile Include="IStatesLoader.cpp" />
     <ClCompile Include="IUpdateable.cpp" />
     <ClCompile Include="LayerBase.cpp" />
     <ClCompile Include="LayerParsersCreator.cpp" />

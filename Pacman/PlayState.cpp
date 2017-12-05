@@ -82,7 +82,7 @@ void PlayState::OnLevelEnd()
 	//Remove all bindings to gameLogicHandler
 	_gameLogicHandler->Clear();
 	
-	this->_level = std::move(this->_levelLoader->LoadLevel("Assets/PacmanTiledTest8.json"));
+	this->_level = std::move(this->_levelLoader->LoadLevel(_mapPath));
 	
 	//Bind to it not destroyed objects
 	_gameLogicHandler->GhostHitPlayer += std::bind(&Pacman::OnBeingHit, _pacman.get());
@@ -95,7 +95,7 @@ void PlayState::OnLevelEnd()
 void PlayState::OnGameEnd()
 {
 	//Notifity GameStateMachine that you ended
-	ChangedState("MenuState");
+	ChangedState("MainMenuState");
 
 	_isRunning = false;
 }

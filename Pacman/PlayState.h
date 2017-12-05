@@ -20,7 +20,7 @@ class PlayState:public IGameState
 
 	std::unique_ptr<Level> _level;
 
-	const std::string&_mapPath = "Assets/PacmanTiledTest8.json";
+	const std::string&_mapPath = "Assets/PacmanTiled.json";
 
 	bool _isRunning = true;
 

@@ -3,9 +3,9 @@
 
 MainMenuState::MainMenuState(std::shared_ptr<IRenderer>renderer,std::shared_ptr<IInputHandler> inputHandler,std::shared_ptr<ITextureManager>textureManager): _renderer(renderer), _inputHandler(inputHandler), _textureManager(textureManager)
 {
-	_stateName = "MenuState";
+	_stateName = "MainMenuState";
 
-	_textureManager->LoadTextureFromFile("Assets/PlayButton.png", "playButton");
+	/*_textureManager->LoadTextureFromFile("Assets/PlayButton.png", "playButton");
 
 	_textureManager->LoadTextureFromFile("Assets/QuitButton.png", "quitButton");
 
@@ -34,7 +34,7 @@ MainMenuState::MainMenuState(std::shared_ptr<IRenderer>renderer,std::shared_ptr<
 	_quitButton->SetFramesCount(30);
 	_quitButton->SetTextureName("quitButton");
 
-	_objects.insert(_objects.end(), {_startButton,_quitButton});
+	_objects.insert(_objects.end(), {_startButton,_quitButton});*/
 
 }
 
@@ -46,6 +46,20 @@ void MainMenuState::OnEnterPressed()
 {
 	ChangedState("PlayState");
 }
+
+void MainMenuState::BindActionToButton(Button& button)
+{
+	std::function<void()>func;
+
+	if (button.GetName() == "playButton")
+		func = [this]() {this->ChangedState("PlayState"); };
+
+	if (button.GetName() == "quitButton")
+		func = [this]() {this->StateEnded(); };
+
+	button.Clicked += func;
+}
+
 void MainMenuState::Update()
 {
 	for (auto&object : _objects)

@@ -185,13 +185,14 @@ void Ghost::OnPlayerPickedUpSuperBall(ICollidable&superBall)
 
 	_speed = 1;
 
-	_velocity = _direction*_speed;
+	_velocity = _direction*_speed*(-1);
 }
 
 void Ghost::OnSuperBallSuperEnding()
 {
 	_isColorFlashing = true;
 	_colorFlashingStart = clock();
+	_tag = Tag::Enemy;
 }
 
 void Ghost::OnEndDurationsOfSuperBall()

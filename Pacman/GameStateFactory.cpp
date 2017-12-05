@@ -24,7 +24,7 @@ GameStateFactory::GameStateFactory(std::shared_ptr<IRenderer> renderer, std::sha
 
 	_mappedStates["PauseState"] = createPauseState;
 
-	_mappedStates["MenuState"] = createMenuState;
+	_mappedStates["MainMenuState"] = createMenuState;
 }
 
 std::shared_ptr<IGameState> GameStateFactory::CreateState(const std::string& name)

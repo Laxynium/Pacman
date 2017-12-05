@@ -8,6 +8,8 @@ class PauseState:public MenuStateBase
 {
 	std::shared_ptr<IInputHandler> _inputHandler;
 	std::shared_ptr<IRenderer> _renderer;
+protected:
+	void BindActionToButton(Button& button) override;
 public:
 	PauseState(std::shared_ptr<IRenderer>renderer,std::shared_ptr<IInputHandler> inputHandler);
 

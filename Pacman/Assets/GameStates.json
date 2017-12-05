@@ -1,63 +1,89 @@
 {
   "gameStates": 
   {
-    "menuStates": 
-    [
+    "menuStates": [
       {
-        "name": "pauseState",
+        "name": "PauseState",
         "textures": [
           {
-            "name": "pacmanTitle",
-            "path": "pacmanTitle.png"
-          },
-          {
             "name": "resumeButton",
-            "path": "Assets/resumeButton.png"
+            "path": "Assets/ResumeButton.png"
           },
           {
-            "name": "exitButton",
-            "path": "Assets/exitButton.png"
+            "name": "menuButton",
+            "path": "Assets/MenuButton.png"
           }
         ],
-        "gameObjects": {
-          "title": {
-            "name": "pacmanTitle",
-            "textureName": "pacmanTitle",
-            "x": 0,
-            "y": 0,
-            "width": 0,
-            "height": 0,
-            "framesCount": 0,
-            "rows": 0,
-            "columns": 0
-          } ,
-     
-          "buttons": [
-            {
-              "name": "resumeButton",
-              "textureName": "resumeButton",
-              "x": 0,
-              "y": 0,
-              "width": 0,
-              "height": 0,
-              "framesCount": 0,
-              "rows": 0,
-              "columns": 0
-            },
-            {
-              "name": "exitButton",
-              "textureName": "exitButton",
-              "x": 0,
-              "y": 0,
-              "width": 0,
-              "height": 0,
-              "framesCount": 0,
-              "rows": 0,
-              "columns": 0
-            }
-          ]
-        }
-        
+        "gameObjects": [       
+          {
+            "type": "button",
+            "name": "resumeButton",
+            "textureName": "resumeButton",
+            "x": 298,
+            "y": 400,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "menuButton",
+            "textureName": "menuButton",
+            "x": 298,
+            "y": 600,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          }
+        ]
+
+      },
+      {
+        "name": "MainMenuState",
+        "textures": 
+        [
+
+          {
+            "name": "playButton",
+            "path": "Assets/PlayButton.png"
+          },
+          {
+            "name": "quitButton",
+            "path": "Assets/QuitButton.png"
+          }
+        ],
+        "gameObjects": 
+        [
+          {
+            "type": "button",
+            "name": "playButton",
+            "textureName": "playButton",
+            "x": 298,
+            "y": 400,
+            "width": 300,
+            "height": 80,
+            "framesCount": 30,
+            "rows": 10,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "quitButton",
+            "textureName": "quitButton",
+            "x": 298,
+            "y": 600,
+            "width": 300,
+            "height": 80,
+            "framesCount": 30,
+            "rows": 10,
+            "columns": 3
+          }
+        ]
+
       }
     ]
   }

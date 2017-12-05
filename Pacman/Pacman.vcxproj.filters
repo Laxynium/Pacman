@@ -101,6 +101,9 @@
     <Filter Include="Game\Models\GameObjects\Menus">
       <UniqueIdentifier>{ba8bb419-feb2-445f-afec-d2cf49d2071e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Loaders\States">
+      <UniqueIdentifier>{b93cf8a7-74b3-4b1b-add7-1c59f60424fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParser.h">
@@ -317,6 +320,12 @@
     <ClInclude Include="MenuStateBase.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="IStatesLoader.h">
+      <Filter>Game\Loaders\States</Filter>
+    </ClInclude>
+    <ClInclude Include="FromJsonStatesLoader.h">
+      <Filter>Game\Loaders\States</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -472,6 +481,12 @@
     </ClCompile>
     <ClCompile Include="MenuStateBase.cpp">
       <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="IStatesLoader.cpp">
+      <Filter>Game\Loaders\States</Filter>
+    </ClCompile>
+    <ClCompile Include="FromJsonStatesLoader.cpp">
+      <Filter>Game\Loaders\States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

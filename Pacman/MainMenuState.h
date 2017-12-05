@@ -14,6 +14,8 @@ class MainMenuState:public MenuStateBase
 
 private://methods
 	void OnEnterPressed();
+protected:
+	void BindActionToButton(Button& button) override;
 public:
 	MainMenuState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,
 	          std::shared_ptr<ITextureManager> textureManager);

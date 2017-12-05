@@ -31,8 +31,6 @@ class Button :public GameObject
 
 	bool _started = false;
 
-	std::string _textureName;
-
 	int _columnsCount;
 
 	int _framesCount;
@@ -47,11 +45,6 @@ public:
 	void Update() override;
 
 	Event<void> Clicked;
-
-	void SetTextureName(const std::string& textureName)
-	{
-		this->_textureName = textureName;
-	}
 
 	void SetColumnsCount(const int columnsCount)
 	{

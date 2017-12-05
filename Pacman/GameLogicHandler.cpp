@@ -91,6 +91,8 @@ GameLogicHandler::GameLogicHandler(ICollisionManager& collisionManager): _collis
 
 	_collisionManager.Subscribe(Tag::Player, Tag::Enemy, [this](auto& A, auto& B) { this->OnPlayerGhostCollision(A, B); });
 	
+	_collisionManager.Subscribe(Tag::Player, Tag::HardEnemy, [this](auto& A, auto& B) { this->OnPlayerGhostCollision(A, B); });
+
 }
 
 void GameLogicHandler::Update()

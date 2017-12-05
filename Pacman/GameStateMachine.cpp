@@ -5,6 +5,30 @@
 #include <string>
 #include "PlayState.h"
 
+GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,
+	std::shared_ptr<GameStateFactory>gameStateFactory, std::shared_ptr<IStatesLoader>statesLoader) :_inputHandler(inputHandler), _gameStateFactory(gameStateFactory), _statesLoader(statesLoader)
+{
+	_inputHandler->AddBindings({ std::make_pair((new SDLActionType(SDL_QUIT, 0))->SetUniuqueName("QuitGame"), [&]()
+	{
+		this->GameHasEnded();
+	}) });
+	auto state = _gameStateFactory->CreateState("MainMenuState");
+	_statesLoader->Load("Assets/GameStates.json", state);
+	_gameStates.push_back(state);
+
+	_gameStates.back()->PushedState += [this](const auto&name) {this->OnPushedState(name); };
+
+	_gameStates.back()->ChangedState += [this](const auto&name) {this->OnChangedState(name); };
+
+	_gameStates.back()->StateEnded += [this]() {this->OnStateEnded(); };
+
+
+	_currentState = _gameStates.back();
+
+	_currentState->OnEnter();
+}
+
+
 void GameStateMachine::OnStateEnded()
 {
 	_gameStates.back()->OnExit();
@@ -32,6 +56,8 @@ void GameStateMachine::OnPushedState(const std::string& stateName)
 		return;
 
 	auto state = _gameStateFactory->CreateState(stateName);
+
+	_statesLoader->Load("Assets/GameStates.json", state);
 
 	if (state == nullptr)return;
 
@@ -64,6 +90,8 @@ void GameStateMachine::OnChangedState(const std::string& stateName)
 
 	auto state = _gameStateFactory->CreateState(stateName);
 
+	_statesLoader->Load("Assets/GameStates.json",state);
+
 	if (state == nullptr)return;
 
 	state->PushedState += [this](const auto&name) {OnPushedState(name); };
@@ -87,27 +115,6 @@ void GameStateMachine::OnChangedState(const std::string& stateName)
 	std::cout << "Changed state " << stateName << std::endl;
 }
 
-GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,
-	std::shared_ptr<GameStateFactory>gameStateFactory):_inputHandler(inputHandler), _gameStateFactory(gameStateFactory)
-{
-	_inputHandler->AddBindings({ std::make_pair((new SDLActionType(SDL_QUIT, 0))->SetUniuqueName("QuitGame"), [&]()
-	{
-		this->GameHasEnded();
-	}) });
-
-	_gameStates.push_back(_gameStateFactory->CreateState("MenuState"));
-
-	_gameStates.back()->PushedState += [this](const auto&name) {this->OnPushedState(name); };
-
-	_gameStates.back()->ChangedState += [this](const auto&name) {this->OnChangedState(name); };
-
-	_gameStates.back()->StateEnded += [this]() {this->OnStateEnded(); };
-
-
-	_currentState = _gameStates.back();
-
-	_currentState->OnEnter();
-}
 
 void GameStateMachine::HandleInput()
 {
