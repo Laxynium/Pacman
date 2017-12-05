@@ -296,9 +296,6 @@
     <ClInclude Include="PlayState.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="MenuState.h">
-      <Filter>Game\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="GameStateFactory.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
@@ -313,6 +310,12 @@
     </ClInclude>
     <ClInclude Include="MouseMoveActionArg.h">
       <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuState.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuStateBase.h">
+      <Filter>Game\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -449,9 +452,6 @@
     <ClCompile Include="PlayState.cpp">
       <Filter>Game\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Game\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="GameStateFactory.cpp">
       <Filter>Game\GameStates</Filter>
     </ClCompile>
@@ -466,6 +466,12 @@
     </ClCompile>
     <ClCompile Include="MouseMoveActionArg.cpp">
       <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuStateBase.cpp">
+      <Filter>Game\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

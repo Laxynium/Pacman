@@ -1,0 +1,64 @@
+{
+  "gameStates": 
+  {
+    "menuStates": 
+    [
+      {
+        "name": "pauseState",
+        "textures": [
+          {
+            "name": "pacmanTitle",
+            "path": "pacmanTitle.png"
+          },
+          {
+            "name": "resumeButton",
+            "path": "Assets/resumeButton.png"
+          },
+          {
+            "name": "exitButton",
+            "path": "Assets/exitButton.png"
+          }
+        ],
+        "gameObjects": {
+          "title": {
+            "name": "pacmanTitle",
+            "textureName": "pacmanTitle",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "framesCount": 0,
+            "rows": 0,
+            "columns": 0
+          } ,
+     
+          "buttons": [
+            {
+              "name": "resumeButton",
+              "textureName": "resumeButton",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "framesCount": 0,
+              "rows": 0,
+              "columns": 0
+            },
+            {
+              "name": "exitButton",
+              "textureName": "exitButton",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0,
+              "framesCount": 0,
+              "rows": 0,
+              "columns": 0
+            }
+          ]
+        }
+        
+      }
+    ]
+  }
+}

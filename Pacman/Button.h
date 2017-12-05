@@ -31,6 +31,12 @@ class Button :public GameObject
 
 	bool _started = false;
 
+	std::string _textureName;
+
+	int _columnsCount;
+
+	int _framesCount;
+
 public:
 	Button(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler, std::shared_ptr<ITextureManager>textureManager);
 
@@ -42,4 +48,18 @@ public:
 
 	Event<void> Clicked;
 
+	void SetTextureName(const std::string& textureName)
+	{
+		this->_textureName = textureName;
+	}
+
+	void SetColumnsCount(const int columnsCount)
+	{
+		this->_columnsCount = columnsCount;
+	}
+
+	void SetFramesCount(const int framesCount)
+	{
+		this->_framesCount = framesCount;
+	}
 };

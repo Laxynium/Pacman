@@ -173,7 +173,8 @@
     <ClInclude Include="JsonParser.h" />
     <ClInclude Include="LayerBase.h" />
     <ClInclude Include="LayerParsersCreator.h" />
-    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="MenuStateBase.h" />
     <ClInclude Include="MouseMoveActionArg.h" />
     <ClInclude Include="MoveToPositionBehaviour.h" />
     <ClInclude Include="ObjectBase.h" />
@@ -231,7 +232,8 @@
     <ClCompile Include="LayerBase.cpp" />
     <ClCompile Include="LayerParsersCreator.cpp" />
     <ClCompile Include="Level.cpp" />
-    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="MenuStateBase.cpp" />
     <ClCompile Include="MouseMoveActionArg.cpp" />
     <ClCompile Include="MoveToPositionBehaviour.cpp" />
     <ClCompile Include="ObjectBase.cpp" />

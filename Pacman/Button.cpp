@@ -66,10 +66,9 @@ Button::~Button()
 
 void Button::Draw()
 {
-	int x=(_currentFrame%3)*(300);
-	int y = (_currentFrame/3) * 80;
-	_renderer->CopyEx(_textureManager->FindTexture("playButton"), &Rect{ x,y,300,80 }, &Rect{ static_cast<int>(_position.X()),static_cast<int>(_position.Y()),_width,_height });
-	//_renderer->FillRect(Rect{ static_cast<int>(_position.X()),static_cast<int>(_position.Y()),_width,_height,Color{ 150,150,150 } });
+	int x=(_currentFrame%_columnsCount)*(_width);
+	int y = (_currentFrame/ _columnsCount) * _height;
+	_renderer->CopyEx(_textureManager->FindTexture(_textureName), &Rect{ x,y,_width,_height }, &Rect{ static_cast<int>(_position.X()),static_cast<int>(_position.Y()),_width,_height });
 }
 
 void Button::Update()
@@ -84,7 +83,7 @@ void Button::Update()
 		_startTime = currentTime;
 
 		if (!_animPlayed)
-			(++_currentFrame%=30);
+			(++_currentFrame%=_framesCount);
 		/*if(_currentFrame>=30)
 		{
 			_animPlayed = true;

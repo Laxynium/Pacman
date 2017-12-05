@@ -90,7 +90,6 @@ void SDLInputHandler::HandleActions()
 			if (actionType->eventType == SDL_MOUSEMOTION)
 			{
 				action.second(std::make_shared<MouseMoveActionArg>(event.motion.x, event.motion.y));
-
 			}		
 		}
 	}

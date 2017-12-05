@@ -1,7 +1,7 @@
 ﻿#include "GameStateMachine.h"
 #include "IInputHandler.h"
 #include "SDLActionType.h"
-#include "MenuState.h"
+#include "MainMenuState.h"
 #include <string>
 #include "PlayState.h"
 
