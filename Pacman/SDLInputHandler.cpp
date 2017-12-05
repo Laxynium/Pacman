@@ -6,6 +6,7 @@
 #include "SDLActionType.h"
 #include <algorithm>
 #include "SpecialSDLActionType.h"
+#include "MouseMoveActionArg.h"
 
 auto SDLInputHandler::SpecialActions()
 {
@@ -37,7 +38,6 @@ auto SDLInputHandler::SDLActions()
 
 void SDLInputHandler::HandleActions()
 {
-	//TODO somehow refactor it
 	const auto keyStates = SDL_GetKeyboardState(nullptr);
 
 	auto keyboardActions = SpecialActions();
@@ -56,23 +56,42 @@ void SDLInputHandler::HandleActions()
 	SDL_Event event;
 	if(SDL_PollEvent(&event))
 	{	
-		if(event.type==SDL_QUIT)
+		auto result=FindActions(_actions,[&](const auto&pair)
 		{
-			auto OnQuit=std::find_if(_actions.begin(), _actions.end(), [&](const auto&pair)
+			SDLActionType* actionType = dynamic_cast<SDLActionType*>(pair.first);
+
+			if (actionType == nullptr)return false;
+
+			if (actionType->eventType == event.type)
+				return true;
+		});
+		for(auto&action:result)
+		{
+			action.second();
+		}
+
+		auto result2=FindActions<std::shared_ptr<ActionArg>>(_actionsWithParams,[&](const auto&pair)
+		{
+			SDLActionType* actionType = dynamic_cast<SDLActionType*>(pair.first);
+
+			if (actionType == nullptr)return false;
+
+			if (actionType->eventType == event.type)
 			{
-				SDLActionType* actionType = dynamic_cast<SDLActionType*>(pair.first);
-
-				if (actionType == nullptr)return false;
-
-				if (actionType->eventType == SDL_QUIT)
-					return true;
-
-			});
-
-			if(OnQuit!=_actions.end())
-			{
-				OnQuit->second();
+				return true;
 			}
+			return false;
+		});
+
+		for(auto&action:result2)
+		{
+			SDLActionType* actionType = dynamic_cast<SDLActionType*>(action.first);
+
+			if (actionType->eventType == SDL_MOUSEMOTION)
+			{
+				action.second(std::make_shared<MouseMoveActionArg>(event.motion.x, event.motion.y));
+
+			}		
 		}
 	}
 }

@@ -16,11 +16,12 @@ class GameStateFactory
 	std::shared_ptr<GameLogicHandler> _gameLogicHandler;
 	std::shared_ptr<GameHud> _gameHud;
 	std::map<std::string, std::function<std::shared_ptr<IGameState>()>>_mappedStates;
+	std::shared_ptr<ITextureManager> _textureManager;
 public:
 	GameStateFactory(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,
-	                 std::shared_ptr<ILevelLoader> levelLoader, std::shared_ptr<ICollisionManager> collisionManager,
+	                 std::shared_ptr<ITextureManager> textureManager, std::shared_ptr<ILevelLoader> levelLoader,
+	                 std::shared_ptr<ICollisionManager> collisionManager,
 	                 std::shared_ptr<GameLogicHandler> gameLogicHandler, std::shared_ptr<GameHud> gameHud);
-
 	std::shared_ptr<IGameState> CreateState(const std::string&name);
 
 };

@@ -99,6 +99,11 @@ GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,
 
 	_gameStates.back()->PushedState += [this](const auto&name) {this->OnPushedState(name); };
 
+	_gameStates.back()->ChangedState += [this](const auto&name) {this->OnChangedState(name); };
+
+	_gameStates.back()->StateEnded += [this]() {this->OnStateEnded(); };
+
+
 	_currentState = _gameStates.back();
 
 	_currentState->OnEnter();

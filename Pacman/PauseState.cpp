@@ -1,7 +1,7 @@
 ﻿#include "PauseState.h"
 #include "SpecialSDLActionType.h"
 
-PauseState::PauseState(std::shared_ptr<IInputHandler> inputHandler): _inputHandler(inputHandler)
+PauseState::PauseState(std::shared_ptr<IRenderer>renderer,std::shared_ptr<IInputHandler> inputHandler): _inputHandler(inputHandler), _renderer(renderer)
 {
 	_stateName = "PauseState";
 }
@@ -21,17 +21,18 @@ void PauseState::Draw()
 
 void PauseState::OnEnter()
 {
-	_inputHandler->AddBindings({{(new SpecialSDLActionType(SDL_SCANCODE_RETURN))->SetUniuqueName("EnterPressed"),[this]()
-	{
-		StateEnded();
-	}} ,{(new SpecialSDLActionType(SDL_SCANCODE_F1))->SetUniuqueName("ESCPressed"),[this]()
+	_inputHandler->AddBindings({ { (new SpecialSDLActionType(SDL_SCANCODE_BACKSPACE))->SetUniuqueName("F1Pressed"),[this]()
 	{
 		ChangedState("MenuState");
-	}}});
+	} } });
+	_inputHandler->AddBindings({ { (new SpecialSDLActionType(SDL_SCANCODE_RETURN))->SetUniuqueName("EnterPressed"),[this]()
+	{
+		StateEnded();
+	} } });
 }
 
 void PauseState::OnExit()
 {
+	_inputHandler->RemoveBinding("F1Pressed");
 	_inputHandler->RemoveBinding("EnterPressed");
-	_inputHandler->RemoveBinding("ESCPressed");
 }

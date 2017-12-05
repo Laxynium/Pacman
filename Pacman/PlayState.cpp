@@ -95,7 +95,7 @@ void PlayState::OnLevelEnd()
 void PlayState::OnGameEnd()
 {
 	//Notifity GameStateMachine that you ended
-	StateEnded();
+	ChangedState("MenuState");
 
 	_isRunning = false;
 }
@@ -138,5 +138,6 @@ void PlayState::OnExit()
 	_inputHandler->RemoveBinding("SPressed");
 	_inputHandler->RemoveBinding("DPressed");
 	_inputHandler->RemoveBinding("APressed");
+	_inputHandler->RemoveBinding("ESCPressed");
 }
 
