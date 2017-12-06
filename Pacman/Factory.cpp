@@ -33,5 +33,5 @@ Pacman*Factory::CreatePacman() const
 
 Ghost* Factory::CreateGhost() const
 {
-	return new Ghost(_renderer, _collisionManager);
+	return new Ghost(_renderer, _collisionManager,_textureManager);
 }

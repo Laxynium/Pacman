@@ -13,6 +13,12 @@ protected:
 
 	std::string _name;
 	std::string _textureName;
+
+	int _currentFrame;
+
+	int _framesCount;
+
+	int _columnsCount;
 public:
 
 	virtual const Vector2D& GetPosition() const;
@@ -41,6 +47,36 @@ public:
 	virtual const std::string&GetTextureName()const
 	{
 		return _textureName;
+	}
+
+	virtual int GetCurrentFrame() const
+	{
+		return _currentFrame;
+	}
+
+	virtual void SetCurrentFrame(int currentFrame)
+	{
+		_currentFrame = currentFrame;
+	}
+
+	virtual int GetFramesCount() const
+	{
+		return _framesCount;
+	}
+
+	virtual void SetFramesCount(int framesCount)
+	{
+		_framesCount = framesCount;
+	}
+
+	virtual int GetColumnsCount() const
+	{
+		return _columnsCount;
+	}
+
+	virtual void SetColumnsCount(int columnsCount)
+	{
+		_columnsCount = columnsCount;
 	}
 
 	GameObject();

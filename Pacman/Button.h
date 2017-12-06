@@ -24,13 +24,6 @@ class Button :public GameObject
 	bool _isHovered = false;
 
 	bool _animPlayed = false;
-
-	int _currentFrame = 0;
-
-	int _columnsCount;
-
-	int _framesCount;
-
 public:
 	Button(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler, std::shared_ptr<ITextureManager>textureManager);
 
@@ -41,14 +34,4 @@ public:
 	void Update() override;
 
 	Event<void> Clicked;
-
-	void SetColumnsCount(const int columnsCount)
-	{
-		this->_columnsCount = columnsCount;
-	}
-
-	void SetFramesCount(const int framesCount)
-	{
-		this->_framesCount = framesCount;
-	}
 };

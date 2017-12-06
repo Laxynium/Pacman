@@ -4,9 +4,9 @@
 #include "MoveToPositionBehaviour.h"
 #include <memory>
 #include "RandomBehaviour.h"
-
-Ghost::Ghost(IRenderer& renderer, ICollisionManager& collisionManager) : _renderer(renderer),
-_collisionManager(collisionManager)
+//BIG TODO refactory all of this by introducting FMS to handle all ghost states(from normal to being eaten)
+Ghost::Ghost(IRenderer& renderer, ICollisionManager& collisionManager, ITextureManager&textureManager) : _renderer(renderer),
+_collisionManager(collisionManager), _textureManager(textureManager)
 {
 	_velocity =_direction*_speed;
 
@@ -36,19 +36,6 @@ void Ghost::SetupBehaviours()
 	_currentBehaviour = _behaviours[0].get();
 }
 
-//The purpose of it is fix position after change between velocity of 1 and velocity of 2
-//Ghost must has countable X and Y otherwise collisions are broken
-void Ghost::IncreaseVelocity()
-{
-	auto normalizedVelo = _velocity.Normalized();
-
-	if (static_cast<int>(_position.X()) % 2 == 1)_position.SetX(_position.X() + normalizedVelo.X());
-
-	if (static_cast<int>(_position.Y()) % 2 == 1)_position.SetY(_position.Y() + normalizedVelo.Y());
-
-	_speed = 2;
-}
-
 void Ghost::SetupDefaultValues()
 {
 	_position = _startPosition;
@@ -59,6 +46,12 @@ void Ghost::SetupDefaultValues()
 	_currentBehaviour = _behaviours[0].get();
 
 	_color = _regularColor;
+
+	_currentTexture = _textureName;
+
+	_framesOffset = 0;
+
+	_skipframesOffset = false;
 
 	_tag = Tag::Enemy;
 
@@ -72,6 +65,21 @@ void Ghost::SetupDefaultValues()
 
 	_velocity = _direction*_speed;
 }
+
+//The purpose of it is fix position after change between velocity of 1 and velocity of 2
+//Ghost must has countable X and Y otherwise collisions are broken
+void Ghost::IncreaseVelocity()
+{
+	auto normalizedVelo = _direction;
+
+	if (static_cast<int>(_position.X()) % 2 == 1)_position.SetX(_position.X() + normalizedVelo.X());
+
+	if (static_cast<int>(_position.Y()) % 2 == 1)_position.SetY(_position.Y() + normalizedVelo.Y());
+
+	_speed = 2;
+}
+
+
 
 
 void Ghost::OnLeaveBase()
@@ -89,26 +97,67 @@ void Ghost::OnReturnToBase()
 }
 void Ghost::Draw()
 {
-	_renderer.FillRect(Rect{ static_cast<int>(_position.X()),static_cast<int>(_position.Y()),
-				_width,_height,{ _color } });
+	int x = ((_currentFrame+ _framesOffset)%_columnsCount)*(_width);
+	int y = ((_currentFrame) / _columnsCount) * _height;
+
+	_renderer.CopyEx(_textureManager.FindTexture(_currentTexture), &Rect{x,y,_width,_height}, &Rect{ static_cast<int>(_position.X()),
+		static_cast<int>(_position.Y()),_width,_height },_angle);
+		
 }
 
 void Ghost::Update()
 {
 	_currentBehaviour->Update();
+
+	clock_t currentTime = clock();
+	if (currentTime - _animClock >= _animDelay)
+	{
+		++_currentFrame %= 2;
+		_animClock = currentTime;
+	}
+
+	if(!_skipframesOffset)
+	{
+		if (_direction.X() > 0)
+			_framesOffset = 0;
+		else if (_direction.X() < 0)
+			_framesOffset = 2;
+
+		else if (_direction.Y() < 0)
+			_framesOffset = 4;
+		else if (_direction.Y() > 0)
+			_framesOffset = 6;
+	}
+
+
 	if(_isColorFlashing&&_currentState!=State::BackToBase)
 	{
-		clock_t modDiff = (clock() - _colorFlashingStart) % 60;
-		if (modDiff>=50&&modDiff<=59)
+		clock_t modDiff = clock() - _colorFlashingStart;
+		if (modDiff>=60)
 		{
+			if (_currentTexture == _eatableTextureName)
+				_currentTexture = _whiteTextureName;
+			else
+				_currentTexture = _eatableTextureName;
+
+			_framesOffset = 0;
+
+			_skipframesOffset = true;
+
 			if (_tempColor == Color{ 0,0,255,0 })
 				_tempColor = { 255,255,255,0 };
 			else
 				_tempColor = { 0,0,255,0 };
 
 			_color = _tempColor;
-		}		
+
+			_colorFlashingStart = clock();
+		}	
+		return;
 	}
+
+	
+
 }
 
 Rect Ghost::GetAreaOfCollision() const
@@ -181,6 +230,12 @@ void Ghost::OnPlayerPickedUpSuperBall(ICollidable&superBall)
 	//Slow down and change color to blue
 	_color = { 0,0,255,0 };
 
+	_currentTexture = _eatableTextureName;
+
+	_framesOffset = 0;
+
+	_skipframesOffset = true;
+
 	_isColorFlashing = false;
 
 	_speed = 1;
@@ -204,6 +259,10 @@ void Ghost::OnEndDurationsOfSuperBall()
 
 	_color = _regularColor;
 	
+	_currentTexture = _textureName;
+
+	_framesOffset = 0;
+
 	_isColorFlashing = false;
 
 	IncreaseVelocity();
@@ -223,6 +282,12 @@ void Ghost::OnBeingAte(ICollidable&ghost)
 
 	_color = { 255,255,255 };
 
+	_currentTexture = _eyesTextureName;
+
+	_framesOffset = 0;
+
+	_skipframesOffset = true;
+
 	IncreaseVelocity();
 
 	_isEaten = true;
@@ -235,4 +300,9 @@ void Ghost::OnBeingAte(ICollidable&ghost)
 void Ghost::OnHitPlayer()
 {
 	SetupDefaultValues();
+}
+
+void Ghost::SetTextureName(const std::string& textureName)
+{
+	_currentTexture = _textureName = textureName;
 }

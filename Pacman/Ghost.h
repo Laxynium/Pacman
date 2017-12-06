@@ -5,6 +5,7 @@
 #include <ctime>
 #include "MoveToPositionBehaviour.h"
 #include "IDestroyable.h"
+#include "ITextureManager.h"
 
 class Ghost:public GameObject,public ICollidable
 {
@@ -17,6 +18,9 @@ class Ghost:public GameObject,public ICollidable
 	IRenderer& _renderer;
 
 	ICollisionManager& _collisionManager;
+
+	ITextureManager& _textureManager;
+
 
 	Color _regularColor = { 255,255,255,0 };
 
@@ -46,11 +50,21 @@ class Ghost:public GameObject,public ICollidable
 
 	bool _isEaten = false;
 
-	int _currentFrame = 1;
+	double _angle = 0;
 
-	int _framesCount = 3;
+	int _framesOffset = 0;
+	bool _skipframesOffset = false;
 
-	int _columnsCount = 3;
+	clock_t _animClock = 0;
+	
+	int _animDelay = 40;
+
+	
+	std::string _eyesTextureName;
+	std::string _whiteTextureName;
+	std::string _eatableTextureName;
+
+	std::string _currentTexture;
 
 private://methods
 	void OnLeaveBase();
@@ -66,7 +80,7 @@ private://methods
 	void SetVelocity(const Vector2D& velocity);
 
 public:
-	Ghost(IRenderer& renderer, ICollisionManager& collisionManager/*,IAiController controller*/);
+	Ghost(IRenderer& renderer, ICollisionManager& collisionManager,ITextureManager&textureManager);
 
 	void Draw() override;
 
@@ -100,5 +114,20 @@ public:
 
 	void OnHitPlayer();
 
-	
+
+	void SetEyesTextureName(const std::string& eyesTextureName)
+	{
+		_eyesTextureName = eyesTextureName;
+	}
+
+	void SetWhiteTextureName(const std::string& whiteTextureName)
+	{
+		_whiteTextureName = whiteTextureName;
+	}
+
+	void SetEatableTextureName(const std::string& eatableTextureName)
+	{
+		_eatableTextureName = eatableTextureName;
+	}
+	void SetTextureName(const std::string& textureName) override;
 };

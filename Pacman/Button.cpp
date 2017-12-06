@@ -37,6 +37,10 @@ _inputHandler(
 		_isButtonPressed = false;
 	} } });
 
+	_currentFrame = 0;
+	_framesCount = 3;
+	_columnsCount = 3;
+
 }
 
 void Button::ManageClick()

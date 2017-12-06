@@ -4745,14 +4745,12 @@
          "opacity":1,
          "properties":
             {
-             "ballCount":37,
              "tag":"pickable",
              "texture":"Assets\/ball.jpg",
              "textureName":"ball"
             },
          "propertytypes":
             {
-             "ballCount":"int",
              "tag":"string",
              "texture":"string",
              "textureName":"string"
@@ -4773,11 +4771,19 @@
                  "name":"",
                  "properties":
                     {
-                     "color":"#ffffaa00"
+                     "color":"#ffffaa00",
+                     "columnsCount":8,
+                     "framesCount":8,
+                     "textureName":"yellowGhost",
+                     "texturePath":"Assets\/YellowGhost.png"
                     },
                  "propertytypes":
                     {
-                     "color":"color"
+                     "color":"color",
+                     "columnsCount":"int",
+                     "framesCount":"int",
+                     "textureName":"string",
+                     "texturePath":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -4792,11 +4798,19 @@
                  "name":"",
                  "properties":
                     {
-                     "color":"#ffaaffff"
+                     "color":"#ffaaffff",
+                     "columnsCount":8,
+                     "framesCount":8,
+                     "textureName":"blueGhost",
+                     "texturePath":"Assets\/BlueGhost.png"
                     },
                  "propertytypes":
                     {
-                     "color":"color"
+                     "color":"color",
+                     "columnsCount":"int",
+                     "framesCount":"int",
+                     "textureName":"string",
+                     "texturePath":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -4811,11 +4825,19 @@
                  "name":"",
                  "properties":
                     {
-                     "color":"#ffffaaff"
+                     "color":"#ffffaaff",
+                     "columnsCount":8,
+                     "framesCount":8,
+                     "textureName":"pinkGhost",
+                     "texturePath":"Assets\/PinkGhost.png"
                     },
                  "propertytypes":
                     {
-                     "color":"color"
+                     "color":"color",
+                     "columnsCount":"int",
+                     "framesCount":"int",
+                     "textureName":"string",
+                     "texturePath":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -4830,11 +4852,19 @@
                  "name":"",
                  "properties":
                     {
-                     "color":"#ffaa0000"
+                     "color":"#ffaa0000",
+                     "columnsCount":8,
+                     "framesCount":8,
+                     "textureName":"redGhost",
+                     "texturePath":"Assets\/RedGhost.png"
                     },
                  "propertytypes":
                     {
-                     "color":"color"
+                     "color":"color",
+                     "columnsCount":"int",
+                     "framesCount":"int",
+                     "textureName":"string",
+                     "texturePath":"string"
                     },
                  "rotation":0,
                  "type":"",
@@ -4846,11 +4876,23 @@
          "opacity":1,
          "properties":
             {
-             "tag":"enemy"
+             "eatableTextureName":"eatableGhost",
+             "eatableTexturePath":"Assets\/EatableGhost.png",
+             "eyesTextureName":"eyes",
+             "eyesTexturePath":"Assets\/Eyes.png",
+             "tag":"enemy",
+             "whiteTextureName":"whiteGhost",
+             "whiteTexturePath":"Assets\/WhiteGhost.png"
             },
          "propertytypes":
             {
-             "tag":"string"
+             "eatableTextureName":"string",
+             "eatableTexturePath":"string",
+             "eyesTextureName":"string",
+             "eyesTexturePath":"string",
+             "tag":"string",
+             "whiteTextureName":"string",
+             "whiteTexturePath":"string"
             },
          "type":"objectgroup",
          "visible":true,

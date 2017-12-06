@@ -12,8 +12,9 @@ private:
 	ICollisionManager& _collisionManager;
 	Factory& _factory;
 	GameLogicHandler& _gameLogicHandler;
+	ITextureManager& _textureManager;
 public:
-	InnerObjectLayerParsersCreator(Factory& factory, ICollisionManager& collisionManager,GameLogicHandler&gameLogicHandler);
+	InnerObjectLayerParsersCreator(Factory& factory, ICollisionManager& collisionManager,GameLogicHandler&gameLogicHandler, ITextureManager&textureManager);
 
 	std::unique_ptr<IInnerObjectLayerParser> Create(const std::string& type) override;
 

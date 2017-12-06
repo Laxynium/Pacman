@@ -3,6 +3,24 @@
 #include "ITextureManager.h"
 #include <iostream>
 
+Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager, ITextureManager&textureManager)
+	: _renderer(renderer), _collisionManager(collisionManager), _textureManager(textureManager)
+{
+	_height = 32;
+	_width = 32;
+	_position = { 0,0 };
+
+	_color = { 255,255,0,0 };
+
+	_tag = Tag::Player;
+
+	_currentFrame = 1;
+
+	_framesCount = 3;
+
+	_columnsCount = 3;
+}
+
 void Pacman::Draw()
 {
 	int x = (_currentFrame%_columnsCount)*(_width);
@@ -100,18 +118,7 @@ void Pacman::OnBeingHit()
 	_vecToMove = {};
 }
 
-Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager, ITextureManager&textureManager)
-	: _renderer(renderer),_collisionManager(collisionManager), _textureManager(textureManager)
-{
-	_height = 32;
-	_width = 32;
-	_position = { 0,0 };
 
-	_color = { 255,255,0,0};
-
-	_tag = Tag::Player;
-
-}
 
 void Pacman::SetPosition(const Vector2D& newPos)
 {

@@ -12,6 +12,10 @@ struct GhostProperites
 {
 	Vector2D Position;
 	Color Color;
+	std::string TextureName;
+	std::string TexturePath;
+	int ColumnsCount;
+	int FramesCount;
 	int Width;
 	int Height;
 };
@@ -25,13 +29,20 @@ void from_json(const json& json, std::vector<GhostProperites>&ghostProperties)
 		prop.Height=ghost.at("height").get<int>();
 		prop.Position={ghost.at("x").get<double>(), ghost.at("y").get<double>()};
 		prop.Color = Color::FromHex(ghost.at("properties").at("color").get<std::string>());
+
+		auto properties = ghost.at("properties");
+
+		prop.TextureName = properties.at("textureName").get<std::string>();
+		prop.TexturePath = properties.at("texturePath").get<std::string>();
+		prop.ColumnsCount = properties.at("columnsCount").get<int>();
+		prop.FramesCount = properties.at("framesCount").get<int>();
 		ghostProperties.emplace_back(prop);
 	}
 }
 #endif
 
 
-EnemiesObjectLayerParser::EnemiesObjectLayerParser(Factory&factory,ICollisionManager&collisionManager,GameLogicHandler&gameLogicHandler):_factory(factory), _collisionManager(collisionManager), _gameLogicHandler(gameLogicHandler)
+EnemiesObjectLayerParser::EnemiesObjectLayerParser(Factory&factory, ICollisionManager&collisionManager, GameLogicHandler&gameLogicHandler, ITextureManager&textureManager) :_factory(factory), _collisionManager(collisionManager), _gameLogicHandler(gameLogicHandler), _textureManager(textureManager)
 {
 }
 
@@ -43,10 +54,29 @@ std::unique_ptr<LayerBase> EnemiesObjectLayerParser::Parse(nlohmann::basic_json<
 
 	auto tag=EnumParser<Tag>().ParseSomeEnum(tagName);
 
+	auto properties=json.at("properties");
+
+	const auto whiteGhostTexturePath = properties["whiteTexturePath"].get<std::string>();
+	const auto whiteGhostTextureName=properties["whiteTextureName"].get<std::string>();
+
+	const auto eatableGhostTexturePath = properties["eatableTexturePath"].get<std::string>();
+	const auto eatableGhostTextureName = properties["eatableTextureName"].get<std::string>();
+
+	const auto eyesTexturePath = properties["eyesTexturePath"].get<std::string>();
+	const auto eyesTextureName = properties["eyesTextureName"].get<std::string>();
+
+	_textureManager.LoadTextureFromFile(whiteGhostTexturePath, whiteGhostTextureName);
+	_textureManager.LoadTextureFromFile(eatableGhostTexturePath, eatableGhostTextureName);
+	_textureManager.LoadTextureFromFile(eyesTexturePath, eyesTextureName);
+
 	std::vector<GhostProperites> ghostProperiteses = json.at("objects");
+
+
 	std::vector<std::shared_ptr<GameObject>>ghosts;
 	for(auto&ghostProp:ghostProperiteses)
 	{
+		_textureManager.LoadTextureFromFile(ghostProp.TexturePath, ghostProp.TextureName);
+
 		auto ghost=std::shared_ptr<Ghost>(_factory.CreateGhost());
 
 		ghost->SetPosition(ghostProp.Position);
@@ -54,7 +84,15 @@ std::unique_ptr<LayerBase> EnemiesObjectLayerParser::Parse(nlohmann::basic_json<
 		ghost->SetHeight(ghostProp.Height);
 		ghost->SetColor(ghostProp.Color);
 		ghost->SetTag(tag);
-		
+		ghost->SetTextureName(ghostProp.TextureName);
+		ghost->SetColumnsCount(ghostProp.ColumnsCount);
+		ghost->SetFramesCount(ghostProp.FramesCount);
+		ghost->SetCurrentFrame(0);
+
+		ghost->SetEatableTextureName(eatableGhostTextureName);
+		ghost->SetEyesTextureName(eyesTextureName);
+		ghost->SetWhiteTextureName(whiteGhostTextureName);
+
 		//TODO bind here controlers to proper ghosts
 		_collisionManager.Register(*ghost);
 
