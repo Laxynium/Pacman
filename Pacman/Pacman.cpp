@@ -1,11 +1,16 @@
 #include "Pacman.h"
 #include "Rect.h"
+#include "ITextureManager.h"
 #include <iostream>
-
 
 void Pacman::Draw()
 {
-	_renderer.FillRect(Rect{ static_cast<int>(_position.X()),static_cast<int>(_position.Y()),_width,_height,{ _color } });
+	int x = (_currentFrame%_columnsCount)*(_width);
+	int y = (_currentFrame / _columnsCount) * _height;
+
+	_renderer.CopyEx(_textureManager.FindTexture(_textureName), &Rect{ x,y,_width,_height }, &Rect{ static_cast<int>(_position.X()),
+		static_cast<int>(_position.Y()),_width,_height },_angle);
+	//_renderer.FillRect(Rect{ static_cast<int>(_position.X()),static_cast<int>(_position.Y()),_width,_height,{ _color } });
 }
 
 void Pacman::Move(const Vector2D& vec)
@@ -37,6 +42,9 @@ void Pacman::Update()
 	if (_collisionManager.DetectCollision(*this, Tag::Wall)|| _collisionManager.DetectCollision(*this, Tag::WallToPlayer))
 	{
 		_position = oldPos;
+		_currentFrame = 1;
+		return;
+		std::cout << "I am in place\n";
 	}
 
 	//Transistion between edges of map
@@ -47,6 +55,32 @@ void Pacman::Update()
 	}
 	if (_position.X() > 896)
 		_position.SetX(_position.X()-896);
+
+	//Update angle of texture
+	auto diretction = _vecToMove.ToDirection();
+	if (diretction.X() > 0)_angle = 0;
+	else if(diretction.X()<0) _angle = -180;
+	else if (diretction.Y() < 0)_angle = -90;
+	else if(diretction.Y()>0) _angle = 90;
+	
+
+	//Update current frame
+
+	if (diretction.X() == 0 && diretction.Y() == 0)
+	{
+		_angle = 0;
+		_currentFrame = 1;
+		return;
+	}
+	clock_t currentTime = clock();
+
+	if(currentTime-_animClock>=_animDelay)
+	{
+		++_currentFrame %= _framesCount;
+		_animClock = currentTime;
+	}
+
+
 }
 
 Rect Pacman::GetAreaOfCollision()const
@@ -66,8 +100,8 @@ void Pacman::OnBeingHit()
 	_vecToMove = {};
 }
 
-Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager)
-	: _renderer(renderer),_collisionManager(collisionManager)
+Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager, ITextureManager&textureManager)
+	: _renderer(renderer),_collisionManager(collisionManager), _textureManager(textureManager)
 {
 	_height = 32;
 	_width = 32;
@@ -76,6 +110,7 @@ Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager)
 	_color = { 255,255,0,0};
 
 	_tag = Tag::Player;
+
 }
 
 void Pacman::SetPosition(const Vector2D& newPos)

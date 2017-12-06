@@ -13,7 +13,7 @@ GameStateFactory::GameStateFactory(std::shared_ptr<IRenderer> renderer, std::sha
                                                                       _gameLogicHandler(gameLogicHandler),
                                                                       _gameHud(gameHud), _textureManager(textureManager)
 {
-	auto createPlayState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<PlayState>(_renderer, _inputHandler, _levelLoader,
+	auto createPlayState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<PlayState>(_renderer, _inputHandler, _textureManager, _levelLoader,
 		_collisionManager, _gameLogicHandler, _gameHud); };
 
 	auto createPauseState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<PauseState>(_renderer,_inputHandler); };

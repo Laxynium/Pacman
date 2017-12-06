@@ -19,7 +19,7 @@ public:
 
 	virtual Wrapper<SDL_Texture>CreateTextureFrom(Wrapper<SDL_Surface>&surface) = 0;
 
-	virtual void CopyEx(Wrapper<SDL_Texture>& texture, Rect* source, Rect* destination) = 0;
+	virtual void CopyEx(Wrapper<SDL_Texture>& texture, Rect* source, Rect* destination,double angle = 0) = 0;
 
 	virtual void DrawRect(Rect rect) = 0;
 

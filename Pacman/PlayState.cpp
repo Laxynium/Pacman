@@ -3,12 +3,12 @@
 #include "SpecialSDLActionType.h"
 #include <functional>
 
-PlayState::PlayState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,
+PlayState::PlayState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,std::shared_ptr<ITextureManager>textureManager,
                          std::shared_ptr<ILevelLoader> levelLoader, std::shared_ptr<ICollisionManager> collisionManager,
                          std::shared_ptr<GameLogicHandler> gameLogicHandler, std::shared_ptr<GameHud> gameHud):
 	_renderer(renderer), _inputHandler(inputHandler),
 	_levelLoader(levelLoader), _collisionManager(collisionManager),
-	_gameLogicHandler(gameLogicHandler), _gameHud(gameHud)
+	_gameLogicHandler(gameLogicHandler), _gameHud(gameHud), _textureManager(textureManager)
 {
 	_stateName = "PlayState";
 	SetupPacman();
@@ -26,7 +26,7 @@ PlayState::~PlayState()
 
 void PlayState::SetupPacman()
 {
-	auto *pacman = new Pacman(*_renderer, *_collisionManager);
+	auto *pacman = new Pacman(*_renderer, *_collisionManager,*_textureManager);
 
 	_collisionManager->Register(*pacman);
 
@@ -35,6 +35,10 @@ void PlayState::SetupPacman()
 	_pacman.reset(pacman);
 
 	_pacman->SetPosition({ 432, 736 });
+
+	_textureManager->LoadTextureFromFile("Assets/Pacman.png", "pacman");
+	_pacman->SetTextureName("pacman");
+
 }
 
 void PlayState::BindInput()

@@ -28,7 +28,7 @@ Ball * Factory::CreateBall(const Vector2D& pos, int width, int height) const
 
 Pacman*Factory::CreatePacman() const
 {
-	return new Pacman(_renderer, _collisionManager);
+	return new Pacman(_renderer, _collisionManager,_textureManager);
 }
 
 Ghost* Factory::CreateGhost() const

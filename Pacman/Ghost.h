@@ -46,6 +46,13 @@ class Ghost:public GameObject,public ICollidable
 
 	bool _isEaten = false;
 
+	int _currentFrame = 1;
+
+	int _framesCount = 3;
+
+	int _columnsCount = 3;
+
+private://methods
 	void OnLeaveBase();
 
 	void OnReturnToBase();

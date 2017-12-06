@@ -22,7 +22,7 @@ public:
 	void Clear() override;
 	void DrawRect(Rect rect) override;
 	void FillRect(Rect rect) override;
-	void CopyEx(Wrapper<SDL_Texture>& textureName, Rect* source, Rect* destination) override;
+	void CopyEx(Wrapper<SDL_Texture>& textureName, Rect* source, Rect* destination,double angle = 0) override;
 	void Present() override;
 	
 };

@@ -27,10 +27,6 @@ class Button :public GameObject
 
 	int _currentFrame = 0;
 
-	clock_t _startTime = 0;
-
-	bool _started = false;
-
 	int _columnsCount;
 
 	int _framesCount;

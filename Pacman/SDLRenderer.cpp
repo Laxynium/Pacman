@@ -48,7 +48,7 @@ void SDLRenderer::FillRect(Rect rect)
 	SDL_RenderFillRect(_renderer.get(), &sdl_rect);
 }
 
-void SDLRenderer::CopyEx(Wrapper<SDL_Texture>& texture, Rect* source, Rect* destination)
+void SDLRenderer::CopyEx(Wrapper<SDL_Texture>& texture, Rect* source, Rect* destination, double angle)
 {
 	SDL_Rect *srect=nullptr;
 	SDL_Rect *drect=nullptr;
@@ -57,7 +57,9 @@ void SDLRenderer::CopyEx(Wrapper<SDL_Texture>& texture, Rect* source, Rect* dest
 	if(destination!=nullptr)
 		drect= &SDL_Rect{ destination->x,destination->y,destination->w,destination->h };
 	
-	SDL_RenderCopy(_renderer.get(),&texture.Get(),srect, drect);
+	//SDL_RenderCopy(_renderer.get(),&texture.Get(),srect, drect);
+	SDL_RenderCopyEx(_renderer.get(), &texture.Get(), srect, drect, angle, nullptr, SDL_RendererFlip::SDL_FLIP_NONE);
+
 }
 
 void SDLRenderer::Present()

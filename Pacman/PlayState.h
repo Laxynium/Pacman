@@ -23,6 +23,7 @@ class PlayState:public IGameState
 	const std::string&_mapPath = "Assets/PacmanTiled.json";
 
 	bool _isRunning = true;
+	std::shared_ptr<ITextureManager> _textureManager;
 
 private://methods
 	void SetupPacman();
@@ -36,7 +37,7 @@ private://methods
 	void OnGameEnd();
 
 public:
-	PlayState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,
+	PlayState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler, std::shared_ptr<ITextureManager>textureManager,
 	            std::shared_ptr<ILevelLoader> levelLoader, std::shared_ptr<ICollisionManager> collisionManager,
 	            std::shared_ptr<GameLogicHandler> gameLogicHandler, std::shared_ptr<GameHud> gameHud);
 
