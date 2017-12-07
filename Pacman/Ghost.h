@@ -57,7 +57,7 @@ class Ghost:public GameObject,public ICollidable
 
 	clock_t _animClock = 0;
 	
-	int _animDelay = 40;
+	int _animDelay = 60;
 
 	
 	std::string _eyesTextureName;
@@ -106,11 +106,11 @@ public:
 	int GetSpeed();
 
 	void OnPlayerPickedUpSuperBall(ICollidable&superBall);
-	void OnSuperBallSuperEnding();
+	void OnSuperBallPowerEnding();
 
 	void OnEndDurationsOfSuperBall();
 
-	void OnBeingAte(ICollidable&ghost);
+	void OnBeingEaten(ICollidable&ghost);
 
 	void OnHitPlayer();
 

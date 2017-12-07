@@ -243,7 +243,7 @@ void Ghost::OnPlayerPickedUpSuperBall(ICollidable&superBall)
 	_velocity = _direction*_speed*(-1);
 }
 
-void Ghost::OnSuperBallSuperEnding()
+void Ghost::OnSuperBallPowerEnding()
 {
 	_isColorFlashing = true;
 	_colorFlashingStart = clock();
@@ -270,7 +270,7 @@ void Ghost::OnEndDurationsOfSuperBall()
 	_velocity = _velocity.Normalized()*_speed;
 }
 
-void Ghost::OnBeingAte(ICollidable&ghost)
+void Ghost::OnBeingEaten(ICollidable&ghost)
 {
 	if (this != &ghost)
 		return;

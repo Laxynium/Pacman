@@ -104,6 +104,9 @@
     <Filter Include="Game\Loaders\States">
       <UniqueIdentifier>{b93cf8a7-74b3-4b1b-add7-1c59f60424fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Models\GameObjects\Animation">
+      <UniqueIdentifier>{3267f6e1-160b-46a6-8026-f6f8ac140507}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParser.h">
@@ -326,6 +329,12 @@
     <ClInclude Include="FromJsonStatesLoader.h">
       <Filter>Game\Loaders\States</Filter>
     </ClInclude>
+    <ClInclude Include="GhostState.h">
+      <Filter>Game\Models\GameObjects\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Game\Models\GameObjects\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -487,6 +496,12 @@
     </ClCompile>
     <ClCompile Include="FromJsonStatesLoader.cpp">
       <Filter>Game\Loaders\States</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostState.cpp">
+      <Filter>Game\Models\GameObjects\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Game\Models\GameObjects\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

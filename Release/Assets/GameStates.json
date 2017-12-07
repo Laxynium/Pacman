@@ -1,0 +1,90 @@
+{
+  "gameStates": 
+  {
+    "menuStates": [
+      {
+        "name": "PauseState",
+        "textures": [
+          {
+            "name": "resumeButton",
+            "path": "Assets/ResumeButton.png"
+          },
+          {
+            "name": "menuButton",
+            "path": "Assets/MenuButton.png"
+          }
+        ],
+        "gameObjects": [       
+          {
+            "type": "button",
+            "name": "resumeButton",
+            "textureName": "resumeButton",
+            "x": 298,
+            "y": 400,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "menuButton",
+            "textureName": "menuButton",
+            "x": 298,
+            "y": 600,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          }
+        ]
+
+      },
+      {
+        "name": "MainMenuState",
+        "textures": 
+        [
+
+          {
+            "name": "playButton",
+            "path": "Assets/PlayButton.png"
+          },
+          {
+            "name": "quitButton",
+            "path": "Assets/QuitButton.png"
+          }
+        ],
+        "gameObjects": 
+        [
+          {
+            "type": "button",
+            "name": "playButton",
+            "textureName": "playButton",
+            "x": 298,
+            "y": 400,
+            "width": 300,
+            "height": 80,
+            "framesCount": 30,
+            "rows": 10,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "quitButton",
+            "textureName": "quitButton",
+            "x": 298,
+            "y": 600,
+            "width": 300,
+            "height": 80,
+            "framesCount": 30,
+            "rows": 10,
+            "columns": 3
+          }
+        ]
+
+      }
+    ]
+  }
+}

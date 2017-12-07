@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="ActionArg.h" />
     <ClInclude Include="ActionType.h" />
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Ball.h" />
     <ClInclude Include="BallObjectLayerParser.h" />
     <ClInclude Include="BallsObjectLayer.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="GameStateFactory.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Ghost.h" />
+    <ClInclude Include="GhostState.h" />
     <ClInclude Include="IClearable.h" />
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="ICollisionManager.h" />
@@ -207,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActionArg.cpp" />
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="BallObjectLayerParser.cpp" />
     <ClCompile Include="BallsObjectLayer.cpp" />
@@ -225,6 +228,7 @@
     <ClCompile Include="GameStateFactory.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="Ghost.cpp" />
+    <ClCompile Include="GhostState.cpp" />
     <ClCompile Include="IClearable.cpp" />
     <ClCompile Include="IDestroyable.cpp" />
     <ClCompile Include="IGameState.cpp" />
