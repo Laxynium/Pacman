@@ -11,7 +11,6 @@ using nlohmann::json;
 struct GhostProperites
 {
 	Vector2D Position;
-	Color Color;
 	std::string TextureName;
 	std::string TexturePath;
 	int ColumnsCount;
@@ -28,7 +27,6 @@ void from_json(const json& json, std::vector<GhostProperites>&ghostProperties)
 		prop.Width=ghost.at("width").get<int>();
 		prop.Height=ghost.at("height").get<int>();
 		prop.Position={ghost.at("x").get<double>(), ghost.at("y").get<double>()};
-		prop.Color = Color::FromHex(ghost.at("properties").at("color").get<std::string>());
 
 		auto properties = ghost.at("properties");
 
@@ -82,7 +80,6 @@ std::unique_ptr<LayerBase> EnemiesObjectLayerParser::Parse(nlohmann::basic_json<
 		ghost->SetPosition(ghostProp.Position);
 		ghost->SetWidth(ghostProp.Width);
 		ghost->SetHeight(ghostProp.Height);
-		ghost->SetColor(ghostProp.Color);
 		ghost->SetTag(tag);
 		ghost->SetTextureName(ghostProp.TextureName);
 		ghost->SetColumnsCount(ghostProp.ColumnsCount);

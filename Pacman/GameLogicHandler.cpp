@@ -24,7 +24,7 @@ void GameLogicHandler::OnPlayerPickedSuperBall(ICollidable& A, ICollidable& B)
 
 	if(_countOfPickedBalls>=_countOfBalls)
 	{
-		GameEnded();
+		LevelEnded();
 	}
 
 }
@@ -47,6 +47,11 @@ void GameLogicHandler::OnPlayerPickedBall(ICollidable& A, ICollidable& B)
 	{
 		LevelEnded();
 	}
+}
+
+void GameLogicHandler::OnPlayerFrightenedGhostCollision(ICollidable&A,ICollidable&B)
+{
+	
 }
 
 void GameLogicHandler::OnPlayerGhostCollision(ICollidable& A, ICollidable& B)
@@ -91,7 +96,7 @@ GameLogicHandler::GameLogicHandler(ICollisionManager& collisionManager): _collis
 
 	_collisionManager.Subscribe(Tag::Player, Tag::Enemy, [this](auto& A, auto& B) { this->OnPlayerGhostCollision(A, B); });
 	
-	_collisionManager.Subscribe(Tag::Player, Tag::HardEnemy, [this](auto& A, auto& B) { this->OnPlayerGhostCollision(A, B); });
+	_collisionManager.Subscribe(Tag::Player, Tag::Frightened, [this](auto& A, auto& B) { this->OnPlayerGhostCollision(A, B); });
 
 }
 

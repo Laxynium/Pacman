@@ -3,23 +3,42 @@
 #include "Tag.h"
 #include "Animation.h"
 
-class GhostState
+class GhostState:public IUpdateable
 {
 	std::string _textureName;
-	int _frameCount;
-	int _columnsCount;
-	int _speed;
-	Tag _tag;
-	Animation _animation;
+	int _speed=0;
+	Tag _tag=Tag::Enemy;
+	Animation _animation{1,20,0};
 public:
-	GhostState(const std::string& textureName, int frameCount, int columnsCount, int speed, Tag tag,
-		int animDelay)
-		: _textureName(textureName),
-		  _frameCount(frameCount),
-		  _columnsCount(columnsCount),
-		  _speed(speed),
-		  _tag(tag),
-		  _animation(frameCount, animDelay)
+	GhostState()
 	{
 	}
+
+	GhostState(const std::string& textureName, int speed, Tag tag,
+		const Animation& animation)
+		: _textureName(textureName),  
+		  _speed(speed),
+		  _tag(tag),
+		  _animation(animation)
+	{
+	}
+
+
+	void Update() override;
+
+	std::string GetTextureName() const;
+
+	void SetTextureName(const std::string& textureName);
+
+	int GetSpeed() const;
+
+	void SetSpeed(const int speed);
+
+	Tag GetTag() const;
+
+	void SetTag(const Tag tag);
+
+	Animation& GetAnimation();
+
+	void SetAnimation(const Animation& animation);
 };

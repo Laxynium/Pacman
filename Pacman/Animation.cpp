@@ -1,6 +1,6 @@
 ﻿#include "Animation.h"
 
-Animation::Animation(int framesCount, int animationDelay): _currentFrame(0), _framesCount(framesCount),
+Animation::Animation(int framesCount, int animationDelay,int frameOffset): _currentFrame(0), _framesCount(framesCount),_frameOffset(frameOffset),
                                                            _animationDelay(animationDelay)
 {
 	_isPlaying = true;
@@ -25,7 +25,7 @@ void Animation::Update()
 {
 	if (!_isPlaying)return;
 
-	const clock_t currentTime = clock();
+	clock_t currentTime = clock();
 
 	if(currentTime-_time>=_animationDelay)
 	{

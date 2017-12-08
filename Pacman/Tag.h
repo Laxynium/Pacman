@@ -3,7 +3,7 @@
 
 enum class Tag
 {
-	Pickable, Player, Wall, Enemy, SuperBall,Invulnerable,None,WallToPlayer,HardEnemy
+	Pickable, Player, Wall, Enemy, SuperBall,Invulnerable,None,WallToPlayer, Frightened
 };
 
 inline EnumParser<Tag>::EnumParser()
@@ -16,5 +16,5 @@ inline EnumParser<Tag>::EnumParser()
 	enumMap["invulnerable"] = Tag::Invulnerable;
 	enumMap["none"] = Tag::None;
 	enumMap["walltoplayer"] = Tag::WallToPlayer;
-	enumMap["hardenemy"] = Tag::HardEnemy;
+	enumMap["frightened"] = Tag::Frightened;
 }

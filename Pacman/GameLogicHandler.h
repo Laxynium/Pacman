@@ -10,6 +10,7 @@ class GameLogicHandler:public IUpdateable,public IClearable
 
 	void OnPlayerPickedBall(ICollidable&A, ICollidable&B);
 
+	void OnPlayerFrightenedGhostCollision(ICollidable& A, ICollidable& B);
 	void OnPlayerGhostCollision(ICollidable&A, ICollidable&B);
 
 	static ICollidable&GetCollidableWith(Tag tag, ICollidable&A, ICollidable&B);
