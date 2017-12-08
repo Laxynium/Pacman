@@ -1,10 +1,11 @@
 #include "SDLRenderer.h"
 #include<SDL_image.h>
+#include "SDL2_gfxPrimitives.h"
 
 
 SDLRenderer::SDLRenderer():
 	_window(SDL_CreateWindow("PACMAN", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		896, 1030/*992*/, SDL_WindowFlags::SDL_WINDOW_SHOWN),
+		_gameWidth*_scale, _gameHeight*_scale, SDL_WindowFlags::SDL_WINDOW_SHOWN),
 	[](SDL_Window*win)
 	{
 		SDL_DestroyWindow(win);
@@ -15,6 +16,9 @@ SDLRenderer::SDLRenderer():
 		SDL_DestroyRenderer(ren);
 	})
 {
+	SDL_RenderSetLogicalSize(_renderer.get(), _gameWidth*_scale,_gameHeight*_scale);
+
+	SDL_RenderSetScale(_renderer.get(), _scale, _scale);
 }
 
 void SDLRenderer::SetRenderDrawColor(Color color)
@@ -46,6 +50,12 @@ void SDLRenderer::FillRect(Rect rect)
 	const auto color = rect.color;
 	SDL_SetRenderDrawColor(_renderer.get(), color.r, color.g, color.b, color.a);
 	SDL_RenderFillRect(_renderer.get(), &sdl_rect);
+}
+
+void SDLRenderer::FillCircle(int x, int y, int r, Color color)
+{
+	//SDL_SetRenderDrawColor()
+	filledCircleRGBA(_renderer.get(), x, y, r, color.r, color.g, color.b, color.a);
 }
 
 void SDLRenderer::CopyEx(Wrapper<SDL_Texture>& texture, Rect* source, Rect* destination, double angle)

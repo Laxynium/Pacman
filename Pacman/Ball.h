@@ -10,7 +10,7 @@ class Ball:public GameObject,public ICollidable
 protected:
 	Tag _tag;
 	bool IsPicked = false;
-	Color _color = { 255,255,0,0 };
+	Color _color = { 255,255,0,255 };
 	ICollisionManager& _collisionManager;
 public:
 	Ball(IRenderer&renderer, ICollisionManager&collisionManager,const Vector2D&pos,int width, int height);

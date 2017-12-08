@@ -75,7 +75,7 @@ void GameStateMachine::OnPushedState(const std::string& stateName)
 
 	_currentState->OnEnter();
 
-	std::cout << "Push state " << stateName << std::endl;
+	//std::cout << "Push state " << stateName << std::endl;
 }
 
 void GameStateMachine::OnChangedState(const std::string& stateName)
@@ -112,7 +112,7 @@ void GameStateMachine::OnChangedState(const std::string& stateName)
 
 	_currentState->OnEnter();
 
-	std::cout << "Changed state " << stateName << std::endl;
+	//std::cout << "Changed state " << stateName << std::endl;
 }
 
 

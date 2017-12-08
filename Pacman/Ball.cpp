@@ -1,6 +1,5 @@
 ﻿#include "Ball.h"
 #include "IRenderer.h"
-#include <iostream>
 #include "ICollisionManager.h"
 #include "Vector2D.h"
 
@@ -16,6 +15,7 @@ Ball::Ball(IRenderer& renderer,ICollisionManager&collisionManager,const Vector2D
 void Ball::Draw()
 {
 	_renderer.FillRect(Rect {static_cast<int>(_position.X()),static_cast<int>(_position.Y()),_width,_height,_color});
+	//_renderer.FillCircle(_position.X(), _position.Y(), std::min(_width, _height)/2, _color);
 }
 
 void Ball::Update()

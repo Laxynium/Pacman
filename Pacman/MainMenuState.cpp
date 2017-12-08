@@ -54,11 +54,11 @@ void MainMenuState::OnEnter()
 	{
 		OnEnterPressed();
 	} } });
-	std::cout << "On enter in MenuState\n";
+	//std::cout << "On enter in MenuState\n";
 }
 
 void MainMenuState::OnExit()
 {
 	_inputHandler->RemoveBinding("EnterPressed");
-	std::cout << "On exit in MenuState\n";
+	//std::cout << "On exit in MenuState\n";
 }

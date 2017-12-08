@@ -72,7 +72,7 @@ void Ghost::OnStateChanged()
 		_velocity = _direction*_speed;
 		break;
 	case State::Scared:
-		_tag = Tag::Enemy;
+		_tag = Tag::Frightened;
 		_currentTexture = _eatableTextureName;
 		_framesOffset = 0;
 		_animation.SetFrameOffset(0);
@@ -234,7 +234,7 @@ void Ghost::OnPlayerPickedUpSuperBall(ICollidable&superBall)
 
 void Ghost::OnSuperBallPowerEnding()
 {
-	if (_currentState == State::BackToBase)return;
+	if (_currentState == State::BackToBase||_currentState==State::Normal||_currentState==State::Base)return;
 
 	_currentState = State::Flashing;
 

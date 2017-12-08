@@ -14,7 +14,7 @@ void GameLogicHandler::OnPlayerPickedSuperBall(ICollidable& A, ICollidable& B)
 
 	_numberOfScoredPoints += 50;
 	PlayerScoreChanged(_numberOfScoredPoints);
-	std::cout << "Score " << _numberOfScoredPoints << std::endl;
+	//std::cout << "Score " << _numberOfScoredPoints << std::endl;
 
 	_numberOfGhostsEatenInRow = 0;
 
@@ -41,7 +41,7 @@ void GameLogicHandler::OnPlayerPickedBall(ICollidable& A, ICollidable& B)
 
 	_numberOfScoredPoints += 10;
 	PlayerScoreChanged(_numberOfScoredPoints);
-	std::cout << "Score " << _numberOfScoredPoints << std::endl;
+	//std::cout << "Score " << _numberOfScoredPoints << std::endl;
 
 	if (_countOfPickedBalls >= _countOfBalls)
 	{
@@ -51,35 +51,27 @@ void GameLogicHandler::OnPlayerPickedBall(ICollidable& A, ICollidable& B)
 
 void GameLogicHandler::OnPlayerFrightenedGhostCollision(ICollidable&A,ICollidable&B)
 {
-	
+	_numberOfScoredPoints += 200 * (++_numberOfGhostsEatenInRow);
+	PlayerScoreChanged(_numberOfScoredPoints);
+	//std::cout << "Score " << _numberOfScoredPoints << std::endl;
+	PlayerAteGhost(GetCollidableWith(Tag::Enemy, A, B));
 }
 
 void GameLogicHandler::OnPlayerGhostCollision(ICollidable& A, ICollidable& B)
 {
+	GhostHitPlayer();
 
-	if(_isSuperBallPicked)
+	--_numberOfLives;
+
+	PlayerLivesChanged(_numberOfLives);
+
+	//std::cout << "Actuall count of lives "<<_numberOfLives << std::endl;
+	if (_numberOfLives <= 0)
 	{
-		_numberOfScoredPoints += 200 * (++_numberOfGhostsEatenInRow);
-		PlayerScoreChanged(_numberOfScoredPoints);
-		std::cout << "Score " << _numberOfScoredPoints << std::endl;
-		PlayerAteGhost(GetCollidableWith(Tag::Enemy,A,B));
-	}
-	else
-	{
-		GhostHitPlayer();
-
-		--_numberOfLives;
-
-		PlayerLivesChanged(_numberOfLives);
-
-		std::cout << "Actuall count of lives "<<_numberOfLives << std::endl;
-		if (_numberOfLives <= 0)
-		{
-			PlayerLivesChanged(3);
-			GameEnded();
-		}	
-	}
-
+		//In order to restart displayed lives
+		PlayerLivesChanged(3);
+		GameEnded();
+	}	
 }
 
 ICollidable& GameLogicHandler::GetCollidableWith(Tag tag, ICollidable& A, ICollidable& B)
@@ -96,7 +88,7 @@ GameLogicHandler::GameLogicHandler(ICollisionManager& collisionManager): _collis
 
 	_collisionManager.Subscribe(Tag::Player, Tag::Enemy, [this](auto& A, auto& B) { this->OnPlayerGhostCollision(A, B); });
 	
-	_collisionManager.Subscribe(Tag::Player, Tag::Frightened, [this](auto& A, auto& B) { this->OnPlayerGhostCollision(A, B); });
+	_collisionManager.Subscribe(Tag::Player, Tag::Frightened, [this](auto& A, auto& B) { this->OnPlayerFrightenedGhostCollision(A, B); });
 
 }
 

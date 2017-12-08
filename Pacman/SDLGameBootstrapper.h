@@ -3,7 +3,7 @@
 
 class SDLGameBootstrapper:public IGameBootstrapper
 {
-	const int FPS = 120;
+	const int FPS = 90;
 	const int DELAY_TIME = 1000.0f / FPS;
 public:
 	void Initialize() override;

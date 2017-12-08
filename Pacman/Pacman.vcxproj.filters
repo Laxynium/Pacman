@@ -107,6 +107,9 @@
     <Filter Include="Game\Models\GameObjects\Animation">
       <UniqueIdentifier>{3267f6e1-160b-46a6-8026-f6f8ac140507}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SDL_gfx">
+      <UniqueIdentifier>{deda6eaa-39e5-435a-accb-5d5a36c237ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ILayerParser.h">
@@ -335,6 +338,9 @@
     <ClInclude Include="Animation.h">
       <Filter>Game\Models\GameObjects\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="SDL2_gfxPrimitives.h">
+      <Filter>SDL_gfx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -502,6 +508,9 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Game\Models\GameObjects\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL2_gfxPrimitives.c">
+      <Filter>SDL_gfx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

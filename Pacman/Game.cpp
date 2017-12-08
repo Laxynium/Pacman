@@ -7,8 +7,11 @@
 Game::Game(std::shared_ptr<IRenderer> renderer, std::shared_ptr<GameStateMachine> gameStateMachine):
 	_renderer(renderer),_gameStateMachine(gameStateMachine)
 {
-	_gameStateMachine->GameHasEnded += [&]() {_isRunning = false; };
-	//_gameState->GameHasEnded
+	_isRunning = true;
+	_gameStateMachine->GameHasEnded += [&]()
+	{
+		_isRunning = false;
+	};
 }
 
 bool Game::IsRunning() const

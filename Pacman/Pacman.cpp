@@ -62,7 +62,7 @@ void Pacman::Update()
 		_position = oldPos;
 		_currentFrame = 1;
 		return;
-		std::cout << "I am in place\n";
+		//std::cout << "I am in place\n";
 	}
 
 	//Transistion between edges of map

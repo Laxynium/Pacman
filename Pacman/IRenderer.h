@@ -25,6 +25,8 @@ public:
 
 	virtual void FillRect(Rect rect) = 0;
 
+	virtual void FillCircle(int x, int y, int r, Color color)=0;
+
 	virtual void Present() = 0;	
 
 	IRenderer() {}
