@@ -15,7 +15,7 @@ public:
 private:
 	const int _gameWidth = 896;
 	const int _gameHeight = 1024;
-	const double _scale = 0.98;
+	const double _scale = 0.72;
 	Ptr<SDL_Window> _window;
 	Ptr<SDL_Renderer> _renderer;
 	

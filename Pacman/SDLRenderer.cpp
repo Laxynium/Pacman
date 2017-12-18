@@ -5,7 +5,7 @@
 
 SDLRenderer::SDLRenderer():
 	_window(SDL_CreateWindow("PACMAN", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		_gameWidth*_scale, _gameHeight*_scale, SDL_WindowFlags::SDL_WINDOW_SHOWN),
+		_gameWidth*_scale, _gameHeight*_scale, SDL_WindowFlags::SDL_WINDOW_ALLOW_HIGHDPI),
 	[](SDL_Window*win)
 	{
 		SDL_DestroyWindow(win);
