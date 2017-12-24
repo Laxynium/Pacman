@@ -2,6 +2,7 @@
 #include "PlayState.h"
 #include "PauseState.h"
 #include "MainMenuState.h"
+#include "GameOverState.h"
 
 GameStateFactory::GameStateFactory(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,std::shared_ptr<ITextureManager>textureManager,
                                    std::shared_ptr<ILevelLoader> levelLoader,
@@ -18,13 +19,17 @@ GameStateFactory::GameStateFactory(std::shared_ptr<IRenderer> renderer, std::sha
 
 	auto createPauseState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<PauseState>(_renderer,_inputHandler); };
 
-	auto createMenuState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<MainMenuState>(_renderer,_inputHandler,_textureManager); };
+	auto createMenuState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<MainMenuState>(_renderer,_inputHandler); };
+
+	auto createGameOverState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<GameOverState>(_renderer, _inputHandler); };
 
 	_mappedStates["PlayState"] = createPlayState;
 
 	_mappedStates["PauseState"] = createPauseState;
 
 	_mappedStates["MainMenuState"] = createMenuState;
+
+	_mappedStates["GameOverState"] = createGameOverState;
 }
 
 std::shared_ptr<IGameState> GameStateFactory::CreateState(const std::string& name)

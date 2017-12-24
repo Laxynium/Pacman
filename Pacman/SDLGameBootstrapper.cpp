@@ -22,13 +22,9 @@ namespace di = boost::di;
 
 void SDLGameBootstrapper::Initialize()
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-		throw new std::exception("Could not initialize subsystems.");
+	InitializeComponents();
 
-	if(TTF_Init()<0)
-		throw new std::exception("Could not initialize subsystems.");
-
-
+	//Setup injections
 	auto injector = di::make_injector(
 		di::bind<ILevelLoader>().to<FromJsonLevelLoader>().in(di::singleton),
 		di::bind<ITextureManager>().to<SDLTextureManager>().in(di::singleton),
@@ -42,13 +38,19 @@ void SDLGameBootstrapper::Initialize()
 		di::bind<IStatesLoader>().to<FromJsonStatesLoader>().in(di::singleton)
 		);
 		
-		_game = injector.create<std::shared_ptr<Game>>();
+	_game = injector.create<std::shared_ptr<Game>>();
 }
+void SDLGameBootstrapper::InitializeComponents()
+{
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+		throw new std::exception("Could not initialize subsystems.");
 
+	if (TTF_Init()<0)
+		throw new std::exception("Could not initialize subsystems.");
+}
 void SDLGameBootstrapper::Run()
 {
 	Uint32 frameStart, frameTime;
-
 	while (_game->IsRunning())
 	{
 		frameStart = SDL_GetTicks();

@@ -14,7 +14,7 @@
             "path": "Assets/MenuButton.png"
           }
         ],
-        "gameObjects": [       
+        "gameObjects": [
           {
             "type": "button",
             "name": "resumeButton",
@@ -44,8 +44,7 @@
       },
       {
         "name": "MainMenuState",
-        "textures": 
-        [
+        "textures": [
 
           {
             "name": "playButton",
@@ -56,8 +55,7 @@
             "path": "Assets/QuitButton.png"
           }
         ],
-        "gameObjects": 
-        [
+        "gameObjects": [
           {
             "type": "button",
             "name": "playButton",
@@ -66,7 +64,7 @@
             "y": 400,
             "width": 300,
             "height": 80,
-            "framesCount": 30,
+            "framesCount": 3,
             "rows": 10,
             "columns": 3
           },
@@ -78,7 +76,48 @@
             "y": 600,
             "width": 300,
             "height": 80,
-            "framesCount": 30,
+            "framesCount": 3,
+            "rows": 10,
+            "columns": 3
+          }
+        ]
+
+      },
+      {
+        "name": "GameOverState",
+        "textures": [
+
+          {
+            "name": "playAgainButton",
+            "path": "Assets/PlayAgainButton.png"
+          },
+          {
+            "name": "menuButton",
+            "path": "Assets/MenuButton.png"
+          }
+        ],
+        "gameObjects": [
+          {
+            "type": "button",
+            "name": "playAgainButton",
+            "textureName": "playAgainButton",
+            "x": 298,
+            "y": 400,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 10,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "menuButton",
+            "textureName": "menuButton",
+            "x": 298,
+            "y": 600,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
             "rows": 10,
             "columns": 3
           }

@@ -9,16 +9,12 @@ class MainMenuState:public MenuStateBase
 	std::shared_ptr<IRenderer> _renderer;
 
 	std::shared_ptr<IInputHandler> _inputHandler;
-
-	std::shared_ptr<ITextureManager> _textureManager;
-
 private://methods
 	void OnEnterPressed();
 protected:
 	void BindActionToButton(Button& button) override;
 public:
-	MainMenuState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,
-	          std::shared_ptr<ITextureManager> textureManager);
+	MainMenuState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler);
 	~MainMenuState();
 	void Update() override;
 
