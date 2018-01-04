@@ -19,7 +19,6 @@ private:
 	Ptr<SDL_Window> _window;
 	Ptr<SDL_Renderer> _renderer;
 	
-	
 public:
 	SDLRenderer ();
 	void SetRenderDrawColor(Color color) override;

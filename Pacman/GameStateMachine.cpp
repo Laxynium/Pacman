@@ -12,22 +12,27 @@ GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,
 	{
 		this->GameHasEnded();
 	}) });
+
 	auto state = _gameStateFactory->CreateState("MainMenuState");
-	_statesLoader->Load("Assets/GameStates.json", state);
+
+	_statesLoader->Load(_statesFileName, state);
 	_gameStates.push_back(state);
 
-	_gameStates.back()->PushedState += [this](const auto&name) {this->OnPushedState(name); };
-
-	_gameStates.back()->ChangedState += [this](const auto&name) {this->OnChangedState(name); };
-
-	_gameStates.back()->StateEnded += [this]() {this->OnStateEnded(); };
-
+	SetupStateBindings(_gameStates.back());
 
 	_currentState = _gameStates.back();
 
 	_currentState->OnEnter();
 }
 
+void GameStateMachine::SetupStateBindings(std::shared_ptr<IGameState>&state)
+{
+	state->PushedState += [this](const auto&name) {this->OnPushedState(name); };
+
+	state->ChangedState += [this](const auto&name) {this->OnChangedState(name); };
+
+	state->StateEnded += [this]() {this->OnStateEnded(); };
+}
 
 void GameStateMachine::OnStateEnded()
 {
@@ -57,15 +62,11 @@ void GameStateMachine::OnPushedState(const std::string& stateName)
 
 	auto state = _gameStateFactory->CreateState(stateName);
 
-	_statesLoader->Load("Assets/GameStates.json", state);
+	_statesLoader->Load(_statesFileName, state);
 
 	if (state == nullptr)return;
 
-	state->PushedState += [this](const auto&name) {OnPushedState(name); };
-
-	state->ChangedState += [this](const auto&name) {OnChangedState(name); };
-
-	state->StateEnded += [this]() {OnStateEnded(); };
+	SetupStateBindings(state);
 	
 	_gameStates.back()->OnExit();
 
@@ -74,8 +75,6 @@ void GameStateMachine::OnPushedState(const std::string& stateName)
 	_currentState = _gameStates.back();
 
 	_currentState->OnEnter();
-
-	//std::cout << "Push state " << stateName << std::endl;
 }
 
 void GameStateMachine::OnChangedState(const std::string& stateName)
@@ -90,15 +89,11 @@ void GameStateMachine::OnChangedState(const std::string& stateName)
 
 	auto state = _gameStateFactory->CreateState(stateName);
 
-	_statesLoader->Load("Assets/GameStates.json",state);
+	_statesLoader->Load(_statesFileName,state);
 
 	if (state == nullptr)return;
 
-	state->PushedState += [this](const auto&name) {OnPushedState(name); };
-
-	state->ChangedState += [this](const auto&name) {OnChangedState(name); };
-
-	state->StateEnded += [this]() {OnStateEnded(); };
+	SetupStateBindings(state);
 
 	for(auto&gameState:_gameStates)
 	{

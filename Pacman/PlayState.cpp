@@ -99,7 +99,7 @@ void PlayState::OnLevelEnd()
 void PlayState::OnGameEnd()
 {
 	//Notifity GameStateMachine that you ended
-	ChangedState("MainMenuState");
+	ChangedState("GameOverState");
 
 	_isRunning = false;
 }

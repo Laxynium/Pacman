@@ -10,8 +10,8 @@ namespace di=boost::di;
 class Game
 {
 	std::shared_ptr<IRenderer> _renderer;
+
 	std::shared_ptr<GameStateMachine> _gameStateMachine;
-	std::shared_ptr<IInputHandler> _inputHandler;
 
 	bool _isRunning = true;
 public:

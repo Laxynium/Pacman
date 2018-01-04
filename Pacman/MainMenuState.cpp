@@ -1,7 +1,10 @@
 ﻿#include "MainMenuState.h"
 #include "SpecialSDLActionType.h"
 
-MainMenuState::MainMenuState(std::shared_ptr<IRenderer>renderer,std::shared_ptr<IInputHandler> inputHandler,std::shared_ptr<ITextureManager>textureManager): _renderer(renderer), _inputHandler(inputHandler), _textureManager(textureManager)
+MainMenuState::
+MainMenuState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler): _renderer(renderer),
+                                                                                                 _inputHandler(
+	                                                                                                 inputHandler)
 {
 	_stateName = "MainMenuState";
 }
@@ -19,6 +22,7 @@ void MainMenuState::BindActionToButton(Button& button)
 {
 	std::function<void()>func;
 
+	//TODO use map not ifs
 	if (button.GetName() == "playButton")
 		func = [this]() {this->ChangedState("PlayState"); };
 
@@ -32,19 +36,16 @@ void MainMenuState::Update()
 {
 	for (auto&object : _objects)
 		object->Update();
-	//std::cout << "Updating in MenuState\n";
 }
 
 void MainMenuState::Draw()
 {
 	for (auto&object : _objects)
 		object->Draw();
-	//std::cout << "Drawing in MenuState\n";
 }
 
 void MainMenuState::HandleInput()
 {
-	//std::cout << "Handling input in MenuState\n";
 	_inputHandler->HandleActions();
 }
 
@@ -54,11 +55,9 @@ void MainMenuState::OnEnter()
 	{
 		OnEnterPressed();
 	} } });
-	//std::cout << "On enter in MenuState\n";
 }
 
 void MainMenuState::OnExit()
 {
 	_inputHandler->RemoveBinding("EnterPressed");
-	//std::cout << "On exit in MenuState\n";
 }

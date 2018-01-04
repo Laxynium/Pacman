@@ -20,7 +20,7 @@ class PlayState:public IGameState
 
 	std::unique_ptr<Level> _level;
 
-	const std::string&_mapPath = "Assets/PacmanTiled.json";
+	const std::string _mapPath = "Assets/PacmanTiled.json";
 
 	bool _isRunning = true;
 	std::shared_ptr<ITextureManager> _textureManager;

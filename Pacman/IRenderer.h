@@ -1,8 +1,4 @@
 #pragma once
-#include <tuple>
-#include "IDrawable.h"
-#include <vector>
-#include <memory>
 #include "Wrapper.h"
 #include <SDL.h>
 #include "IClearable.h"
@@ -15,9 +11,13 @@ struct Rect;
 class IRenderer:public IClearable
 {
 public:
+	IRenderer() = default;
+
+	virtual ~IRenderer() = default;
+
 	virtual void SetRenderDrawColor(Color color) = 0;
 
-	virtual Wrapper<SDL_Texture>CreateTextureFrom(Wrapper<SDL_Surface>&surface) = 0;
+	virtual Wrapper<SDL_Texture> CreateTextureFrom(Wrapper<SDL_Surface>&surface) = 0;
 
 	virtual void CopyEx(Wrapper<SDL_Texture>& texture, Rect* source, Rect* destination,double angle = 0) = 0;
 
@@ -29,8 +29,5 @@ public:
 
 	virtual void Present() = 0;	
 
-	IRenderer() {}
-
-	virtual ~IRenderer() {}
 };
 

@@ -37,7 +37,9 @@ namespace Properties
 }
 
 
-FromJsonStatesLoader::FromJsonStatesLoader(std::shared_ptr<IRenderer>renderer, std::shared_ptr<IInputHandler>inputHandler, std::shared_ptr<ITextureManager> textureManager) : _textureManager(
+FromJsonStatesLoader::FromJsonStatesLoader(std::shared_ptr<IRenderer> renderer,
+                                           std::shared_ptr<IInputHandler> inputHandler, 
+	std::shared_ptr<ITextureManager> textureManager) : _textureManager(
 	textureManager), _inputHandler(inputHandler), _renderer(renderer)
 {
 }
@@ -90,6 +92,7 @@ void FromJsonStatesLoader::ParseAndLoadTextures(nlohmann::basic_json<>json)
 
 std::shared_ptr<GameObject>FromJsonStatesLoader::CreateGameObject(Properties::GameObjectProp&prop)
 {
+	//TODO create objects factory
 	if(prop.Type=="button")
 	{
 		auto button= std::make_shared<Button>(_renderer, _inputHandler, _textureManager);
@@ -115,9 +118,10 @@ std::vector<std::shared_ptr<GameObject>>FromJsonStatesLoader::ParseGameObjects(n
 	std::vector<std::shared_ptr<GameObject>>gameObjects;
 	for(auto&gameObject:json)
 	{
-		Properties::GameObjectProp prop;
-		prop = gameObject;
+		Properties::GameObjectProp prop = gameObject;
+
 		std::shared_ptr<GameObject>object = CreateGameObject(prop);
+
 		gameObjects.emplace_back(object);
 	}
 	return gameObjects;
