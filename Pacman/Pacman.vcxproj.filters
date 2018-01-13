@@ -344,6 +344,12 @@
     <ClInclude Include="GameOverState.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="Caption.h">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateNames.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -516,6 +522,12 @@
       <Filter>SDL_gfx</Filter>
     </ClCompile>
     <ClCompile Include="GameOverState.cpp">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Caption.cpp">
+      <Filter>Game\Models\GameObjects\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateNames.cpp">
       <Filter>Game\GameStates</Filter>
     </ClCompile>
   </ItemGroup>

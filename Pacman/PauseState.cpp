@@ -1,9 +1,10 @@
 ﻿#include "PauseState.h"
 #include "SpecialSDLActionType.h"
+#include "GameStateNames.h"
 
 PauseState::PauseState(std::shared_ptr<IRenderer>renderer, std::shared_ptr<IInputHandler> inputHandler) : _inputHandler(inputHandler), _renderer(renderer)
 {
-	_stateName = "PauseState";
+	_stateName = GameStateNames::PauseState;
 }
 
 void PauseState::BindActionToButton(Button& button)
@@ -14,7 +15,7 @@ void PauseState::BindActionToButton(Button& button)
 		func = [this]() {this->StateEnded(); };
 
 	if (button.GetName() == "menuButton")
-		func = [this]() {this->ChangedState("MainMenuState"); };
+		func = [this]() {this->ChangedState(GameStateNames::MainMenuState); };
 
 	button.Clicked += func;
 }
@@ -40,7 +41,7 @@ void PauseState::OnEnter()
 {
 	_inputHandler->AddBindings({ { (new SpecialSDLActionType(SDL_SCANCODE_BACKSPACE))->SetUniuqueName("F1Pressed"),[this]()
 	{
-		ChangedState("MainMenuState");
+		ChangedState(GameStateNames::MainMenuState);
 	} } });
 	_inputHandler->AddBindings({ { (new SpecialSDLActionType(SDL_SCANCODE_RETURN))->SetUniuqueName("EnterPressed"),[this]()
 	{

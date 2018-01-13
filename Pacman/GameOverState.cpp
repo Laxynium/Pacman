@@ -1,10 +1,11 @@
 ﻿#include "GameOverState.h"
+#include "GameStateNames.h"
 
 GameOverState::GameOverState(const std::shared_ptr<IRenderer>& renderer,
                              const std::shared_ptr<IInputHandler>& input_handler): _renderer(renderer),
                                                                                    _inputHandler(input_handler)
 {
-	_stateName = "GameOverState";
+	_stateName = GameStateNames::GameOverState;
 
 }
 
@@ -39,10 +40,10 @@ void GameOverState::BindActionToButton(Button& button)
 	std::function<void()>func;
 
 	if (button.GetName() == "playAgainButton")
-		func = [this]() {this->ChangedState("PlayState"); };
+		func = [this]() {this->ChangedState(GameStateNames::PlayState); };
 
 	if (button.GetName() == "menuButton")
-		func = [this]() {this->ChangedState("MainMenuState"); };
+		func = [this]() {this->ChangedState(GameStateNames::MainMenuState); };
 
 	button.Clicked += func;
 }

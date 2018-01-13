@@ -2,6 +2,7 @@
 #include "SDLActionType.h"
 #include "SpecialSDLActionType.h"
 #include <functional>
+#include "GameStateNames.h"
 
 PlayState::PlayState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,std::shared_ptr<ITextureManager>textureManager,
                          std::shared_ptr<ILevelLoader> levelLoader, std::shared_ptr<ICollisionManager> collisionManager,
@@ -10,7 +11,7 @@ PlayState::PlayState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInput
 	_levelLoader(levelLoader), _collisionManager(collisionManager),
 	_gameLogicHandler(gameLogicHandler), _gameHud(gameHud), _textureManager(textureManager)
 {
-	_stateName = "PlayState";
+	_stateName = GameStateNames::PlayState;
 	SetupPacman();
 
 	_level = std::move(_levelLoader->LoadLevel(_mapPath));
@@ -64,7 +65,7 @@ void PlayState::BindInput()
 
 	actions.emplace_back(std::make_pair((new SpecialSDLActionType{SDL_SCANCODE_ESCAPE})->SetUniuqueName("ESCPressed"),[&]()
 	{
-		PushedState("PauseState");
+		PushedState(GameStateNames::PauseState);
 	}));
 
 	_inputHandler->AddBindings( actions);
@@ -99,7 +100,7 @@ void PlayState::OnLevelEnd()
 void PlayState::OnGameEnd()
 {
 	//Notifity GameStateMachine that you ended
-	ChangedState("GameOverState");
+	ChangedState(GameStateNames::GameOverState);
 
 	_isRunning = false;
 }

@@ -3,6 +3,7 @@
 #include "JsonParser.h"
 #include "Button.h"
 #include "MenuStateBase.h"
+#include "Caption.h"
 using nlohmann::json;
 
 namespace Properties
@@ -106,9 +107,17 @@ std::shared_ptr<GameObject>FromJsonStatesLoader::CreateGameObject(Properties::Ga
 		
 		return button;
 	}
-	if(prop.Type=="title")
+	if(prop.Type=="caption")
 	{
-		return nullptr;
+		auto caption = std::make_shared<Caption>(_renderer, _textureManager);
+		caption->SetPosition({ static_cast<double>(prop.X),static_cast<double>(prop.Y) });
+		caption->SetWidth(prop.Width);
+		caption->SetHeight(prop.Height);
+		caption->SetName(prop.Name);
+		caption->SetTextureName(prop.TextureName);
+		caption->SetColumnsCount(prop.Columns);
+		caption->SetFramesCount(prop.FramesCount);
+		return caption;
 	}
 	return nullptr;
 }

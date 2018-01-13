@@ -4,6 +4,7 @@
 #include "MainMenuState.h"
 #include <string>
 #include "PlayState.h"
+#include "GameStateNames.h"
 
 GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,
 	std::shared_ptr<GameStateFactory>gameStateFactory, std::shared_ptr<IStatesLoader>statesLoader) :_inputHandler(inputHandler), _gameStateFactory(gameStateFactory), _statesLoader(statesLoader)
@@ -13,7 +14,7 @@ GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,
 		this->GameHasEnded();
 	}) });
 
-	auto state = _gameStateFactory->CreateState("MainMenuState");
+	auto state = _gameStateFactory->CreateState(GameStateNames::MainMenuState);
 
 	_statesLoader->Load(_statesFileName, state);
 	_gameStates.push_back(state);

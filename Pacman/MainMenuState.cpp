@@ -1,12 +1,13 @@
 ﻿#include "MainMenuState.h"
 #include "SpecialSDLActionType.h"
+#include "GameStateNames.h"
 
 MainMenuState::
 MainMenuState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler): _renderer(renderer),
                                                                                                  _inputHandler(
 	                                                                                                 inputHandler)
 {
-	_stateName = "MainMenuState";
+	_stateName = GameStateNames::MainMenuState;
 }
 
 MainMenuState::~MainMenuState()
@@ -15,7 +16,7 @@ MainMenuState::~MainMenuState()
 
 void MainMenuState::OnEnterPressed()
 {
-	ChangedState("PlayState");
+	ChangedState(GameStateNames::PlayState);
 }
 
 void MainMenuState::BindActionToButton(Button& button)
@@ -24,7 +25,7 @@ void MainMenuState::BindActionToButton(Button& button)
 
 	//TODO use map not ifs
 	if (button.GetName() == "playButton")
-		func = [this]() {this->ChangedState("PlayState"); };
+		func = [this]() {this->ChangedState(GameStateNames::PlayState); };
 
 	if (button.GetName() == "quitButton")
 		func = [this]() {this->StateEnded(); };

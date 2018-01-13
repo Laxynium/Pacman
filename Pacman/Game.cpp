@@ -31,7 +31,7 @@ void Game::HandleInput()
 
 void Game::Render() const
 {
-	_renderer->SetRenderDrawColor(Color{ 0, 0, 0,0 });
+	_renderer->SetRenderDrawColor(Color{ 0, 0, 0, 0 });
 
 	_renderer->Clear();
 

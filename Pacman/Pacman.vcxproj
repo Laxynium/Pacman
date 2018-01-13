@@ -139,6 +139,7 @@
     <ClInclude Include="BehaviourBase.h" />
     <ClInclude Include="BoostDI.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Caption.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="EnemiesObjectLayer.h" />
     <ClInclude Include="EnemiesObjectLayerParser.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameStateFactory.h" />
     <ClInclude Include="GameStateMachine.h" />
+    <ClInclude Include="GameStateNames.h" />
     <ClInclude Include="Ghost.h" />
     <ClInclude Include="GhostState.h" />
     <ClInclude Include="IClearable.h" />
@@ -217,6 +219,7 @@
     <ClCompile Include="BallsObjectLayer.cpp" />
     <ClCompile Include="BehaviourBase.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Caption.cpp" />
     <ClCompile Include="EnemiesObjectLayer.cpp" />
     <ClCompile Include="EnemiesObjectLayerParser.cpp" />
     <ClCompile Include="Event.cpp" />
@@ -230,6 +233,7 @@
     <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameStateFactory.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
+    <ClCompile Include="GameStateNames.cpp" />
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="GhostState.cpp" />
     <ClCompile Include="IClearable.cpp" />

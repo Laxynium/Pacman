@@ -53,7 +53,11 @@
           {
             "name": "quitButton",
             "path": "Assets/QuitButton.png"
-          }
+          },
+		  {
+			"name":"pacmanCaption",
+			"path":"Assets/PacmanCaption.png"
+		  }
         ],
         "gameObjects": [
           {
@@ -65,7 +69,7 @@
             "width": 300,
             "height": 80,
             "framesCount": 3,
-            "rows": 10,
+            "rows": 1,
             "columns": 3
           },
           {
@@ -77,9 +81,21 @@
             "width": 300,
             "height": 80,
             "framesCount": 3,
-            "rows": 10,
+            "rows": 1,
             "columns": 3
-          }
+          },
+		  {
+			"type": "caption",
+            "name": "pacmanCaption",
+            "textureName": "pacmanCaption",
+            "x": 148,
+            "y": 50,
+            "width": 600,
+            "height": 240,
+            "framesCount": 1,
+            "rows": 1,
+            "columns": 1
+		  }
         ]
 
       },
@@ -89,11 +105,15 @@
 
           {
             "name": "playAgainButton",
-            "path": "Assets/PlayAgainButton.png"
+            "path": "Assets/RetryButton.png"
           },
           {
             "name": "menuButton",
             "path": "Assets/MenuButton.png"
+          },
+		  {
+            "name": "gameOverCaption",
+            "path": "Assets/GameOverCaption.png"
           }
         ],
         "gameObjects": [
@@ -106,7 +126,7 @@
             "width": 300,
             "height": 80,
             "framesCount": 3,
-            "rows": 10,
+            "rows": 1,
             "columns": 3
           },
           {
@@ -118,8 +138,20 @@
             "width": 300,
             "height": 80,
             "framesCount": 3,
-            "rows": 10,
+            "rows": 1,
             "columns": 3
+          },
+		  {
+            "type": "caption",
+            "name": "gameOverCaption",
+            "textureName": "gameOverCaption",
+            "x": 148,
+            "y": 100,
+            "width": 600,
+            "height": 180,
+            "framesCount": 2,
+            "rows": 1,
+            "columns": 2
           }
         ]
 
