@@ -1,8 +1,8 @@
 ﻿#include "GameOverState.h"
 #include "GameStateNames.h"
 
-GameOverState::GameOverState(const std::shared_ptr<IRenderer>& renderer,
-                             const std::shared_ptr<IInputHandler>& input_handler): _renderer(renderer),
+GameOverState::GameOverState(
+                             const std::shared_ptr<IInputHandler>& input_handler):
                                                                                    _inputHandler(input_handler)
 {
 	_stateName = GameStateNames::GameOverState;

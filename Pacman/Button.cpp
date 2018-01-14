@@ -86,28 +86,4 @@ void Button::Update()
 			_currentFrame = 2;
 		}
 	}
-
-	
-
-	//if(_isHovered)
-	//{
-	//	clock_t currentTime = clock();
-
-	//	if (currentTime - _startTime < 20)
-	//		return;
-
-	//	_startTime = currentTime;
-
-	//	if (!_animPlayed)
-	//		(++_currentFrame%=_framesCount);
-	//	/*if(_currentFrame>=30)
-	//	{
-	//		_animPlayed = true;
-	//		_currentFrame = 0;
-	//	}*/
-	//}else
-	//{
-	//	_animPlayed = false;
-	//	_currentFrame = 0;
-	//}
 }

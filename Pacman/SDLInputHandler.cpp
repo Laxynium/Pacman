@@ -100,8 +100,6 @@ void SDLInputHandler::HandleActions()
 SDLInputHandler::SDLInputHandler()
 {
 }
-
-
 SDLInputHandler::~SDLInputHandler()
 {
 }

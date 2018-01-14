@@ -161,7 +161,6 @@
     <ClInclude Include="IClearable.h" />
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="ICollisionManager.h" />
-    <ClInclude Include="IDestroyable.h" />
     <ClInclude Include="IDrawable.h" />
     <ClInclude Include="IGameBootstrapper.h" />
     <ClInclude Include="IGameState.h" />
@@ -237,7 +236,6 @@
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="GhostState.cpp" />
     <ClCompile Include="IClearable.cpp" />
-    <ClCompile Include="IDestroyable.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="IHandleInput.cpp" />
     <ClCompile Include="ILayerParser.cpp" />

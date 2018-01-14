@@ -2,7 +2,7 @@
 #include "SpecialSDLActionType.h"
 #include "GameStateNames.h"
 
-PauseState::PauseState(std::shared_ptr<IRenderer>renderer, std::shared_ptr<IInputHandler> inputHandler) : _inputHandler(inputHandler), _renderer(renderer)
+PauseState::PauseState(std::shared_ptr<IInputHandler> inputHandler) : _inputHandler(inputHandler)
 {
 	_stateName = GameStateNames::PauseState;
 }

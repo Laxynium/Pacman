@@ -1,7 +1,4 @@
 #pragma once
-#include <vector>
-#include "GameObject.h"
-#include "MoveableGameObject.h"
 #include "ICollidable.h"
 #include <functional>
 class ICollisionManager

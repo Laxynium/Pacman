@@ -2,6 +2,8 @@
 #include "LayerBase.h"
 #include "ICollisionManager.h"
 #include <memory>
+#include <vector>
+#include "GameObject.h"
 
 class ObjectLayer:public LayerBase
 {

@@ -3,7 +3,7 @@
 #include "GameStateNames.h"
 
 MainMenuState::
-MainMenuState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler): _renderer(renderer),
+MainMenuState(std::shared_ptr<IInputHandler> inputHandler): 
                                                                                                  _inputHandler(
 	                                                                                                 inputHandler)
 {

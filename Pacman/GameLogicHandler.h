@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "ICollisionManager.h"
 #include "Event.h"
+#include "IUpdateable.h"
 
 class GameLogicHandler:public IUpdateable,public IClearable
 {

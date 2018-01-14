@@ -17,9 +17,6 @@
     <Filter Include="Game\Input">
       <UniqueIdentifier>{ebb33dff-656f-46fe-9ecd-d42f79384b44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Input\Sources">
-      <UniqueIdentifier>{ddc7c9d2-40aa-479a-ab0d-073420f92045}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Collisions">
       <UniqueIdentifier>{dd906054-3420-40e7-aaf3-42959e5f3ba8}</UniqueIdentifier>
     </Filter>
@@ -44,20 +41,11 @@
     <Filter Include="Game\Models\Map\Sources">
       <UniqueIdentifier>{f5cd7a52-c86b-4e06-a33e-4fe993c3c6f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Loaders\Sources">
-      <UniqueIdentifier>{87845670-7fd7-4ebe-85bd-b4e12b391a1b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Utilities">
       <UniqueIdentifier>{a053b1ea-fbcc-443b-87e0-17568c837348}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Utilities\Sources">
       <UniqueIdentifier>{8da1411f-c593-4017-bb8d-47b55c7c8661}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Wrappers">
-      <UniqueIdentifier>{fca7e58c-d0af-474b-95a0-481945ecfb27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Wrappers\Sources">
-      <UniqueIdentifier>{5a18010a-8eb9-4f30-a914-8b0d2dabbfbb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game\Utilities\Models">
       <UniqueIdentifier>{b9a53277-50ad-4ebc-9d66-f75d744e02bd}</UniqueIdentifier>
@@ -178,15 +166,6 @@
     <ClInclude Include="SDLTextureManager.h">
       <Filter>Game\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="IRenderer.h">
-      <Filter>Game\Wrappers</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLRenderer.h">
-      <Filter>Game\Wrappers</Filter>
-    </ClInclude>
-    <ClInclude Include="Wrapper.h">
-      <Filter>Game\Wrappers</Filter>
-    </ClInclude>
     <ClInclude Include="Ball.h">
       <Filter>Game\Models\GameObjects</Filter>
     </ClInclude>
@@ -226,7 +205,6 @@
     <ClInclude Include="ObjectBase.h">
       <Filter>Game\Models\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Factory.h" />
     <ClInclude Include="Vector2D.h">
       <Filter>Game\Utilities</Filter>
     </ClInclude>
@@ -290,9 +268,6 @@
     <ClInclude Include="IClearable.h">
       <Filter>Game\Models\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="IDestroyable.h">
-      <Filter>Game\Models\GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="IGameState.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
@@ -350,6 +325,18 @@
     <ClInclude Include="GameStateNames.h">
       <Filter>Game\GameStates</Filter>
     </ClInclude>
+    <ClInclude Include="SDLRenderer.h">
+      <Filter>Game\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderer.h">
+      <Filter>Game\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Wrapper.h">
+      <Filter>Game\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -360,9 +347,6 @@
     </ClCompile>
     <ClCompile Include="LayerParsersCreator.cpp">
       <Filter>Game\Parsers\Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="SDLInputHandler.cpp">
-      <Filter>Game\Input\Sources</Filter>
     </ClCompile>
     <ClCompile Include="SDLCollisionManager.cpp">
       <Filter>Game\Collisions\Sources</Filter>
@@ -379,17 +363,11 @@
     <ClCompile Include="LayerBase.cpp">
       <Filter>Game\Models\Map\Sources</Filter>
     </ClCompile>
-    <ClCompile Include="FromJsonLevelLoader.cpp">
-      <Filter>Game\Loaders\Sources</Filter>
-    </ClCompile>
     <ClCompile Include="TileLayer.cpp">
       <Filter>Game\Models\Map\Sources</Filter>
     </ClCompile>
     <ClCompile Include="SDLTextureManager.cpp">
       <Filter>Game\Utilities\Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="SDLRenderer.cpp">
-      <Filter>Game\Wrappers\Sources</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
@@ -415,7 +393,6 @@
     <ClCompile Include="ObjectBase.cpp">
       <Filter>Game\Models\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Factory.cpp" />
     <ClCompile Include="Vector2D.cpp">
       <Filter>Game\Utilities</Filter>
     </ClCompile>
@@ -468,9 +445,6 @@
       <Filter>Game\HUD</Filter>
     </ClCompile>
     <ClCompile Include="IClearable.cpp">
-      <Filter>Game\Models\GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="IDestroyable.cpp">
       <Filter>Game\Models\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="IGameState.cpp">
@@ -529,6 +503,18 @@
     </ClCompile>
     <ClCompile Include="GameStateNames.cpp">
       <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLInputHandler.cpp">
+      <Filter>Game\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="FromJsonLevelLoader.cpp">
+      <Filter>Game\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLRenderer.cpp">
+      <Filter>Game\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

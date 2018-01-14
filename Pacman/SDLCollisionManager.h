@@ -1,6 +1,7 @@
 #pragma once
 #include "ICollisionManager.h"
 #include <functional>
+#include <vector>
 
 class SDLCollisionManager :
 	public ICollisionManager

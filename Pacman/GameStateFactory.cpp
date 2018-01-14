@@ -18,11 +18,11 @@ GameStateFactory::GameStateFactory(std::shared_ptr<IRenderer> renderer, std::sha
 	auto createPlayState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<PlayState>(_renderer, _inputHandler, _textureManager, _levelLoader,
 		_collisionManager, _gameLogicHandler, _gameHud); };
 
-	auto createPauseState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<PauseState>(_renderer,_inputHandler); };
+	auto createPauseState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<PauseState>(_inputHandler); };
 
-	auto createMenuState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<MainMenuState>(_renderer,_inputHandler); };
+	auto createMenuState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<MainMenuState>(_inputHandler); };
 
-	auto createGameOverState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<GameOverState>(_renderer, _inputHandler); };
+	auto createGameOverState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<GameOverState>(_inputHandler); };
 
 	_mappedStates[GameStateNames::PlayState] = createPlayState;
 

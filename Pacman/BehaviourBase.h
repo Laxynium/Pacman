@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "ICollisionManager.h"
+#include "IUpdateable.h"
 
+class Vector2D;
 class Ghost;
 
 class BehaviourBase:public IUpdateable
