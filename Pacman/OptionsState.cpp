@@ -7,16 +7,16 @@
 OptionsState::OptionsState(const std::shared_ptr<IInputHandler>& inputHandler,const std::shared_ptr<IRenderer>&renderer) :_inputHandler(inputHandler), 
 	_renderer(renderer)
 {
-	_upText = std::make_shared<Text>(_renderer, "Key: W", 40);
+	_upText = std::make_shared<Text>(_renderer, "Key: "+GameSettings::ButtonToMoveUp, 40);
 	_upText->SetPosition({ 400,320 });
 
-	_leftText = std::make_shared<Text>(_renderer, "Key: A", 40);
+	_leftText = std::make_shared<Text>(_renderer, "Key: "+ GameSettings::ButtonToMoveLeft, 40);
 	_leftText->SetPosition({ 400,420 });
 
-	_downText = std::make_shared<Text>(_renderer, "Key: S", 40);
+	_downText = std::make_shared<Text>(_renderer, "Key: "+ GameSettings::ButtonToMoveDown, 40);
 	_downText->SetPosition({ 400,520 });
 
-	_rightText = std::make_shared<Text>(_renderer, "Key: D", 40);
+	_rightText = std::make_shared<Text>(_renderer, "Key: "+ GameSettings::ButtonToMoveRight, 40);
 	_rightText->SetPosition({ 400,620 });
 
 	_stateName = GameStateNames::OptionsState;

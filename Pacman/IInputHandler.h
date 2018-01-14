@@ -52,10 +52,12 @@ public:
 		}
 
 	}
+
 	virtual void SetBindings(std::vector<std::pair<ActionType*, std::function<void()>>>actions)
 	{
 		_actions = actions;
 	}
+
 	virtual void AddBindings(std::vector<std::pair<ActionType*, std::function<void()>>>actions)
 	{
 		_actions.insert(_actions.end(),actions.begin(),actions.end());
