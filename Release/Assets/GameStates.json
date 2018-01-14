@@ -14,7 +14,7 @@
             "path": "Assets/MenuButton.png"
           }
         ],
-        "gameObjects": [       
+        "gameObjects": [
           {
             "type": "button",
             "name": "resumeButton",
@@ -42,22 +42,29 @@
         ]
 
       },
+
       {
         "name": "MainMenuState",
-        "textures": 
-        [
+        "textures": [
 
           {
             "name": "playButton",
             "path": "Assets/PlayButton.png"
           },
           {
+            "name": "optionsButton",
+            "path": "Assets/OptionsButton.png"
+          },
+          {
             "name": "quitButton",
             "path": "Assets/QuitButton.png"
+          },
+          {
+            "name": "pacmanCaption",
+            "path": "Assets/PacmanCaption.png"
           }
         ],
-        "gameObjects": 
-        [
+        "gameObjects": [
           {
             "type": "button",
             "name": "playButton",
@@ -66,8 +73,20 @@
             "y": 400,
             "width": 300,
             "height": 80,
-            "framesCount": 30,
-            "rows": 10,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "optionsButton",
+            "textureName": "optionsButton",
+            "x": 298,
+            "y": 600,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
             "columns": 3
           },
           {
@@ -75,12 +94,188 @@
             "name": "quitButton",
             "textureName": "quitButton",
             "x": 298,
+            "y": 800,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+          {
+            "type": "caption",
+            "name": "pacmanCaption",
+            "textureName": "pacmanCaption",
+            "x": 148,
+            "y": 50,
+            "width": 600,
+            "height": 240,
+            "framesCount": 1,
+            "rows": 1,
+            "columns": 1
+          }
+        ]
+
+      },
+      {
+        "name": "GameOverState",
+        "textures": [
+
+          {
+            "name": "playAgainButton",
+            "path": "Assets/RetryButton.png"
+          },
+          {
+            "name": "menuButton",
+            "path": "Assets/MenuButton.png"
+          },
+          {
+            "name": "gameOverCaption",
+            "path": "Assets/GameOverCaption.png"
+          }
+        ],
+        "gameObjects": [
+          {
+            "type": "button",
+            "name": "playAgainButton",
+            "textureName": "playAgainButton",
+            "x": 298,
+            "y": 500,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "menuButton",
+            "textureName": "menuButton",
+            "x": 298,
+            "y": 700,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+          {
+            "type": "caption",
+            "name": "gameOverCaption",
+            "textureName": "gameOverCaption",
+            "x": 148,
+            "y": 100,
+            "width": 600,
+            "height": 180,
+            "framesCount": 2,
+            "rows": 1,
+            "columns": 2
+          }
+        ]
+      },
+      {
+        "name": "OptionsState",
+        "textures": [
+          {
+            "name": "menuButton",
+            "path": "Assets/MenuButton.png"
+          },
+
+          {
+            "name": "upButton",
+            "path": "Assets/UpButton.png"
+          },
+          {
+            "name": "leftButton",
+            "path": "Assets/LeftButton.png"
+          },
+          {
+            "name": "downButton",
+            "path": "Assets/DownButton.png"
+          },
+          {
+            "name": "rightButton",
+            "path": "Assets/RightButton.png"
+          },
+
+          {
+            "name": "settingsCaption",
+            "path": "Assets/SettingsCaption.png"
+          }
+        ],
+        "gameObjects": [
+          {
+            "type": "button",
+            "name": "menuButton",
+            "textureName": "menuButton",
+            "x": 298,
+            "y": 900,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+
+          {
+            "type": "button",
+            "name": "upButton",
+            "textureName": "upButton",
+            "x": 20,
+            "y": 300,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "leftButton",
+            "textureName": "leftButton",
+            "x": 20,
+            "y": 400,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "downButton",
+            "textureName": "downButton",
+            "x": 20,
+            "y": 500,
+            "width": 300,
+            "height": 80,
+            "framesCount": 3,
+            "rows": 1,
+            "columns": 3
+          },
+          {
+            "type": "button",
+            "name": "rightButton",
+            "textureName": "rightButton",
+            "x": 20,
             "y": 600,
             "width": 300,
             "height": 80,
-            "framesCount": 30,
-            "rows": 10,
+            "framesCount": 3,
+            "rows": 1,
             "columns": 3
+          },
+
+          {
+            "type": "caption",
+            "name": "settingsCaption",
+            "textureName": "settingsCaption",
+            "x": 148,
+            "y": 20,
+            "width": 600,
+            "height": 180,
+            "framesCount": 1,
+            "rows": 1,
+            "columns": 1
           }
         ]
 
