@@ -3,6 +3,8 @@
 #include "GameLogicHandler.h"
 #include <iostream>
 #include <string>
+#include "Text.h"
+
 GameOverState::GameOverState(const std::shared_ptr<IInputHandler>& input_handler,
 		const std::shared_ptr<GameLogicHandler>&gameLogicHandler,const std::shared_ptr<IRenderer>&renderer) :
 		_inputHandler(input_handler), _gameLogicHandler(gameLogicHandler), _renderer(renderer)
@@ -15,12 +17,6 @@ void GameOverState::Draw()
 {
 	for (auto&object : _objects)
 		object->Draw();
-
-	int w, h;
-	SDL_QueryTexture(&_scoreTexture.Get(), nullptr, nullptr, &w, &h);
-	std::cout << w << " " << h << "\n";
-	Rect dest{ (896-w)/2,300,w,h };
-	_renderer->CopyEx(_scoreTexture, &Rect{ 0,0,w,h }, &dest);
 }
 
 void GameOverState::Update()
@@ -36,17 +32,14 @@ void GameOverState::HandleInput()
 
 void GameOverState::OnEnter()
 {
-	_font = TTF_OpenFont("assets/FFF_Tusj.ttf", 80);
 	std::string value=std::to_string(_gameLogicHandler->GetScore());
-
-	SDL_Surface*scoreSurface = TTF_RenderText_Solid(_font, ("Score " + value).c_str(),SDL_Color{255,255,255,0});
-
-	_scoreTexture = _renderer->CreateTextureFrom(Wrapper<SDL_Surface>([](SDL_Surface*s) {SDL_FreeSurface(s); }, scoreSurface));
+	auto text = std::make_shared<Text>(_renderer, "Score " + value, 80);
+	text->SetPosition({ static_cast<double>((896 - text->GetWidth()) / 2),300 });
+	_objects.push_back(text);
 }
 
 void GameOverState::OnExit()
 {
-	//TTF_CloseFont(_font);
 }
 
 void GameOverState::BindActionToButton(Button& button)

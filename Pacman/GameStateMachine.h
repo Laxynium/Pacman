@@ -3,7 +3,6 @@
 #include "IHandleInput.h"
 #include <memory>
 #include "Event.h"
-#include "BoostDI.h"
 #include "IInputHandler.h"
 #include "GameStateFactory.h"
 #include "IStatesLoader.h"
