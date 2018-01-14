@@ -3,6 +3,7 @@
 #include "ActiveKeysActionArg.h"
 #include "GameStateNames.h"
 #include "GameSettings.h"
+#include "SpecialSDLActionType.h"
 
 OptionsState::OptionsState(const std::shared_ptr<IInputHandler>& inputHandler,const std::shared_ptr<IRenderer>&renderer) :_inputHandler(inputHandler), 
 	_renderer(renderer)
@@ -98,11 +99,18 @@ void OptionsState::OnEnter()
 
 		}		
 	}}});
+
+	_inputHandler->AddBindings({ std::make_pair((new SpecialSDLActionType{ SDL_SCANCODE_ESCAPE })->SetUniuqueName("ESCPressed"), [&]()
+	{
+		StateEnded();
+	}) });
+
 }
 
 void OptionsState::OnExit()
 {
 	_inputHandler->RemoveBinding("ActiveButtons");
+	_inputHandler->RemoveBinding("ESCPressed");
 }
 
 void OptionsState::BindActionToButton(Button& button)
