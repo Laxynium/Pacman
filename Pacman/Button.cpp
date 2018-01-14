@@ -5,11 +5,21 @@
 #include "ActionArg.h"
 #include "ITextureManager.h"
 
+int Button::_id = 0;
+
 Button::Button(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,std::shared_ptr<ITextureManager>textureManager) : _renderer(renderer),
 _inputHandler(
 	inputHandler), _textureManager(textureManager)
 {
-	_inputHandler->AddBindings({ { (new SDLActionType(SDL_MOUSEMOTION,0))->SetUniuqueName("MouseMove"),[&](std::shared_ptr<ActionArg>action)
+	_id++;
+
+	_mouseMove += std::to_string(_id);
+
+	_buttonDown += std::to_string(_id);
+
+	_buttonUp += std::to_string(_id);
+
+	_inputHandler->AddBindings({ { (new SDLActionType(SDL_MOUSEMOTION,0))->SetUniuqueName(_mouseMove),[&](std::shared_ptr<ActionArg>action)
 	{
 		auto &mouseMoveActionType = dynamic_cast<MouseMoveActionArg&>(*action);
 
@@ -25,12 +35,12 @@ _inputHandler(
 
 	} } });
 
-	_inputHandler->AddBindings({ { (new SDLActionType(SDL_MOUSEBUTTONDOWN,0))->SetUniuqueName("ButtonDown"),[&]()
+	_inputHandler->AddBindings({ { (new SDLActionType(SDL_MOUSEBUTTONDOWN,0))->SetUniuqueName(_buttonDown),[&]()
 	{
 		_isButtonPressed = true;
 	} } });
 
-	_inputHandler->AddBindings({ { (new SDLActionType(SDL_MOUSEBUTTONUP,0))->SetUniuqueName("ButtonUp"),[&]()
+	_inputHandler->AddBindings({ { (new SDLActionType(SDL_MOUSEBUTTONUP,0))->SetUniuqueName(_buttonUp),[&]()
 	{
 		this->ManageClick();
 
@@ -45,7 +55,8 @@ _inputHandler(
 
 void Button::ManageClick()
 {
-	if (!IsHovered())return;
+	if (!IsHovered())
+		return;
 	//do actions on click
 	Clicked();
 }
@@ -61,11 +72,11 @@ bool Button::IsHovered()
 
 Button::~Button()
 {
-	_inputHandler->RemoveBinding("MouseMove");
+	_inputHandler->RemoveBinding(_mouseMove);
 
-	_inputHandler->RemoveBinding("ButtonDown");
+	_inputHandler->RemoveBinding(_buttonDown);
 
-	_inputHandler->RemoveBinding("ButtonUp");
+	_inputHandler->RemoveBinding(_buttonUp);
 }
 
 void Button::Draw()

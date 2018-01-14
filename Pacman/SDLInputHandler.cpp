@@ -7,6 +7,8 @@
 #include <algorithm>
 #include "SpecialSDLActionType.h"
 #include "MouseMoveActionArg.h"
+#include "SDLActiveButtonsActionType.h"
+#include "ActiveKeysActionArg.h"
 
 auto SDLInputHandler::SpecialActions()
 {
@@ -38,8 +40,9 @@ auto SDLInputHandler::SDLActions()
 
 void SDLInputHandler::HandleActions()
 {
-	const auto keyStates = SDL_GetKeyboardState(nullptr);
-
+	int length;
+	const auto keyStates = SDL_GetKeyboardState(&length);
+	
 	auto keyboardActions = SpecialActions();
 
 	for (auto &action : keyboardActions)
@@ -50,8 +53,7 @@ void SDLInputHandler::HandleActions()
 			if (action.second != nullptr)
 			{
 				action.second();
-			}
-				
+			}			
 	}
 	SDL_Event event;
 	if(SDL_PollEvent(&event))
@@ -91,6 +93,29 @@ void SDLInputHandler::HandleActions()
 			{
 				action.second(std::make_shared<MouseMoveActionArg>(event.motion.x, event.motion.y));
 			}		
+		}
+		
+
+		auto result3 = FindActions<std::shared_ptr<ActionArg>>(_actionsWithParams, [&](const auto&pair)
+		{
+			SDLActiveButtonsActionType* actionType = dynamic_cast<SDLActiveButtonsActionType*>(pair.first);
+
+			if (actionType == nullptr)return false;
+
+			return true;
+
+		});
+
+		std::vector<std::string>activeKeys;
+		for (int i = 0; i < length; ++i)
+		{
+			if (keyStates[i])
+				activeKeys.push_back(SDL_GetScancodeName(static_cast<SDL_Scancode>(i)));
+		}
+
+		for (auto&action : result3)
+		{
+			action.second(std::make_shared<ActiveKeysActionArg>(activeKeys));
 		}
 	}
 }

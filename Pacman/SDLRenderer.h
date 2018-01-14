@@ -5,6 +5,7 @@
 #include "Rect.h"
 #include "BoostDI.h"
 #include "ITextureManager.h"
+#include "GameSettings.h"
 
 class SDLRenderer:public IRenderer
 {
@@ -13,8 +14,8 @@ public:
 	using Ptr = std::unique_ptr<T, std::function<void(T*)>>;
 
 private:
-	const int _gameWidth = 896;
-	const int _gameHeight = 1024;
+	const int _gameWidth = GameSettings::GameWidth;
+	const int _gameHeight = GameSettings::GameHeight;
 	const double _scale = 0.72;
 	Ptr<SDL_Window> _window;
 	Ptr<SDL_Renderer> _renderer;

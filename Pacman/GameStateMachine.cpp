@@ -15,7 +15,6 @@ GameStateMachine::GameStateMachine(std::shared_ptr<IInputHandler>inputHandler,
 	}) });
 
 	auto state = _gameStateFactory->CreateState(GameStateNames::MainMenuState);
-
 	_statesLoader->Load(_statesFileName, state);
 	_gameStates.push_back(state);
 

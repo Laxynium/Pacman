@@ -24,6 +24,11 @@ class Button :public GameObject
 	bool _isHovered = false;
 
 	bool _animPlayed = false;
+	
+	std::string _mouseMove = "MouseMove";
+	std::string _buttonDown = "ButtonDown";
+	std::string _buttonUp = "ButtonUp";
+	static int _id;
 public:
 	Button(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler, std::shared_ptr<ITextureManager>textureManager);
 

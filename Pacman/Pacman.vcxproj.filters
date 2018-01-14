@@ -337,6 +337,21 @@
     <ClInclude Include="Factory.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="SDLActiveButtonsActionType.h">
+      <Filter>Game\Models\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ActiveKeysActionArg.h">
+      <Filter>Game\Models\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsState.h">
+      <Filter>Game\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSettings.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILayerParser.cpp">
@@ -514,6 +529,15 @@
       <Filter>Game\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Factory.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsState.cpp">
+      <Filter>Game\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Game\Models\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSettings.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>

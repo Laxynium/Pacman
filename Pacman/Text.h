@@ -9,7 +9,6 @@ class Text:public GameObject
 	std::shared_ptr<IRenderer> _renderer;
 	std::string _text;
 	int _fontSize;
-	bool _hasTextChanged = false;
 	TTF_Font *_font = nullptr;
 	Wrapper<SDL_Texture> _texture;
 private://methods

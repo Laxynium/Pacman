@@ -3,6 +3,7 @@
 #include "SpecialSDLActionType.h"
 #include <functional>
 #include "GameStateNames.h"
+#include "GameSettings.h"
 
 PlayState::PlayState(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,std::shared_ptr<ITextureManager>textureManager,
                          std::shared_ptr<ILevelLoader> levelLoader, std::shared_ptr<ICollisionManager> collisionManager,
@@ -46,19 +47,26 @@ void PlayState::BindInput()
 {
 	std::vector<std::pair<ActionType*, std::function<void()>>>actions;
 
-	actions.emplace_back(std::make_pair((new SpecialSDLActionType{ SDL_SCANCODE_W })->SetUniuqueName("WPressed"), [&]()
+	SDL_Scancode scanCode=SDL_GetScancodeFromName(GameSettings::ButtonToMoveUp.c_str());
+	actions.emplace_back(std::make_pair((new SpecialSDLActionType{ scanCode })->SetUniuqueName("WPressed"), [&]()
 	{
 		_pacman->Move({ 0,-1 });
 	}));
-	actions.emplace_back(std::make_pair((new SpecialSDLActionType{ SDL_SCANCODE_S })->SetUniuqueName("SPressed"), [&]()
+
+	scanCode = SDL_GetScancodeFromName(GameSettings::ButtonToMoveDown.c_str());
+	actions.emplace_back(std::make_pair((new SpecialSDLActionType{ scanCode })->SetUniuqueName("SPressed"), [&]()
 	{
 		_pacman->Move({ 0,1 });
 	}));
-	actions.emplace_back(std::make_pair((new SpecialSDLActionType{ SDL_SCANCODE_A })->SetUniuqueName("APressed"), [&]()
+
+	scanCode = SDL_GetScancodeFromName(GameSettings::ButtonToMoveLeft.c_str());
+	actions.emplace_back(std::make_pair((new SpecialSDLActionType{ scanCode })->SetUniuqueName("APressed"), [&]()
 	{
 		_pacman->Move({ -1,0 });
 	}));
-	actions.emplace_back(std::make_pair((new SpecialSDLActionType{ SDL_SCANCODE_D })->SetUniuqueName("DPressed"), [&]()
+
+	scanCode = SDL_GetScancodeFromName(GameSettings::ButtonToMoveRight.c_str());
+	actions.emplace_back(std::make_pair((new SpecialSDLActionType{ scanCode })->SetUniuqueName("DPressed"), [&]()
 	{
 		_pacman->Move({ 1,0 });
 	}));

@@ -2,6 +2,7 @@
 #include "Rect.h"
 
 Text::Text(const std::shared_ptr<IRenderer>& renderer, const std::string& text,int fontSize): _renderer(renderer), _text(text)
+, _texture([](SDL_Texture*t) {SDL_DestroyTexture(t); })
 {
 	_font = TTF_OpenFont("assets/FFF_Tusj.ttf", fontSize);
 	SetTexture(text);
@@ -15,7 +16,6 @@ const std::string& Text::GetText() const
 void Text::SetText(const std::string& text)
 {
 	_text = text;
-	_hasTextChanged = true;
 	SetTexture(text);
 }
 
@@ -30,7 +30,7 @@ void Text::SetTexture(const std::string&text)
 {
 	const auto surface = TTF_RenderText_Solid(_font, text.c_str(), SDL_Color{ 255,255,255,0 });
 
-	_texture = _renderer->CreateTextureFrom(Wrapper<SDL_Surface>([](SDL_Surface*s) {SDL_FreeSurface(s); }, surface));
+	_texture =_renderer->CreateTextureFrom(Wrapper<SDL_Surface>([](SDL_Surface*s) {SDL_FreeSurface(s); }, surface));
 
 	int w, h;
 	SDL_QueryTexture(&_texture.Get(), nullptr, nullptr, &w, &h);

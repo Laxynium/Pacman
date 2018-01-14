@@ -2,6 +2,7 @@
 #include "Rect.h"
 #include "ITextureManager.h"
 #include <iostream>
+#include "GameSettings.h"
 
 Pacman::Pacman(IRenderer& renderer, ICollisionManager& collisionManager, ITextureManager&textureManager)
 	: _renderer(renderer), _collisionManager(collisionManager), _textureManager(textureManager)
@@ -69,10 +70,10 @@ void Pacman::Update()
 	if(_position.X()<0)
 	{
 		//TODO remove magic number which is width of game
-		_position.SetX(896 + _position.X());
+		_position.SetX(GameSettings::GameWidth + _position.X());
 	}
-	if (_position.X() > 896)
-		_position.SetX(_position.X()-896);
+	if (_position.X() > GameSettings::GameWidth)
+		_position.SetX(_position.X()- GameSettings::GameWidth);
 
 	//Update angle of texture
 	auto diretction = _vecToMove.ToDirection();

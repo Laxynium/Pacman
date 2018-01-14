@@ -3,9 +3,9 @@
 #include "GameStateNames.h"
 
 MainMenuState::
-MainMenuState(std::shared_ptr<IInputHandler> inputHandler): 
-                                                                                                 _inputHandler(
-	                                                                                                 inputHandler)
+MainMenuState(std::shared_ptr<IInputHandler> inputHandler):
+	_inputHandler(
+		inputHandler)
 {
 	_stateName = GameStateNames::MainMenuState;
 }
@@ -26,6 +26,9 @@ void MainMenuState::BindActionToButton(Button& button)
 	//TODO use map not ifs
 	if (button.GetName() == "playButton")
 		func = [this]() {this->ChangedState(GameStateNames::PlayState); };
+
+	if (button.GetName() == "optionsButton")
+		func = [this]() {this->PushedState(GameStateNames::OptionsState); };
 
 	if (button.GetName() == "quitButton")
 		func = [this]() {this->StateEnded(); };

@@ -1,9 +1,10 @@
 ﻿#include "BehaviourBase.h"
 #include "Ghost.h"
+#include "GameSettings.h"
 
 void BehaviourBase::OnTransition(Vector2D position)
 {
-	const int mazeWidth = 896;
+	const int mazeWidth = GameSettings::GameWidth;
 	if (position.X()<0)
 	{
 		position.SetX(mazeWidth + position.X());

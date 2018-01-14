@@ -4,6 +4,7 @@
 #include "MainMenuState.h"
 #include "GameOverState.h"
 #include "GameStateNames.h"
+#include "OptionsState.h"
 
 GameStateFactory::GameStateFactory(std::shared_ptr<IRenderer> renderer, std::shared_ptr<IInputHandler> inputHandler,std::shared_ptr<ITextureManager>textureManager,
                                    std::shared_ptr<ILevelLoader> levelLoader,
@@ -24,6 +25,8 @@ GameStateFactory::GameStateFactory(std::shared_ptr<IRenderer> renderer, std::sha
 
 	auto createGameOverState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<GameOverState>(_inputHandler,_gameLogicHandler,_renderer); };
 
+	auto createOptionsState= [&]()->std::shared_ptr<IGameState> {return std::make_shared<OptionsState>(_inputHandler,_renderer); };
+
 	_mappedStates[GameStateNames::PlayState] = createPlayState;
 
 	_mappedStates[GameStateNames::PauseState] = createPauseState;
@@ -31,6 +34,8 @@ GameStateFactory::GameStateFactory(std::shared_ptr<IRenderer> renderer, std::sha
 	_mappedStates[GameStateNames::MainMenuState] = createMenuState;
 
 	_mappedStates[GameStateNames::GameOverState] = createGameOverState;
+
+	_mappedStates[GameStateNames::OptionsState] = createOptionsState;
 }
 
 std::shared_ptr<IGameState> GameStateFactory::CreateState(const std::string& name)

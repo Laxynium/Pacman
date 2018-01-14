@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "Text.h"
+#include "GameSettings.h"
 
 GameOverState::GameOverState(const std::shared_ptr<IInputHandler>& input_handler,
 		const std::shared_ptr<GameLogicHandler>&gameLogicHandler,const std::shared_ptr<IRenderer>&renderer) :
@@ -34,7 +35,7 @@ void GameOverState::OnEnter()
 {
 	std::string value=std::to_string(_gameLogicHandler->GetScore());
 	auto text = std::make_shared<Text>(_renderer, "Score " + value, 80);
-	text->SetPosition({ static_cast<double>((896 - text->GetWidth()) / 2),300 });
+	text->SetPosition({ static_cast<double>((GameSettings::GameWidth - text->GetWidth()) / 2),300 });
 	_objects.push_back(text);
 }
 

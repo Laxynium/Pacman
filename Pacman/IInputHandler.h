@@ -93,6 +93,7 @@ public:
 		}
 
 	}
+
 	virtual void HandleActions() = 0;
 };
 
