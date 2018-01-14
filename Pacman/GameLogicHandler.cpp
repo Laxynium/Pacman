@@ -113,6 +113,11 @@ void GameLogicHandler::SetGameEndPoint(int numberOfBalls)
 	_countOfBalls = numberOfBalls;
 }
 
+int GameLogicHandler::GetScore() const
+{
+	return _numberOfScoredPoints;
+}
+
 void GameLogicHandler::Clear()
 {
 	PlayerPickedSuperBall.Clear();

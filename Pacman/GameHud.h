@@ -11,7 +11,7 @@ class GameHud:public ObjectBase
 	std::string _displayedLives = "3";
 	const std::string _livesScaption = "Lives";
 	TTF_Font * _font;
-	bool _livesHasChanged;
+	bool _livesHasChanged=false;
 	Wrapper<SDL_Texture>_livesTexture;
 public:
 	GameHud(IRenderer& renderer);

@@ -14,7 +14,6 @@ void GameHud::Draw()
 {
 	SDL_Surface *surface=TTF_RenderText_Solid(_font, (_scoreCaption+" "+_displayedScore).c_str(), SDL_Color{ 255,255,255,0 });
 
-	
 
 	auto texture=_renderer.CreateTextureFrom(Wrapper<SDL_Surface>([](SDL_Surface*surf) {SDL_FreeSurface(surf); }, surface));
 	

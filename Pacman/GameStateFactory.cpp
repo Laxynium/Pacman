@@ -22,7 +22,7 @@ GameStateFactory::GameStateFactory(std::shared_ptr<IRenderer> renderer, std::sha
 
 	auto createMenuState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<MainMenuState>(_inputHandler); };
 
-	auto createGameOverState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<GameOverState>(_inputHandler); };
+	auto createGameOverState = [&]()->std::shared_ptr<IGameState> {return std::make_shared<GameOverState>(_inputHandler,_gameLogicHandler,_renderer); };
 
 	_mappedStates[GameStateNames::PlayState] = createPlayState;
 

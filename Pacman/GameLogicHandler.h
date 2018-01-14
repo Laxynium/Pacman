@@ -44,6 +44,8 @@ public:
 
 	void SetGameEndPoint(int numberOfBalls);
 
+	int GetScore() const;
+
 	Event<ICollidable&>PlayerPickedSuperBall;
 
 	Event<ICollidable&>PlayerPickedBall;
